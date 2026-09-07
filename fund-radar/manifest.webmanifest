@@ -1,0 +1,11 @@
+{
+  "name":"资金潮汐雷达",
+  "short_name":"资金雷达",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#07101e",
+  "theme_color":"#07101e",
+  "description":"A股+港股短线资金潮汐与量价启动雷达",
+  "icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
