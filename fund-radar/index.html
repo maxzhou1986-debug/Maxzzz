@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b1020" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="资金雷达" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="icon" href="./icon.svg" type="image/svg+xml" />
+<title>资金潮汐雷达</title>
+<style>
+:root{--bg:#07101e;--panel:#0d1728;--panel2:#111d31;--line:#21304a;--txt:#eef4ff;--muted:#8ea0bc;--green:#24d18b;--red:#ff5b6e;--amber:#ffcc66;--blue:#67a6ff}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#07101e,#081321 45%,#07101e);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",Arial,sans-serif;-webkit-tap-highlight-color:transparent}.app{max-width:560px;margin:0 auto;min-height:100vh;padding:calc(env(safe-area-inset-top) + 16px) 14px calc(env(safe-area-inset-bottom) + 92px)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}.brand h1{font-size:27px;margin:0 0 5px;letter-spacing:-.5px}.brand p{margin:0;color:var(--muted);font-size:12px}.live{font-size:11px;padding:7px 10px;border:1px solid #28533f;border-radius:999px;background:#0c241b;color:#7bf0b8}.live.off{border-color:#5a4930;background:#2a2113;color:#ffd483}
+.hero{background:linear-gradient(135deg,#12213a,#0f1b2d);border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:12px;box-shadow:0 14px 40px rgba(0,0,0,.22)}.hero-row{display:flex;justify-content:space-between;gap:10px}.kicker{color:#90a5c8;font-size:12px}.big{font-size:38px;font-weight:800;letter-spacing:-1px;margin:4px 0}.score.green{color:var(--green)}.score.amber{color:var(--amber)}.mini{color:var(--muted);font-size:12px;line-height:1.6}.pulse{width:72px;height:72px;border-radius:50%;background:radial-gradient(circle,#24d18b 0 8%,rgba(36,209,139,.35) 9% 24%,rgba(36,209,139,.12) 25% 48%,transparent 49%);box-shadow:0 0 28px rgba(36,209,139,.2)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.seg button,.toolbar button{border:1px solid var(--line);background:var(--panel);color:#aab7ca;border-radius:14px;padding:11px 10px;font-weight:700}.seg button.active{background:#183058;color:white;border-color:#31578d}.toolbar{display:flex;gap:8px;margin-bottom:12px}.toolbar button{flex:1}.toolbar .primary{background:#17365f;color:#fff;border-color:#31578d}
+.section{margin-top:16px}.st{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.st h2{font-size:16px;margin:0}.st span{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:13px}.card strong{display:block;font-size:15px;margin-bottom:5px}.up{color:var(--red)}.down{color:var(--green)}.tag{display:inline-block;font-size:10px;border-radius:999px;padding:4px 7px;background:#19273c;color:#a9bbd6;margin-top:7px}.tag.hot{background:#351d22;color:#ff9daa}.tag.good{background:#123125;color:#77eab4}.tag.warn{background:#302714;color:#f2cf76}
+.list{display:flex;flex-direction:column;gap:8px}.row{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:11px 12px}.rank{width:30px;height:30px;border-radius:10px;background:#15243a;display:grid;place-items:center;font-weight:800;color:#91a6c6}.name{font-weight:750;font-size:14px}.meta{font-size:11px;color:var(--muted);margin-top:3px}.right{text-align:right}.pct{font-weight:800}.scorepill{font-size:10px;margin-top:4px;border-radius:999px;padding:4px 7px;background:#152b23;color:#75e5b0;display:inline-block}.scorepill.mid{background:#302714;color:#f2cf76}.scorepill.bad{background:#351d22;color:#ff9daa}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(6,12,22,.88);backdrop-filter:blur(18px);border-top:1px solid #1b2940;padding:8px 14px calc(env(safe-area-inset-bottom) + 8px)}.nav{max-width:560px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.nav button{background:transparent;border:0;color:#74869f;font-size:11px;padding:8px 2px}.nav button.active{color:#ddebff}.nav .ico{font-size:20px;display:block;margin-bottom:3px}
+.notice{margin-top:10px;color:#71849e;font-size:10px;line-height:1.55}.empty{padding:18px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><div class="brand"><h1>资金潮汐雷达</h1><p id="stamp">A股 + 港股 · 量价优先</p></div><div id="liveBadge" class="live off">数据准备中</div></div>
+  <div class="hero"><div class="hero-row"><div><div class="kicker">今日市场资金温度</div><div id="marketScore" class="big score amber">--</div><div id="marketText" class="mini">正在读取行情并计算资金集中度</div></div><div class="pulse"></div></div></div>
+  <div class="seg"><button id="btnA" class="active" onclick="switchMarket('A')">A股</button><button id="btnHK" onclick="switchMarket('HK')">港股</button></div>
+  <div class="toolbar"><button class="primary" onclick="refreshAll()">刷新雷达</button><button onclick="toggleOnlyStart()" id="startBtn">只看启动</button></div>
+
+  <div class="section"><div class="st"><h2>资金正在去哪里</h2><span>板块潮汐</span></div><div id="sectorGrid" class="grid"></div></div>
+  <div class="section"><div class="st"><h2>启动候选 Top 10</h2><span>量价 + 成交额 + 换手 + 资金</span></div><div id="stockList" class="list"></div></div>
+  <div class="section"><div class="st"><h2>风险提示</h2><span>避免追高陷阱</span></div><div id="riskList" class="list"></div></div>
+  <div class="notice">本工具用于量价与资金行为观察，不构成投资建议。公开行情接口可能出现延迟或临时不可用；接口失败时会自动显示演示数据，避免页面空白。</div>
+</div>
+<div class="bottom"><div class="nav"><button class="active"><span class="ico">◉</span>雷达</button><button><span class="ico">⌁</span>板块</button><button><span class="ico">↗</span>启动</button><button><span class="ico">⚑</span>风险</button></div></div>
+<script>
+const EM='https://push2.eastmoney.com/api/qt/clist/get';
+let market='A', onlyStart=false, state={A:{stocks:[],sectors:[]},HK:{stocks:[],sectors:[]}};
+const demo={A:{sectors:[['光模块',3.8,92],['半导体',2.9,87],['AI服务器',2.4,82],['机器人',1.8,76]],stocks:[['300502','新易盛',6.8,92,18.6,12.4],['300308','中际旭创',5.1,89,16.2,9.4],['002463','沪电股份',4.4,86,12.8,8.1],['300476','胜宏科技',3.9,83,10.2,7.7],['002837','英维克',3.4,79,8.6,6.1],['300394','天孚通信',2.8,76,7.3,5.7]]},HK:{sectors:[['半导体',4.1,91],['互联网',2.7,85],['创新药',2.4,81],['黄金',1.6,73]],stocks:[['00981','中芯国际',5.9,91,42.1,6.8],['01347','华虹半导体',4.7,87,18.4,7.1],['00700','腾讯控股',2.3,82,96.8,1.2],['09988','阿里巴巴-W',2.0,80,74.5,1.6],['06160','百济神州',1.8,76,13.2,1.1],['01024','快手-W',1.5,73,20.8,2.4]]}};
+function jsonp(url, timeout=7000){return new Promise((resolve,reject)=>{const cb='emcb_'+Date.now()+'_'+Math.random().toString(36).slice(2);const s=document.createElement('script');let done=false;window[cb]=d=>{done=true;cleanup();resolve(d)};function cleanup(){delete window[cb];s.remove()}s.onerror=()=>{cleanup();reject(new Error('network'))};s.src=url+(url.includes('?')?'&':'?')+'cb='+cb+'&_='+Date.now();document.body.appendChild(s);setTimeout(()=>{if(!done){cleanup();reject(new Error('timeout'))}},timeout)})}
+function stockUrl(m){const fs=m==='A'?'m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23':'m:128+t:3,m:128+t:4,m:128+t:1,m:128+t:2';return `${EM}?pn=1&pz=80&po=1&np=1&fltt=2&invt=2&fid=f6&fs=${encodeURIComponent(fs)}&fields=f12,f14,f2,f3,f5,f6,f8,f10,f62,f184`}
+function sectorUrl(m){const fs=m==='A'?'m:90+t:2':'m:128+t:2';return `${EM}?pn=1&pz=30&po=1&np=1&fltt=2&invt=2&fid=f3&fs=${encodeURIComponent(fs)}&fields=f12,f14,f2,f3,f6,f8,f10,f62,f184`}
+function n(v,d=0){v=Number(v);return Number.isFinite(v)?v:d} function bn(v){return n(v)/1e8}
+function scoreStock(x){const pct=Math.max(-10,Math.min(20,n(x.f3)));const amount=Math.log10(Math.max(1,n(x.f6)));const turnover=Math.min(20,Math.max(0,n(x.f8)));const vr=Math.min(5,Math.max(0,n(x.f10)));const flow=n(x.f184);let s=45 + pct*2.2 +(amount-8)*5 + turnover*.55 + vr*2.5 + Math.max(-15,Math.min(15,flow/6));return Math.max(0,Math.min(99,Math.round(s)))}
+function normalizeStocks(items){return (items||[]).filter(x=>x&&x.f14&&n(x.f2)>0).map(x=>({code:x.f12,name:x.f14,price:n(x.f2),pct:n(x.f3),amount:bn(x.f6),turn:n(x.f8),vr:n(x.f10),flow:n(x.f62),flowPct:n(x.f184),score:scoreStock(x)})).sort((a,b)=>b.score-a.score).slice(0,30)}
+function normalizeSectors(items){return (items||[]).filter(x=>x&&x.f14).map(x=>({name:x.f14,pct:n(x.f3),amount:bn(x.f6),score:Math.max(0,Math.min(99,Math.round(55+n(x.f3)*5+n(x.f184)*.25))) })).sort((a,b)=>b.score-a.score).slice(0,8)}
+async function loadMarket(m){try{const [s,b]=await Promise.all([jsonp(stockUrl(m)),jsonp(sectorUrl(m))]);const stocks=normalizeStocks(s?.data?.diff),sectors=normalizeSectors(b?.data?.diff);if(!stocks.length)throw 0;state[m]={stocks,sectors};return true}catch(e){state[m]={stocks:demo[m].stocks.map(x=>({code:x[0],name:x[1],pct:x[2],score:x[3],amount:x[4],turn:x[5],vr:1.4,price:0})),sectors:demo[m].sectors.map(x=>({name:x[0],pct:x[1],score:x[2],amount:0}))};return false}}
+function switchMarket(m){market=m;document.getElementById('btnA').classList.toggle('active',m==='A');document.getElementById('btnHK').classList.toggle('active',m==='HK');render()}
+function toggleOnlyStart(){onlyStart=!onlyStart;document.getElementById('startBtn').textContent=onlyStart?'显示全部':'只看启动';renderStocks()}
+function clsPct(v){return v>=0?'up':'down'} function fmtAmt(v){return v>=100?`${v.toFixed(0)}亿`:v>=1?`${v.toFixed(1)}亿`:`${(v*10000).toFixed(0)}万`}
+function render(){const d=state[market];const avg=d.stocks.slice(0,10).reduce((a,x)=>a+x.score,0)/(Math.max(1,Math.min(10,d.stocks.length)));const ms=Math.round(avg||0);const e=document.getElementById('marketScore');e.textContent=ms||'--';e.className='big score '+(ms>=82?'green':'amber');document.getElementById('marketText').textContent=ms>=86?'资金高度集中：优先看强板块的前排龙头':ms>=78?'资金活跃：寻找刚放量突破的启动股':'资金分散：减少追涨，等待集中度提升';renderSectors();renderStocks();renderRisks()}
+function renderSectors(){const d=state[market].sectors;document.getElementById('sectorGrid').innerHTML=d.slice(0,6).map((x,i)=>`<div class="card"><strong>${x.name}</strong><div class="${clsPct(x.pct)}" style="font-size:22px;font-weight:800">${x.pct>=0?'+':''}${x.pct.toFixed(2)}%</div><div class="tag ${x.score>=85?'hot':x.score>=76?'good':'warn'}">潮汐 ${x.score}</div></div>`).join('')||'<div class="empty">暂无板块数据</div>'}
+function label(s){return s>=88?['启动','']:s>=80?['观察','mid']:['弱','bad']}
+function renderStocks(){let arr=state[market].stocks;if(onlyStart)arr=arr.filter(x=>x.score>=85);document.getElementById('stockList').innerHTML=arr.slice(0,10).map((x,i)=>{const l=label(x.score);return `<div class="row"><div class="rank">${i+1}</div><div><div class="name">${x.name} <span style="font-size:10px;color:#6f829f">${x.code}</span></div><div class="meta">成交 ${fmtAmt(x.amount)} · 换手 ${x.turn.toFixed(1)}% · 量比 ${x.vr.toFixed(1)}</div></div><div class="right"><div class="pct ${clsPct(x.pct)}">${x.pct>=0?'+':''}${x.pct.toFixed(2)}%</div><div class="scorepill ${l[1]}">${l[0]} ${x.score}</div></div></div>`}).join('')||'<div class="empty">当前没有达到启动阈值的标的</div>'}
+function renderRisks(){const risks=state[market].stocks.filter(x=>x.pct<0&&x.amount>5 || x.pct>8&&x.score<80).slice(0,4);document.getElementById('riskList').innerHTML=(risks.length?risks:[{name:'规则1：高位巨量滞涨',code:'',pct:0,score:65,amount:0,turn:0},{name:'规则2：冲高回落 + 资金衰减',code:'',pct:0,score:60,amount:0,turn:0}]).map((x,i)=>`<div class="row"><div class="rank">!</div><div><div class="name">${x.name}</div><div class="meta">${x.code?`成交 ${fmtAmt(x.amount)} · `:''}出现量价背离时不追</div></div><div class="right"><div class="scorepill bad">风险</div></div></div>`).join('')}
+async function refreshAll(){document.getElementById('liveBadge').textContent='刷新中';document.getElementById('liveBadge').className='live off';const ok=await loadMarket(market);document.getElementById('liveBadge').textContent=ok?'公开行情已连接':'演示数据';document.getElementById('liveBadge').className='live '+(ok?'':'off');document.getElementById('stamp').textContent=`${market==='A'?'A股':'港股'} · ${new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})} 更新`;render()}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+(async()=>{await Promise.all([loadMarket('A'),loadMarket('HK')]);document.getElementById('liveBadge').textContent='雷达已就绪';document.getElementById('liveBadge').className='live';render()})();
+</script>
+</body>
+</html>
