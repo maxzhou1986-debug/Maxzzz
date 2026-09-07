@@ -11,12 +11,12 @@
 <div class="chips" id="chips"></div>
 <div class="hero"><div><small>中央广播电视总台 · 央广</small><h2>中国之声</h2><p>国家新闻广播 · 实时直播</p></div><button id="heroPlay">▶ 立即收听</button></div>
 <div class="section"><h3 id="sectionTitle">热门电台</h3><div class="grid" id="list"></div></div>
-<div class="note">V3 已改用 HTTPS 直播源，优先央广官方线路；个别地方台若临时失效，会自动尝试备用源。</div>
+<div class="note">V4 已切换到 2026 年仍在工作的 HTTPS 中国之声线路，并保留央广官方 HTTPS 备用源。</div>
 <audio id="audio" playsinline preload="none"></audio>
 <div class="player" id="player"><div class="logo" id="pLogo">央</div><div class="pmeta"><div class="pname" id="pName"></div><div class="pstatus" id="pStatus">准备播放</div></div><button class="pbtn" id="toggle">▶</button></div>
 <script>
 const stations=[
-{id:'cnr1',name:'中国之声',tag:'央广',cat:'央广',desc:'国家新闻广播',logo:'央',urls:['https://ngcdn001.cnr.cn/live/zgzs/index.m3u8','https://live-play.cctvnews.cctv.com/cctv/zgzs192.m3u8','https://lhttp.qtfm.cn/live/386/64k.mp3']},
+{id:'cnr1',name:'中国之声',tag:'央广',cat:'央广',desc:'国家新闻广播',logo:'央',urls:['https://lhttp.qtfm.cn/live/15318317/64k.mp3','https://ngcdn001.cnr.cn/live/zgzs/index.m3u8','https://live-play.cctvnews.cctv.com/cctv/zgzs192.m3u8']},
 {id:'cnr2',name:'经济之声',tag:'央广',cat:'央广',desc:'财经与经济资讯',logo:'经',urls:['https://ngcdn002.cnr.cn/live/jjzs/index.m3u8','https://lhttp.qtfm.cn/live/387/64k.mp3']},
 {id:'cnr3',name:'音乐之声',tag:'央广',cat:'央广',desc:'MusicRadio 华语流行',logo:'音',urls:['https://ngcdn003.cnr.cn/live/yyzs/index.m3u8','https://lhttp.qtfm.cn/live/388/64k.mp3']},
 {id:'cnr4',name:'经典音乐广播',tag:'央广',cat:'央广',desc:'经典音乐',logo:'典',urls:['https://ngcdn004.cnr.cn/live/dszs/index.m3u8','https://lhttp.qtfm.cn/live/389/64k.mp3']},
@@ -28,7 +28,7 @@ const stations=[
 {id:'bjnews',name:'北京新闻广播',tag:'北京',cat:'地方',desc:'北京新闻资讯',logo:'京',urls:['https://brtv-radiolive.rbc.cn/alive/fm1006.m3u8','https://lhttp.qtfm.cn/live/339/64k.mp3']},
 {id:'bjtraffic',name:'北京交通广播',tag:'北京',cat:'交通',desc:'FM103.9',logo:'交',urls:['https://brtv-radiolive.rbc.cn/alive/fm1039.m3u8','https://lhttp.qtfm.cn/live/336/64k.mp3']},
 {id:'bjmusic',name:'北京音乐广播',tag:'北京',cat:'音乐',desc:'FM97.4',logo:'音',urls:['https://brtv-radiolive.rbc.cn/alive/fm974.m3u8']},
-{id:'gdnews',name:'广东新闻广播',tag:'广东',cat:'地方',desc:'广东新闻资讯',logo:'粤',urls:['https://lhttp.qtfm.cn/live/1254/64k.mp3','https://live.ximalaya.com/radio-first-page-app/live/245/64.m3u8?transcode=ts']},
+{id:'gdnews',name:'广东新闻广播',tag:'广东',cat:'地方',desc:'广东新闻资讯',logo:'粤',urls:['https://lhttp.qtfm.cn/live/1254/64k.mp3']},
 {id:'gdmusic',name:'广东音乐之声',tag:'广东',cat:'音乐',desc:'FM99.3',logo:'音',urls:['https://lhttp.qtfm.cn/live/1260/64k.mp3']},
 {id:'jsmusic',name:'江苏经典流行音乐广播',tag:'江苏',cat:'音乐',desc:'经典与流行音乐',logo:'苏',urls:['https://lhttp.qtfm.cn/live/4938/64k.mp3']},
 {id:'shclassic',name:'上海经典音乐广播',tag:'上海',cat:'音乐',desc:'FM94.7',logo:'沪',urls:['https://lhttp-hw.qtfm.cn/live/267/64k.mp3']}
@@ -39,6 +39,6 @@ function renderChips(){chips.innerHTML=cats.map(c=>`<button class="chip ${active
 function filtered(){let q=search.value.trim().toLowerCase();return stations.filter(s=>(activeCat==='全部'||s.cat===activeCat||(activeCat==='收藏'&&favs.has(s.id)))&&(!q||(`${s.name} ${s.desc} ${s.tag}`).toLowerCase().includes(q)))}
 function render(){let arr=filtered();sectionTitle.textContent=activeCat==='全部'?'热门电台':activeCat;list.innerHTML=arr.length?arr.map(s=>`<div class="station"><div class="logo">${s.logo}</div><div class="meta"><div class="name">${s.name}</div><div class="desc">${s.desc} · ${s.tag}</div></div><button class="round fav" data-fav="${s.id}">${favs.has(s.id)?'♥':'♡'}</button><button class="round" data-play="${s.id}">▶</button></div>`).join(''):'<div class="empty">没有找到电台</div>';list.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>playStation(stations.find(s=>s.id===b.dataset.play)));list.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>{let id=b.dataset.fav;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem('radio-favs',JSON.stringify([...favs]));render()})}
 function playStation(s){current=s;urlIndex=0;attempt++;player.classList.add('show');pName.textContent=s.name;pLogo.textContent=s.logo;pStatus.textContent='正在连接直播…';toggle.textContent='❚❚';tryUrl(attempt)}
-function tryUrl(token){if(!current||token!==attempt)return;if(urlIndex>=current.urls.length){pStatus.textContent='当前线路暂时不可用';toggle.textContent='▶';return}let u=current.urls[urlIndex],advanced=false;audio.pause();audio.removeAttribute('src');audio.load();audio.src=u;let timer=setTimeout(()=>next(),9000);function next(){if(advanced||token!==attempt)return;advanced=true;clearTimeout(timer);urlIndex++;tryUrl(token)}audio.onerror=next;audio.onplaying=()=>{if(token!==attempt)return;advanced=true;clearTimeout(timer);pStatus.textContent='正在直播';toggle.textContent='❚❚';if('mediaSession'in navigator)navigator.mediaSession.metadata=new MediaMetadata({title:current.name,artist:current.desc,album:'中国电台 · LIVE'})};audio.load();let p=audio.play();if(p&&p.catch)p.catch(next)}
+function tryUrl(token){if(!current||token!==attempt)return;if(urlIndex>=current.urls.length){pStatus.textContent='当前线路暂时不可用';toggle.textContent='▶';return}let u=current.urls[urlIndex],advanced=false;audio.pause();audio.removeAttribute('src');audio.load();audio.src=u;let timer=setTimeout(()=>next(),12000);function next(){if(advanced||token!==attempt)return;advanced=true;clearTimeout(timer);urlIndex++;tryUrl(token)}audio.onerror=next;audio.onplaying=()=>{if(token!==attempt)return;advanced=true;clearTimeout(timer);pStatus.textContent='正在直播';toggle.textContent='❚❚';if('mediaSession'in navigator)navigator.mediaSession.metadata=new MediaMetadata({title:current.name,artist:current.desc,album:'中国电台 · LIVE'})};audio.load();let p=audio.play();if(p&&p.catch)p.catch(next)}
 toggle.onclick=()=>{if(!current)return;if(audio.paused){audio.play().then(()=>{toggle.textContent='❚❚';pStatus.textContent='正在直播'}).catch(()=>{pStatus.textContent='播放失败，请重新选择电台'})}else{audio.pause();toggle.textContent='▶';pStatus.textContent='已暂停'}};search.oninput=render;$('heroPlay').onclick=()=>playStation(stations[0]);if('mediaSession'in navigator){navigator.mediaSession.setActionHandler('play',()=>audio.play());navigator.mediaSession.setActionHandler('pause',()=>audio.pause())}if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));renderChips();render();
 </script></body></html>
