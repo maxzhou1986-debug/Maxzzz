@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#101114" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="中国电台" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon-180.png" />
+<title>中国电台</title>
+<style>
+:root{--bg:#0e0f12;--card:#181a20;--card2:#20232b;--text:#f7f7f8;--muted:#969ba6;--accent:#ff4d3d;--line:#292c34;--safe:env(safe-area-inset-bottom)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif}body{min-height:100vh;padding-bottom:128px}
+header{position:sticky;top:0;z-index:5;padding:calc(14px + env(safe-area-inset-top)) 18px 10px;background:linear-gradient(180deg,#0e0f12 75%,rgba(14,15,18,.92));backdrop-filter:blur(18px)}
+.top{display:flex;align-items:end;justify-content:space-between}.title{font-size:30px;font-weight:800;letter-spacing:-1px}.live{font-size:12px;color:#ff8a80}.search{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 13px;display:flex;gap:8px}.search input{width:100%;background:none;border:0;outline:0;color:white;font-size:16px}.chips{display:flex;gap:8px;overflow:auto;padding:12px 18px 4px;scrollbar-width:none}.chip{border:1px solid var(--line);background:var(--card);color:#d9dce3;padding:8px 13px;border-radius:999px;white-space:nowrap;font-size:14px}.chip.active{background:#f3f4f6;color:#101114;border-color:#f3f4f6;font-weight:700}
+.hero{margin:14px 18px 18px;border-radius:24px;padding:22px;background:radial-gradient(circle at 85% 10%,#81271f 0,#311c1e 28%,#191a20 70%);min-height:168px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 50px rgba(0,0,0,.25)}.hero .eyebrow{font-size:12px;color:#ffb1aa;font-weight:700}.hero h2{margin:8px 0 4px;font-size:25px}.hero p{margin:0;color:#b9bdc6;font-size:14px}.hero button{margin-top:16px;border:0;border-radius:999px;background:#fff;color:#111;padding:10px 16px;font-weight:800;width:max-content}
+.section{padding:0 18px}.section-title{font-size:20px;font-weight:800;margin:12px 0}.grid{display:grid;grid-template-columns:1fr;gap:10px}.station{display:flex;align-items:center;gap:13px;padding:13px;background:var(--card);border:1px solid var(--line);border-radius:18px}.logo{width:52px;height:52px;border-radius:15px;background:linear-gradient(145deg,#292d37,#15171c);display:grid;place-items:center;font-weight:900;color:#fff;flex:none}.meta{min-width:0;flex:1}.name{font-weight:750;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.desc{font-size:13px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.actions{display:flex;gap:7px}.round{width:38px;height:38px;border-radius:50%;border:1px solid #343740;background:#242730;color:#fff;display:grid;place-items:center;font-size:17px}.round.fav{color:#ff7166}
+.empty{color:#888;padding:30px 10px;text-align:center}
+.player{position:fixed;z-index:20;left:12px;right:12px;bottom:calc(10px + var(--safe));background:rgba(28,30,36,.95);border:1px solid #373a44;border-radius:20px;backdrop-filter:blur(24px);box-shadow:0 12px 50px rgba(0,0,0,.5);padding:10px 12px;display:none;align-items:center;gap:10px}.player.show{display:flex}.p-logo{width:46px;height:46px;border-radius:13px;background:#2b2e37;display:grid;place-items:center;font-weight:900}.p-meta{flex:1;min-width:0}.p-name{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.p-status{font-size:12px;color:#a8acb5;margin-top:3px}.p-btn{width:46px;height:46px;border:0;border-radius:50%;background:#fff;color:#111;font-size:20px;font-weight:800}.spinner{width:15px;height:15px;border:2px solid #666;border-top-color:#fff;border-radius:50%;display:inline-block;animation:s .8s linear infinite;vertical-align:-2px;margin-right:5px}@keyframes s{to{transform:rotate(360deg)}}
+.notice{font-size:12px;color:#777;padding:16px 18px 0;line-height:1.55}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="title">中国电台</div><div class="live">● LIVE</div></div><div class="search">⌕ <input id="search" placeholder="搜索中国之声、音乐、城市…"></div></header>
+<div class="chips" id="chips"></div>
+<div class="hero"><div><div class="eyebrow">中央广播电视总台 · 央广</div><h2>中国之声</h2><p>国家新闻广播 · 实时直播</p></div><button id="heroPlay">▶ 立即收听</button></div>
+<div class="section"><div class="section-title" id="sectionTitle">热门电台</div><div class="grid" id="list"></div></div>
+<div class="notice">直播线路来自公开网络广播地址，电台可能临时调整或限制第三方播放。若某一线路失效，App 会自动尝试备用线路。</div>
+<audio id="audio" playsinline></audio>
+<div class="player" id="player"><div class="p-logo" id="pLogo">央</div><div class="p-meta"><div class="p-name" id="pName"></div><div class="p-status" id="pStatus">准备播放</div></div><button class="p-btn" id="toggle">▶</button></div>
+<script>
+const stations=[
+{id:'cnr1',name:'中国之声',tag:'央广',cat:'央广',desc:'国家新闻广播',logo:'央',urls:['https://lhttp.qingting.fm/live/386/64k.mp3','https://live-play.cctvnews.cctv.com/cctv/zgzs192.m3u8']},
+{id:'cnr2',name:'经济之声',tag:'央广',cat:'央广',desc:'财经与经济资讯',logo:'经',urls:['https://lhttp.qingting.fm/live/387/64k.mp3','http://ngcdn002.cnr.cn/live/jjzs/index.m3u8']},
+{id:'cnr3',name:'音乐之声',tag:'央广',cat:'央广',desc:'MusicRadio 华语流行',logo:'音',urls:['https://lhttp.qingting.fm/live/388/64k.mp3','http://ngcdn003.cnr.cn/live/yyzs/index.m3u8']},
+{id:'cnr4',name:'经典音乐广播',tag:'央广',cat:'央广',desc:'经典音乐 · FM101.8',logo:'典',urls:['https://lhttp.qingting.fm/live/389/64k.mp3','http://ngcdn004.cnr.cn/live/dszs/index.m3u8']},
+{id:'cnr5',name:'台海之声',tag:'央广',cat:'央广',desc:'面向海峡两岸',logo:'台',urls:['https://lhttp.qingting.fm/live/390/64k.mp3','http://ngcdn005.cnr.cn/live/zhzs/index.m3u8']},
+{id:'cnr7',name:'大湾区之声',tag:'央广',cat:'央广',desc:'粤港澳大湾区',logo:'湾',urls:['https://lhttp.qingting.fm/live/392/64k.mp3','http://ngcdn007.cnr.cn/live/hxzs/index.m3u8']},
+{id:'cnr9',name:'文艺之声',tag:'央广',cat:'央广',desc:'文学艺术与文化',logo:'文',urls:['https://lhttp.qingting.fm/live/394/64k.mp3']},
+{id:'bjnews',name:'北京新闻广播',tag:'北京',cat:'地方',desc:'北京新闻资讯',logo:'京',urls:['https://lhttp.qingting.fm/live/339/64k.mp3']},
+{id:'bjtraffic',name:'北京交通广播',tag:'北京',cat:'交通',desc:'FM103.9 交通资讯',logo:'交',urls:['https://lhttp.qingting.fm/live/336/64k.mp3']},
+{id:'shnews',name:'上海新闻广播',tag:'上海',cat:'地方',desc:'上海新闻资讯',logo:'沪',urls:['https://lhttp.qingting.fm/live/274/64k.mp3']},
+{id:'shtraffic',name:'上海交通广播',tag:'上海',cat:'交通',desc:'FM105.7',logo:'交',urls:['https://lhttp.qingting.fm/live/267/64k.mp3']},
+{id:'gdnews',name:'广东新闻广播',tag:'广东',cat:'地方',desc:'广东权威新闻资讯',logo:'粤',urls:['https://lhttp.qingting.fm/live/1259/64k.mp3']},
+{id:'gdmusic',name:'广东音乐之声',tag:'广东',cat:'音乐',desc:'FM99.3 音乐广播',logo:'音',urls:['https://lhttp.qingting.fm/live/1261/64k.mp3']},
+{id:'jsnews',name:'江苏新闻广播',tag:'江苏',cat:'地方',desc:'江苏新闻资讯',logo:'苏',urls:['https://lhttp.qingting.fm/live/4944/64k.mp3']},
+{id:'jsmusic',name:'江苏音乐广播',tag:'江苏',cat:'音乐',desc:'经典与流行音乐',logo:'音',urls:['https://lhttp.qingting.fm/live/4938/64k.mp3']},
+{id:'hbnews',name:'湖北之声',tag:'湖北',cat:'地方',desc:'湖北新闻综合广播',logo:'鄂',urls:['https://lhttp.qingting.fm/live/1297/64k.mp3']}
+];
+const audio=document.getElementById('audio'),list=document.getElementById('list'),chips=document.getElementById('chips'),search=document.getElementById('search'),player=document.getElementById('player'),pName=document.getElementById('pName'),pStatus=document.getElementById('pStatus'),pLogo=document.getElementById('pLogo'),toggle=document.getElementById('toggle'),sectionTitle=document.getElementById('sectionTitle');
+let activeCat='全部',current=null,urlIndex=0,favs=new Set(JSON.parse(localStorage.getItem('radio-favs')||'[]'));
+const cats=['全部','央广','地方','交通','音乐','收藏'];
+function renderChips(){chips.innerHTML=cats.map(c=>`<button class="chip ${activeCat===c?'active':''}" data-cat="${c}">${c}</button>`).join('');chips.querySelectorAll('button').forEach(b=>b.onclick=()=>{activeCat=b.dataset.cat;renderChips();render()})}
+function filtered(){const q=search.value.trim().toLowerCase();return stations.filter(s=>(activeCat==='全部'||s.cat===activeCat||(activeCat==='收藏'&&favs.has(s.id)))&&(!q||(`${s.name} ${s.desc} ${s.tag}`).toLowerCase().includes(q)))}
+function render(){const arr=filtered();sectionTitle.textContent=activeCat==='全部'?'热门电台':activeCat;list.innerHTML=arr.length?arr.map(s=>`<div class="station"><div class="logo">${s.logo}</div><div class="meta"><div class="name">${s.name}</div><div class="desc">${s.desc} · ${s.tag}</div></div><div class="actions"><button class="round fav" data-fav="${s.id}">${favs.has(s.id)?'♥':'♡'}</button><button class="round" data-play="${s.id}">▶</button></div></div>`).join(''):'<div class="empty">没有找到电台</div>';list.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>playStation(stations.find(s=>s.id===b.dataset.play)));list.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>{const id=b.dataset.fav;favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem('radio-favs',JSON.stringify([...favs]));render()})}
+async function playStation(s){current=s;urlIndex=0;player.classList.add('show');pName.textContent=s.name;pLogo.textContent=s.logo;pStatus.innerHTML='<span class="spinner"></span>正在连接直播…';toggle.textContent='❚❚';tryUrl()}
+function tryUrl(){if(!current)return;if(urlIndex>=current.urls.length){pStatus.textContent='当前线路暂时不可用';toggle.textContent='▶';return}audio.src=current.urls[urlIndex];audio.play().then(()=>{pStatus.textContent='正在直播';toggle.textContent='❚❚';if('mediaSession'in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:current.name,artist:current.desc,album:'中国电台 · LIVE'})}}).catch(()=>{urlIndex++;tryUrl()})}
+audio.addEventListener('error',()=>{if(current){urlIndex++;tryUrl()}});audio.addEventListener('playing',()=>pStatus.textContent='正在直播');audio.addEventListener('waiting',()=>pStatus.innerHTML='<span class="spinner"></span>缓冲中…');
+toggle.onclick=()=>{if(!current)return;if(audio.paused){audio.play();toggle.textContent='❚❚'}else{audio.pause();toggle.textContent='▶';pStatus.textContent='已暂停'}};
+search.oninput=render;document.getElementById('heroPlay').onclick=()=>playStation(stations[0]);
+if('mediaSession'in navigator){navigator.mediaSession.setActionHandler('play',()=>audio.play());navigator.mediaSession.setActionHandler('pause',()=>audio.pause())}
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+renderChips();render();
+</script>
+</body>
+</html>
