@@ -1,5 +1,6 @@
 // V2.8 oversold rebound scanner: active A/HK stocks + daily K-line confirmation.
 (function(){
+if(window.__fundRadar_rebound)return;window.__fundRadar_rebound=true;
 const UT='fa5fd1943c7b386f172d6893dbbd1d0c';
 const KH='https://push2his.eastmoney.com/api/qt/stock/kline/get';
 const style=document.createElement('style');style.textContent='.subtabs{grid-template-columns:repeat(6,1fr)!important}.nav{grid-template-columns:repeat(6,1fr)!important}.reboundHero{background:linear-gradient(135deg,#241d12,#101a28);border:1px solid #493a20;border-radius:18px;padding:14px;margin-bottom:10px}.reboundHero b{font-size:20px}.reboundLegend{font-size:10px;color:#91a1b8;line-height:1.65;margin-top:5px}.reboundTag{display:inline-block;font-size:9px;padding:3px 6px;border-radius:8px;background:#302714;color:#f2cf76;margin-right:5px;margin-top:5px}.reboundTag.good{background:#123125;color:#75e5b0}.reboundTag.hot{background:#351d22;color:#ff9daa}.reboundRow{border-color:#40351f}';document.head.appendChild(style);

@@ -33,7 +33,7 @@ button{font:inherit}.app{max-width:600px;margin:0 auto;min-height:100vh;padding:
 </head>
 <body>
 <div class="app">
-  <div class="top"><div class="brand"><h1>资金潮汐雷达 <span style="font-size:12px;color:#8ea0bc">V2</span></h1><p id="stamp">A股 + 港股 · 资金加速度</p></div><div id="liveBadge" class="live off">数据准备中</div></div>
+  <div class="top"><div class="brand"><h1>资金潮汐雷达 <span style="font-size:12px;color:#8ea0bc">V2.10</span></h1><p id="stamp">A股 + 港股 · 资金加速度</p></div><div id="liveBadge" class="live off">数据准备中</div></div>
   <div class="hero">
     <div class="hero-row"><div><div class="kicker">今日市场资金温度</div><div id="marketScore" class="big score amber">--</div><div id="marketText" class="mini">正在读取行情并计算资金集中度</div></div><div class="pulse"></div></div>
     <div class="metrics"><div class="metric"><b id="m5">--</b><span>5分钟加速度</span></div><div class="metric"><b id="m30">--</b><span>30分钟趋势</span></div><div class="metric"><b id="focus">--</b><span>资金集中度</span></div></div>
@@ -60,6 +60,11 @@ button{font:inherit}.app{max-width:600px;margin:0 auto;min-height:100vh;padding:
   <div class="notice">V2 的 5/30 分钟“资金加速度”来自本机保存的多次行情快照：使用越久越准确；首次打开时会显示“积累中”。公开行情接口可能延迟或暂时不可用，失败时会明确显示演示数据，不会把演示值标成实时。仅用于量价与资金行为观察，不构成投资建议。</div>
 </div>
 <div class="bottom"><div class="nav"><button id="navRadar" class="active" onclick="showTab('radar')"><span class="ico">◉</span>雷达</button><button id="navFlow" onclick="showTab('flow')"><span class="ico">⌁</span>轮动</button><button id="navNight" onclick="showTab('night')"><span class="ico">↗</span>前夜</button><button id="navWatch" onclick="showTab('watch')"><span class="ico">★</span>自选</button></div></div>
-<script src="./app-v2.js"></script>
+<script src="./app-v2.js?v=210"></script>
+<script src="./sector-addon.js?v=210"></script>
+<script src="./watch-addon.js?v=210"></script>
+<script src="./build-addon.js?v=210"></script>
+<script src="./rebound-addon.js?v=210"></script>
+<script src="./review-addon.js?v=210"></script>
 </body>
 </html>
