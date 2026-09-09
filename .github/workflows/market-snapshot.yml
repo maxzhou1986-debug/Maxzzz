@@ -1,0 +1,30 @@
+name: Market Review Snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'fund-radar/tools/build_review_snapshot.py'
+      - '.github/workflows/market-snapshot.yml'
+  schedule:
+    - cron: '12 7 * * 1-5'   # 15:12 Beijing, after A-share close
+    - cron: '22 8 * * 1-5'   # 16:22 Beijing, after HK close
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build A/H review snapshots
+        run: python3 fund-radar/tools/build_review_snapshot.py
+      - name: Commit updated snapshots
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fund-radar/data/review-A.json fund-radar/data/review-HK.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update market review snapshots'
+          git push
