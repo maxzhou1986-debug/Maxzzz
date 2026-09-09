@@ -2,11 +2,13 @@
 import json, math, os, time, urllib.parse, urllib.request
 from datetime import datetime, timezone, timedelta
 
-BASE='https://push2.eastmoney.com/api/qt/clist/get'
-ULIST='https://push2.eastmoney.com/api/qt/ulist.np/get'
+BASE_PATH='/api/qt/clist/get'
+ULIST_PATH='/api/qt/ulist.np/get'
+HOSTS=['https://82.push2.eastmoney.com','https://20.push2.eastmoney.com','https://push2.eastmoney.com','http://82.push2.eastmoney.com']
 OUT=os.path.join(os.path.dirname(os.path.dirname(__file__)),'data')
 TZ=timezone(timedelta(hours=8))
-HEAD={'User-Agent':'Mozilla/5.0','Referer':'https://quote.eastmoney.com/'}
+HEAD={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36','Referer':'https://quote.eastmoney.com/','Accept':'application/json,text/plain,*/*','Accept-Language':'zh-CN,zh;q=0.9,en;q=0.7'}
+UT='bd1d9ddb04089700cf9c27f6f7426281'
 MARKETS={
  'A':{
   'stocks':'m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23',
@@ -24,22 +26,32 @@ MARKETS={
  }
 }
 
-def get(url, tries=4):
-    err=None
-    for i in range(tries):
-        try:
-            req=urllib.request.Request(url,headers=HEAD)
-            with urllib.request.urlopen(req,timeout=25) as r:
-                return json.loads(r.read().decode('utf-8','ignore'))
-        except Exception as e:
-            err=e; time.sleep(1+i)
-    raise err
+def get_path(path, params, tries=2):
+    errors=[]
+    query=urllib.parse.urlencode(params)
+    for host in HOSTS:
+        for i in range(tries):
+            url=host+path+'?'+query
+            try:
+                req=urllib.request.Request(url,headers=HEAD)
+                with urllib.request.urlopen(req,timeout=18) as r:
+                    raw=r.read().decode('utf-8','ignore').strip()
+                    if not raw: raise RuntimeError('empty response')
+                    if raw.startswith(('jQuery','callback')) and '(' in raw:
+                        raw=raw[raw.find('(')+1:raw.rfind(')')]
+                    data=json.loads(raw)
+                    if data is None: raise RuntimeError('null json')
+                    return data
+            except Exception as e:
+                errors.append(f'{host} #{i+1}: {type(e).__name__}: {e}')
+                time.sleep(.8+i*.7)
+    raise RuntimeError(' | '.join(errors[-8:]))
 
 def clist(filter_, fields, pz=200):
     rows=[]; seen=set(); total=None
     for page in range(1,60):
-        q={'pn':page,'pz':pz,'po':0,'np':1,'fltt':2,'invt':2,'fid':'f12','fs':filter_,'fields':fields}
-        d=get(BASE+'?'+urllib.parse.urlencode(q))
+        q={'pn':page,'pz':pz,'po':1,'np':1,'fltt':2,'invt':2,'fid':'f12','fs':filter_,'fields':fields,'ut':UT}
+        d=get_path(BASE_PATH,q)
         data=(d or {}).get('data') or {}
         batch=data.get('diff') or []
         if isinstance(batch,dict): batch=list(batch.values())
@@ -51,12 +63,12 @@ def clist(filter_, fields, pz=200):
                 seen.add(key); rows.append(x); added+=1
         if total and len(rows)>=total: break
         if not batch or not added: break
-        time.sleep(.12)
+        time.sleep(.08)
     return rows,total
 
 def ulist(secids):
-    q={'fltt':2,'invt':2,'secids':secids,'fields':'f12,f13,f14,f3,f6,f124'}
-    d=get(ULIST+'?'+urllib.parse.urlencode(q))
+    q={'fltt':2,'invt':2,'secids':secids,'fields':'f12,f13,f14,f3,f6,f124','ut':UT}
+    d=get_path(ULIST_PATH,q)
     diff=((d or {}).get('data') or {}).get('diff') or []
     return list(diff.values()) if isinstance(diff,dict) else diff
 
@@ -77,6 +89,8 @@ def build(m):
     cfg=MARKETS[m]
     fields='f12,f13,f14,f3,f6,f8,f10,f62,f184,f100,f124'
     stocks,total=clist(cfg['stocks'],fields)
+    if len(stocks)<cfg['min_coverage']:
+        raise RuntimeError(f'{m} stock coverage too low: {len(stocks)} / {total}')
     boards,btotal=clist(cfg['sectors'],fields)
     indices=ulist(cfg['indices'])
     dates=[day_from_ts(x.get('f124')) for x in indices if x.get('f124')]
@@ -89,19 +103,19 @@ def build(m):
     weak=sorted(sectors,key=lambda x:x['pct'])[:5]
     inflow=sorted([x for x in sectors if x['flow']>0],key=lambda x:x['flow'],reverse=True)[:5]
     outflow=sorted([x for x in sectors if x['flow']<0],key=lambda x:x['flow'])[:5]
-    liquid=sorted(valid,key=lambda x:num(x.get('f6')),reverse=True)[:150]
+    liquid=sorted(valid,key=lambda x:num(x.get('f6')),reverse=True)[:180]
     def score(x):
         a=max(1,num(x.get('f6')))
         return num(x.get('f3'))*2 + math.log10(a) + (1 if num(x.get('f62'))>0 else 0)
-    leaders=[compact(x) for x in sorted([x for x in liquid if num(x.get('f3'))>0],key=score,reverse=True)[:8]]
+    leaders=[compact(x) for x in sorted([x for x in liquid if num(x.get('f3'))>0],key=score,reverse=True)[:10]]
     idx=[]
     for x in indices:
         c=compact(x); c['name']=cfg['index_names'].get(c['code'],c['name']); idx.append(c)
     ratio=up/max(1,len(valid))
     emotion='高潮' if ratio>=.75 else '偏强' if ratio>=.60 else '退潮' if ratio<=.25 else '偏弱' if ratio<=.40 else '分歧'
     return {
-      'schema':2,'market':m,'date':date,'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),
-      'source':'Eastmoney via GitHub Actions','coverage':len(valid),'total':total or len(stocks),'complete':bool(total and len(stocks)>=total and len(valid)>=cfg['min_coverage']),
+      'schema':3,'market':m,'date':date,'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),
+      'source':'Eastmoney multi-host via GitHub Actions','coverage':len(valid),'total':total or len(stocks),'complete':bool(total and len(stocks)>=total and len(valid)>=cfg['min_coverage']),
       'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':idx,
       'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,
       'sectorCount':len(sectors),'sectorTotal':btotal or len(boards)
@@ -109,14 +123,18 @@ def build(m):
 
 def main():
     os.makedirs(OUT,exist_ok=True)
-    failures=[]
+    failures=[]; success=0
     for m in ('A','HK'):
         try:
             data=build(m)
             with open(os.path.join(OUT,f'review-{m}.json'),'w',encoding='utf-8') as f: json.dump(data,f,ensure_ascii=False,separators=(',',':'))
             print(m,'coverage',data['coverage'],'complete',data['complete'],'date',data['date'])
+            success+=1
         except Exception as e:
             failures.append(f'{m}: {e}')
-    if failures:
+            print('ERROR',m,repr(e),flush=True)
+    if success==0:
         raise SystemExit('; '.join(failures))
+    if failures:
+        print('PARTIAL:', '; '.join(failures))
 if __name__=='__main__': main()
