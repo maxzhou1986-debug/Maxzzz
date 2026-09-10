@@ -19,19 +19,23 @@ def norm(a):
   seen.add(c);out.append({'code':c,'name':str(x.get('name') or ''),'pct':n(x.get('changepercent')),'amount':n(x.get('amount')),'turn':n(x.get('turnoverratio')),'vr':0,'flow':0,'flowPct':0})
  return out
 def spot():
- # One request for the most liquid names; fallback to three 100-name pages. This avoids 50+ requests every refresh.
- try:
-  q=urllib.parse.urlencode({'page':1,'num':300,'sort':'amount','asc':0,'node':'hs_a','_s_r_a':'page'})
-  a=norm(json.loads(raw(SPOT+'?'+q)))
-  if len(a)>=80:return a
- except Exception:pass
- out=[]
- for page in range(1,4):
+ # Sina's API is reliable with symbol sorting but intermittently returns an empty list for amount sorting.
+ # Read the full symbol-sorted universe (same proven route as review snapshot), then rank liquidity locally.
+ out=[];seen=set();fail=0
+ for page in range(1,90):
   try:
-   q=urllib.parse.urlencode({'page':page,'num':100,'sort':'amount','asc':0,'node':'hs_a','_s_r_a':'page'})
-   out+=norm(json.loads(raw(SPOT+'?'+q)))
-  except Exception:break
- return list({x['code']:x for x in out}.values())
+   q=urllib.parse.urlencode({'page':page,'num':100,'sort':'symbol','asc':1,'node':'hs_a','_s_r_a':'page'})
+   a=norm(json.loads(raw(SPOT+'?'+q,12)))
+  except Exception:
+   fail+=1
+   if fail>=3:break
+   time.sleep(.25);continue
+  fail=0
+  if not a:break
+  for x in a:
+   if x['code'] not in seen:seen.add(x['code']);out.append(x)
+  if len(a)<100:break
+ return out
 def prefix(c):
  if str(c).startswith(('5','6','7','9')):return 'sh'+str(c)
  if str(c).startswith(('4','8')):return 'bj'+str(c)
@@ -89,21 +93,22 @@ def build_score(x):
  return round(clamp(s))
 def main():
  os.makedirs(OUT,exist_ok=True);rows=spot();valid=[x for x in rows if x['name'] and x['amount']>0 and 'ST' not in x['name'] and '退' not in x['name']]
- if len(valid)<60:raise SystemExit('A-share liquid-pool coverage too low: '+str(len(valid)))
+ if len(valid)<1000:raise SystemExit('A-share full spot coverage too low: '+str(len(valid)))
  active=sorted(valid,key=lambda x:x['amount'],reverse=True)[:220];builds=[]
  for x in active:
   s=build_score(x)
   if s>=64:builds.append({**x,'build':s,'phase':'温和增强' if s>=82 else '持续观察' if s>=74 else '早期观察'})
  builds=sorted(builds,key=lambda x:(x['build'],x['amount']),reverse=True)[:20]
- pool=[x for x in active if -9.5<x['pct']<4.5][:40];rebounds=[];kvalid=0
+ # K-line work is intentionally capped so the 5-minute server job remains bounded.
+ pool=[x for x in active if -9.5<x['pct']<4.5][:24];rebounds=[];kvalid=0
  for i,x in enumerate(pool):
   k=kline(x['code'])
   if len(k)>=21:
    kvalid+=1;z=rebound_eval(x,k)
    if z and z['rebound']>=58:rebounds.append(z)
-  if i and i%10==0:time.sleep(.1)
+  if i and i%8==0:time.sleep(.1)
  rebounds=sorted(rebounds,key=lambda x:(x['rebound'],x['amount']),reverse=True)[:20]
- d={'schema':3,'market':'A','generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina liquid-pool spot + Sina daily K-line','coverage':len(valid),'sample':len(active),'klineValid':kvalid,'build':builds,'rebound':rebounds,'note':'服务器实盘高流动性样本筛选；建仓为量价观察信号，不等同机构持仓证明；资金流字段缺失时不伪造。'}
+ d={'schema':4,'market':'A','generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina full-market spot + Sina daily K-line','coverage':len(valid),'sample':len(active),'klineValid':kvalid,'build':builds,'rebound':rebounds,'note':'服务器实盘全市场取数后按流动性筛选；建仓为量价观察信号，不等同机构持仓证明；资金流字段缺失时不伪造。'}
  with open(os.path.join(OUT,'signals-A.json'),'w',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,separators=(',',':'))
- print('signals A liquid pool',len(valid),'build',len(builds),'rebound',len(rebounds),'kline',kvalid)
+ print('signals A coverage',len(valid),'build',len(builds),'rebound',len(rebounds),'kline',kvalid)
 if __name__=='__main__':main()
