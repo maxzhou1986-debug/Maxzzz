@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'fund-radar/tools/build_review_snapshot.py'
+      - 'fund-radar/tools/build_signals.py'
       - '.github/workflows/market-snapshot.yml'
   schedule:
     - cron: '*/5 1-8 * * 1-5'  # 09:00-16:55 Beijing/Taipei, practical GitHub timing may lag a few minutes
@@ -37,7 +38,9 @@ jobs:
           fi
       - name: Build A/H market snapshots
         if: steps.market.outputs.run == 'true' || github.event_name != 'schedule'
-        run: python3 fund-radar/tools/build_review_snapshot.py
+        run: |
+          python3 fund-radar/tools/build_review_snapshot.py
+          python3 fund-radar/tools/build_signals.py
       - name: Commit updated snapshots
         if: steps.market.outputs.run == 'true' || github.event_name != 'schedule'
         run: |
