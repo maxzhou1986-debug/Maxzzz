@@ -56,6 +56,15 @@ def num(v, default=0.0):
         return float(v)
     except: return default
 
+def trade_day(rows, fallback=None):
+    days=[]
+    for x in rows or []:
+        try:
+            ts=int(x.get('f124') or 0)
+            if ts>0: days.append(datetime.fromtimestamp(ts,TZ).strftime('%Y-%m-%d'))
+        except: pass
+    return max(days) if days else (fallback or datetime.now(TZ).strftime('%Y-%m-%d'))
+
 def money_row(code,name,pct,amount,turn=0,flow=0,vr=0):
     return {'code':str(code or ''),'name':str(name or ''),'pct':num(pct),'amount':num(amount),'flow':num(flow),'turn':num(turn),'vr':num(vr)}
 
@@ -90,7 +99,7 @@ def build_a():
     leaders=sorted([x for x in liquid if x['pct']>0],key=score,reverse=True)[:10]
     ratio=up/max(1,len(valid)); emotion='高潮' if ratio>=.75 else '偏强' if ratio>=.60 else '退潮' if ratio<=.25 else '偏弱' if ratio<=.40 else '分歧'
 
-    sectors=[]; btotal=0; indices=[]
+    sectors=[]; btotal=0; indices=[]; raw_indices=[]
     try:
         fields='f12,f13,f14,f3,f6,f8,f10,f62,f184,f100,f124'
         boards,btotal=em_clist('m:90+t:2',fields)
@@ -98,7 +107,8 @@ def build_a():
     except Exception as e:
         print('WARN A sectors:',repr(e),flush=True)
     try:
-        indices=[compact_em(x) for x in em_ulist('1.000001,0.399001,0.399006')]
+        raw_indices=em_ulist('1.000001,0.399001,0.399006')
+        indices=[compact_em(x) for x in raw_indices]
     except Exception as e:
         print('WARN A indices:',repr(e),flush=True)
 
@@ -106,8 +116,9 @@ def build_a():
     weak=sorted(sectors,key=lambda x:x['pct'])[:5]
     inflow=sorted([x for x in sectors if x['flow']>0],key=lambda x:x['flow'],reverse=True)[:5]
     outflow=sorted([x for x in sectors if x['flow']<0],key=lambda x:x['flow'])[:5]
+    date=trade_day(raw_indices)
 
-    return {'schema':5,'market':'A','date':datetime.now(TZ).strftime('%Y-%m-%d'),'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina full-market + Eastmoney sectors via GitHub Actions','coverage':len(valid),'total':len(rows),'complete':len(valid)>=1000,'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':indices,'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,'sectorCount':len(sectors),'sectorTotal':btotal or len(sectors)}
+    return {'schema':6,'market':'A','date':date,'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina full-market + Eastmoney sectors via GitHub Actions','coverage':len(valid),'total':len(rows),'complete':len(valid)>=1000,'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':indices,'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,'sectorCount':len(sectors),'sectorTotal':btotal or len(sectors)}
 
 def build_hk():
     fields='f12,f13,f14,f3,f6,f8,f10,f62,f184,f100,f124'
@@ -122,7 +133,11 @@ def build_hk():
     liquid=sorted(valid,key=lambda x:num(x.get('f6')),reverse=True)[:180]
     leaders=[compact_em(x) for x in sorted([x for x in liquid if num(x.get('f3'))>0],key=lambda x:num(x.get('f3'))*2+math.log10(max(1,num(x.get('f6')))),reverse=True)[:10]]
     ratio=up/max(1,len(valid)); emotion='高潮' if ratio>=.75 else '偏强' if ratio>=.60 else '退潮' if ratio<=.25 else '偏弱' if ratio<=.40 else '分歧'
-    return {'schema':5,'market':'HK','date':datetime.now(TZ).strftime('%Y-%m-%d'),'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Eastmoney via GitHub Actions','coverage':len(valid),'total':total or len(stocks),'complete':bool(total and len(stocks)>=total and len(valid)>=100),'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':[],'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,'sectorCount':len(sectors),'sectorTotal':btotal or len(boards)}
+    raw_indices=[]
+    try: raw_indices=em_ulist('100.HSI,100.HSCEI,100.HSTECH')
+    except Exception as e: print('WARN HK indices:',repr(e),flush=True)
+    date=trade_day(raw_indices)
+    return {'schema':6,'market':'HK','date':date,'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Eastmoney via GitHub Actions','coverage':len(valid),'total':total or len(stocks),'complete':bool(total and len(stocks)>=total and len(valid)>=100),'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':[compact_em(x) for x in raw_indices],'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,'sectorCount':len(sectors),'sectorTotal':btotal or len(boards)}
 
 def main():
     os.makedirs(OUT,exist_ok=True); failures=[]; success=0
@@ -130,7 +145,7 @@ def main():
         try:
             data=builder();
             with open(os.path.join(OUT,f'review-{m}.json'),'w',encoding='utf-8') as f: json.dump(data,f,ensure_ascii=False,separators=(',',':'))
-            print(m,'coverage',data['coverage'],'sectors',data['sectorCount'],'source',data['source']); success+=1
+            print(m,'date',data['date'],'coverage',data['coverage'],'sectors',data['sectorCount'],'source',data['source']); success+=1
         except Exception as e:
             failures.append(f'{m}: {e}'); print('ERROR',m,repr(e),flush=True)
     if success==0: raise SystemExit('; '.join(failures))
