@@ -19,8 +19,6 @@ def norm(a):
   seen.add(c);out.append({'code':c,'name':str(x.get('name') or ''),'pct':n(x.get('changepercent')),'amount':n(x.get('amount')),'turn':n(x.get('turnoverratio')),'vr':0,'flow':0,'flowPct':0})
  return out
 def spot():
- # Sina's API is reliable with symbol sorting but intermittently returns an empty list for amount sorting.
- # Read the full symbol-sorted universe (same proven route as review snapshot), then rank liquidity locally.
  out=[];seen=set();fail=0
  for page in range(1,90):
   try:
@@ -41,9 +39,9 @@ def prefix(c):
  if str(c).startswith(('4','8')):return 'bj'+str(c)
  return 'sz'+str(c)
 def kline(c):
- q=urllib.parse.urlencode({'symbol':prefix(c),'scale':240,'ma':'no','datalen':40})
+ q=urllib.parse.urlencode({'symbol':prefix(c),'scale':240,'ma':'no','datalen':60})
  try:
-  a=json.loads(raw(KLINE+'?'+q,8))
+  a=json.loads(raw(KLINE+'?'+q,10))
   if not isinstance(a,list):return []
   return [{'d':z.get('day',''),'c':n(z.get('close')),'h':n(z.get('high')),'l':n(z.get('low')),'v':n(z.get('volume'))} for z in a if n(z.get('close'))>0]
  except Exception:return []
@@ -57,26 +55,27 @@ def rebound_eval(x,k):
  if len(k)<21:return None
  c=[z['c'] for z in k];v=[z['v'] for z in k];last=k[-1];prev=k[-2];w=k[-20:];r=rsi14(c);hi=max(z['h'] for z in w);lo=min(z['l'] for z in w)
  if r is None or hi<=0 or lo<=0:return None
- draw=(last['c']/hi-1)*100;near=(last['c']/lo-1)*100;ret5=(last['c']/c[-6]-1)*100;v3=sum(v[-3:])/3;v20=sum(v[-20:])/20;vl=v3/(v20 or 1);s=32
- if 22<=r<=36:s+=25
- elif 36<r<=44:s+=16
- elif r<22:s+=8
- elif r>52:s-=12
+ draw=(last['c']/hi-1)*100;near=(last['c']/lo-1)*100;ret5=(last['c']/c[-6]-1)*100;v3=sum(v[-3:])/3;v20=sum(v[-20:])/20;vl=v3/(v20 or 1);s=30
+ if 20<=r<=38:s+=24
+ elif 38<r<=48:s+=15
+ elif r<20:s+=10
+ elif r>58:s-=10
  dd=-draw
- if 10<=dd<=28:s+=22
- elif dd>=6:s+=12
- elif dd>28:s+=8
- if near<=5:s+=11
- elif near<=10:s+=6
- if -7<=ret5<=3:s+=10
- elif ret5>7:s-=16
- if .75<=vl<=2.4:s+=9
- elif vl>3.8:s-=12
- if -3<=x['pct']<=3.5:s+=8
- elif x['pct']>5:s-=20
- if last['c']>prev['c']:s+=7
- if len(k)>=3 and last['c']>=prev['c']>=k[-3]['c']:s+=5
- return {**x,'rebound':round(clamp(s)),'rsi':r,'draw':draw,'nearLow':near,'ret5':ret5,'volLift':vl,'turning':last['c']>prev['c']}
+ if 8<=dd<=30:s+=22
+ elif dd>=5:s+=12
+ elif dd>30:s+=7
+ if near<=6:s+=10
+ elif near<=12:s+=6
+ if -9<=ret5<=4:s+=10
+ elif ret5>9:s-=14
+ if .65<=vl<=2.8:s+=8
+ elif vl>4:s-=10
+ if -4<=x['pct']<=4.5:s+=8
+ elif x['pct']>6:s-=16
+ if last['c']>prev['c']:s+=8
+ if len(k)>=3 and last['c']>=prev['c']>=k[-3]['c']:s+=6
+ score=round(clamp(s))
+ return {**x,'rebound':score,'rsi':round(r,1),'draw':round(draw,1),'nearLow':round(near,1),'ret5':round(ret5,1),'volLift':round(vl,2),'turning':last['c']>prev['c']}
 def build_score(x):
  s=38
  if -.8<=x['pct']<=3.2:s+=22
@@ -94,21 +93,29 @@ def build_score(x):
 def main():
  os.makedirs(OUT,exist_ok=True);rows=spot();valid=[x for x in rows if x['name'] and x['amount']>0 and 'ST' not in x['name'] and '退' not in x['name']]
  if len(valid)<1000:raise SystemExit('A-share full spot coverage too low: '+str(len(valid)))
- active=sorted(valid,key=lambda x:x['amount'],reverse=True)[:220];builds=[]
+ active=sorted(valid,key=lambda x:x['amount'],reverse=True)[:260];builds=[]
  for x in active:
   s=build_score(x)
   if s>=64:builds.append({**x,'build':s,'phase':'温和增强' if s>=82 else '持续观察' if s>=74 else '早期观察'})
  builds=sorted(builds,key=lambda x:(x['build'],x['amount']),reverse=True)[:20]
- # K-line work is intentionally capped so the 5-minute server job remains bounded.
- pool=[x for x in active if -9.5<x['pct']<4.5][:24];rebounds=[];kvalid=0
- for i,x in enumerate(pool):
+ # Rebound pool is wider and deliberately biased to weak/flat names rather than only the very top turnover names.
+ candidates=[x for x in active if -9.5<x['pct']<5.5]
+ candidates=sorted(candidates,key=lambda x:(abs(min(x['pct'],0)),x['amount']),reverse=True)[:56]
+ rebounds=[];kvalid=0;scored=[]
+ for i,x in enumerate(candidates):
   k=kline(x['code'])
   if len(k)>=21:
    kvalid+=1;z=rebound_eval(x,k)
-   if z and z['rebound']>=58:rebounds.append(z)
-  if i and i%8==0:time.sleep(.1)
- rebounds=sorted(rebounds,key=lambda x:(x['rebound'],x['amount']),reverse=True)[:20]
- d={'schema':4,'market':'A','generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina full-market spot + Sina daily K-line','coverage':len(valid),'sample':len(active),'klineValid':kvalid,'build':builds,'rebound':rebounds,'note':'服务器实盘全市场取数后按流动性筛选；建仓为量价观察信号，不等同机构持仓证明；资金流字段缺失时不伪造。'}
+   if z:
+    scored.append(z)
+    if z['rebound']>=54:rebounds.append(z)
+  if i and i%8==0:time.sleep(.12)
+ # Never fabricate: if threshold yields none but K-lines are valid, expose the top scored real candidates as “观察”.
+ if not rebounds and scored:
+  rebounds=sorted(scored,key=lambda x:(x['rebound'],x['amount']),reverse=True)[:12]
+ else:
+  rebounds=sorted(rebounds,key=lambda x:(x['rebound'],x['amount']),reverse=True)[:20]
+ d={'schema':5,'market':'A','generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina full-market spot + Sina daily K-line','coverage':len(valid),'sample':len(active),'klineValid':kvalid,'build':builds,'rebound':rebounds,'note':'服务器实盘全市场取数后筛选；反弹基于真实日K评分，若无高分信号则显示最高分观察候选，不伪造行情。'}
  with open(os.path.join(OUT,'signals-A.json'),'w',encoding='utf-8') as f:json.dump(d,f,ensure_ascii=False,separators=(',',':'))
  print('signals A coverage',len(valid),'build',len(builds),'rebound',len(rebounds),'kline',kvalid)
 if __name__=='__main__':main()
