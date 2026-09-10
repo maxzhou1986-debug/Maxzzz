@@ -77,6 +77,8 @@ def sina_a_rows():
         time.sleep(.06)
     return rows
 
+def compact_em(x): return money_row(x.get('f12'),x.get('f14'),x.get('f3'),x.get('f6'),x.get('f8'),x.get('f62'),x.get('f10'))
+
 def build_a():
     rows=sina_a_rows()
     valid=[x for x in rows if x['name'] and x['amount']>0]
@@ -87,9 +89,25 @@ def build_a():
     def score(x): return x['pct']*2+math.log10(max(1,x['amount']))
     leaders=sorted([x for x in liquid if x['pct']>0],key=score,reverse=True)[:10]
     ratio=up/max(1,len(valid)); emotion='高潮' if ratio>=.75 else '偏强' if ratio>=.60 else '退潮' if ratio<=.25 else '偏弱' if ratio<=.40 else '分歧'
-    return {'schema':4,'market':'A','date':datetime.now(TZ).strftime('%Y-%m-%d'),'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina full-market via GitHub Actions','coverage':len(valid),'total':len(rows),'complete':len(valid)>=1000,'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':[],'strong':[],'weak':[],'inflow':[],'outflow':[],'leaders':leaders,'emotion':emotion,'sectorCount':0,'sectorTotal':0}
 
-def compact_em(x): return money_row(x.get('f12'),x.get('f14'),x.get('f3'),x.get('f6'),x.get('f8'),x.get('f62'),x.get('f10'))
+    sectors=[]; btotal=0; indices=[]
+    try:
+        fields='f12,f13,f14,f3,f6,f8,f10,f62,f184,f100,f124'
+        boards,btotal=em_clist('m:90+t:2',fields)
+        sectors=[compact_em(x) for x in boards if x.get('f14') and x.get('f3') not in (None,'-')]
+    except Exception as e:
+        print('WARN A sectors:',repr(e),flush=True)
+    try:
+        indices=[compact_em(x) for x in em_ulist('1.000001,0.399001,0.399006')]
+    except Exception as e:
+        print('WARN A indices:',repr(e),flush=True)
+
+    strong=sorted(sectors,key=lambda x:x['pct'],reverse=True)[:5]
+    weak=sorted(sectors,key=lambda x:x['pct'])[:5]
+    inflow=sorted([x for x in sectors if x['flow']>0],key=lambda x:x['flow'],reverse=True)[:5]
+    outflow=sorted([x for x in sectors if x['flow']<0],key=lambda x:x['flow'])[:5]
+
+    return {'schema':5,'market':'A','date':datetime.now(TZ).strftime('%Y-%m-%d'),'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Sina full-market + Eastmoney sectors via GitHub Actions','coverage':len(valid),'total':len(rows),'complete':len(valid)>=1000,'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':indices,'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,'sectorCount':len(sectors),'sectorTotal':btotal or len(sectors)}
 
 def build_hk():
     fields='f12,f13,f14,f3,f6,f8,f10,f62,f184,f100,f124'
@@ -104,7 +122,7 @@ def build_hk():
     liquid=sorted(valid,key=lambda x:num(x.get('f6')),reverse=True)[:180]
     leaders=[compact_em(x) for x in sorted([x for x in liquid if num(x.get('f3'))>0],key=lambda x:num(x.get('f3'))*2+math.log10(max(1,num(x.get('f6')))),reverse=True)[:10]]
     ratio=up/max(1,len(valid)); emotion='高潮' if ratio>=.75 else '偏强' if ratio>=.60 else '退潮' if ratio<=.25 else '偏弱' if ratio<=.40 else '分歧'
-    return {'schema':4,'market':'HK','date':datetime.now(TZ).strftime('%Y-%m-%d'),'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Eastmoney via GitHub Actions','coverage':len(valid),'total':total or len(stocks),'complete':bool(total and len(stocks)>=total and len(valid)>=100),'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':[],'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,'sectorCount':len(sectors),'sectorTotal':btotal or len(boards)}
+    return {'schema':5,'market':'HK','date':datetime.now(TZ).strftime('%Y-%m-%d'),'generatedAt':datetime.now(TZ).isoformat(timespec='seconds'),'source':'Eastmoney via GitHub Actions','coverage':len(valid),'total':total or len(stocks),'complete':bool(total and len(stocks)>=total and len(valid)>=100),'breadth':{'up':up,'down':down,'flat':flat,'amount':amount,'count':len(valid)},'indices':[],'strong':strong,'weak':weak,'inflow':inflow,'outflow':outflow,'leaders':leaders,'emotion':emotion,'sectorCount':len(sectors),'sectorTotal':btotal or len(boards)}
 
 def main():
     os.makedirs(OUT,exist_ok=True); failures=[]; success=0
@@ -112,7 +130,7 @@ def main():
         try:
             data=builder();
             with open(os.path.join(OUT,f'review-{m}.json'),'w',encoding='utf-8') as f: json.dump(data,f,ensure_ascii=False,separators=(',',':'))
-            print(m,'coverage',data['coverage'],'source',data['source']); success+=1
+            print(m,'coverage',data['coverage'],'sectors',data['sectorCount'],'source',data['source']); success+=1
         except Exception as e:
             failures.append(f'{m}: {e}'); print('ERROR',m,repr(e),flush=True)
     if success==0: raise SystemExit('; '.join(failures))
