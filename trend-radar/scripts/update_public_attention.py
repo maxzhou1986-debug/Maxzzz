@@ -1,39 +1,32 @@
-import json,re,urllib.request,datetime,pathlib,math
-P=pathlib.Path("trend-radar/data"); OUT=P/"douyin_raw.json"
-STOCKS={"SZ300308":("CPO","中际旭创"),"SZ300502":("CPO","新易盛"),"SZ300394":("CPO","天孚通信"),"SZ000977":("HBM / 存储","浪潮信息"),"SZ300274":("AI基建","阳光电源")}
-def fetch(code):
- n=code[2:]
- urls=[f"https://guba.eastmoney.com/list,{n}.html",f"https://mguba.eastmoney.com/mguba/list/{n}"]
- for u in urls:
-  try:
-   req=urllib.request.Request(u,headers={"User-Agent":"Mozilla/5.0","Accept":"text/html"})
-   h=urllib.request.urlopen(req,timeout=20).read().decode("utf-8","ignore")
-   if len(h)>1000:return re.sub(r"\\s+"," ",re.sub(r"<[^>]+>"," ",h))
-  except Exception:pass
- return ""
-by={}
-for code,(theme,name) in STOCKS.items():
- t=fetch(code)
- if not t:continue
- rank=None
- m=re.search(r"人气第\\s*(\\d+)\\s*名",t)
- if m:rank=int(m.group(1))
- reads=[int(x.replace(",","")) for x in re.findall(r"(\\d{2,7})\\s*(?:次浏览|阅读)",t)]
- comments=[int(x) for x in re.findall(r"(\\d{1,4})\\s*(?:条评论|评论)",t)]
- # rank dominates; activity is a secondary signal. No successful page => no score.
- rankScore=max(0,100-(rank-1)*0.5) if rank else None
- activity=math.log10(1+sum(sorted(reads,reverse=True)[:20])+10*sum(sorted(comments,reverse=True)[:20]))*12 if reads or comments else None
- vals=[x for x in [rankScore,activity] if x is not None]
- if vals:
-  score=round(min(100,sum(vals)/len(vals)),1)
-  item={"code":code,"name":name,"score":score,"rank":rank,"sampleReads":sum(reads[:20]) if reads else 0,"sampleComments":sum(comments[:20]) if comments else 0}\n  stocks[code]=item\n  by.setdefault(theme,[]).append(item)
+import json,urllib.request,datetime,pathlib
+OUT=pathlib.Path("trend-radar/data/douyin_raw.json")
+BASE="https://emappdata.eastmoney.com/stockrank/"
+COMMON={"appId":"appId01","globalId":"786e4c21-70dc-435a-93bb-38"}
+TRACK={"SZ300308":("CPO","中际旭创"),"SZ300502":("CPO","新易盛"),"SZ300394":("CPO","天孚通信"),"SZ000977":("HBM / 存储","浪潮信息"),"SZ300274":("AI基建","阳光电源")}
+def post(path,payload):
+ data=json.dumps(payload).encode()
+ req=urllib.request.Request(BASE+path,data=data,headers={"User-Agent":"Mozilla/5.0","Content-Type":"application/json","Accept":"application/json"})
+ with urllib.request.urlopen(req,timeout=25) as r:return json.loads(r.read().decode())
+def score_rank(rank):
+ return round(max(0,min(100,101-int(rank))),1)
+stocks={}
+# A-share top 100 popularity
+a=post("getAllCurrentList",{**COMMON,"marketType":"","pageNo":1,"pageSize":100}).get("data") or []
+for x in a:
+ code=x.get("sc"); rank=x.get("rk")
+ if code in TRACK and rank is not None:
+  th,name=TRACK[code]; stocks[code]={"name":name,"market":"A股","rank":int(rank),"score":score_rank(rank),"source":"东方财富A股人气榜"}
+# HK top 100 popularity; keep 3308.HK independent from A-share proxy
+hk=post("getAllCurrHkUsList",{**COMMON,"marketType":"000003","pageNo":1,"pageSize":100}).get("data") or []
+for x in hk:
+ sc=str(x.get("sc","")); rank=x.get("rk")
+ if ("03308" in sc or sc.endswith("|3308") or sc.endswith("|03308")) and rank is not None:
+  stocks["3308.HK"]={"name":"中际旭创H","market":"港股","rank":int(rank),"score":score_rank(rank),"source":"东方财富港股人气榜"}
 sectors={}
-for theme in ["CPO","HBM / 存储","AI芯片","AI网络","AI基建"]:
- a=by.get(theme,[])
- if a:
-  v=max(x["score"] for x in a)
-  sectors[theme]={"heatPercentile":v,"sevenDayAcceleration":0,"searchAcceleration":0,"contentAcceleration":0,"sourceCount":1,"matches":a}
- else:sectors[theme]=None
-if not any(sectors.values()):raise SystemExit("Eastmoney public sentiment returned no usable A-share data; keep prior.")
-OUT.write_text(json.dumps({"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"东方财富A股人气/股吧公开数据","verifiedRealData":True,"scope":"A/H科技股；美股不使用该大众指标","stocks":stocks,"sectors":sectors},ensure_ascii=False,indent=2),encoding="utf-8")
-print(json.dumps(sectors,ensure_ascii=False))
+for th in ["CPO","HBM / 存储","AI芯片","AI网络","AI基建"]:
+ vals=[v for k,v in stocks.items() if k in TRACK and TRACK[k][0]==th]
+ sectors[th]=({"heatPercentile":max(v["score"] for v in vals),"sourceCount":1,"matches":vals} if vals else None)
+if not stocks: raise SystemExit("Eastmoney stock-rank JSON returned no tracked A/H leaders; keep prior file.")
+out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"东方财富A/H个股人气榜 JSON","verifiedRealData":True,"scope":"A/H科技个股关注度；未进Top100显示待接，不伪造0","stocks":stocks,"sectors":sectors}
+OUT.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
+print(json.dumps(out,ensure_ascii=False))
