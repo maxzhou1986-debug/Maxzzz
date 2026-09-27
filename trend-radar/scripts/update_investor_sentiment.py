@@ -1,37 +1,29 @@
-import json, re, urllib.request, datetime, pathlib
-URLS=["https://xueqiu.com/hot/stock?app=xueqiu&from=app&os=iPhone&version=1.0","https://xueqiu.com/hot/stock"]
-OUT=pathlib.Path("trend-radar/data/investor_sentiment.json")
-HIST=pathlib.Path("trend-radar/data/investor_sentiment_history.json")
-THEMES={"CPO":["中际旭创","新易盛","天孚通信","长飞光纤"],"HBM / 存储":["美光","SK海力士","浪潮信息"],"AI芯片":["英伟达","AMD","博通","摩尔线程","燧原"],"AI网络":["Arista","思科","博通"],"AI基建":["浪潮信息","阳光电源","Vertiv","Dell","Super Micro"]}
-html=""
-for URL in URLS:
-    try:
-        req=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15","Accept":"text/html,application/xhtml+xml"})
-        html=urllib.request.urlopen(req,timeout=20).read().decode("utf-8","ignore")
-        if "热度" in html: break
-    except Exception: pass
-if not html or "热度" not in html: raise SystemExit("Xueqiu hot page returned no heat data; keep prior sentiment.")
-text=re.sub(r"<[^>]+>"," ",html)
-pairs=[]
-for m in re.finditer(r"([A-Za-z0-9\-\u4e00-\u9fff]+?)\s+(\d+(?:\.\d+)?)\s*热度",text):
-    pairs.append((m.group(1),float(m.group(2))))
-mx=max([v for _,v in pairs],default=0)
+import json,re,urllib.request,datetime,pathlib
+URL="https://ai.xueqiu.com/hot/stock"
+OUT=pathlib.Path("trend-radar/data/investor_sentiment.json"); HIST=pathlib.Path("trend-radar/data/investor_sentiment_history.json")
+THEMES={"CPO":["SZ300308","SZ300502","SZ300394","SH601869"],"HBM / 存储":["MU","SKHY","SZ000977"],"AI芯片":["NVDA","AMD","AVGO","SH688795","SH688801"],"AI网络":["ANET","CSCO","AVGO"],"AI基建":["SZ000977","SZ300274","VRT","DELL","SMCI"]}
+req=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0","Accept":"text/html"})
+html=urllib.request.urlopen(req,timeout=20).read().decode("utf-8","ignore")
+text=re.sub(r"<[^>]+>"," ",html); text=re.sub(r"\s+"," ",text)
+pairs={}
+for m in re.finditer(r"([A-Z]{1,5}\d{0,6}|\d{5})\s+(\d+(?:\.\d+)?)\s*热度",text):
+    pairs[m.group(1)]=float(m.group(2))
+if not pairs: raise SystemExit("No code+heat pairs from Xueqiu AI hot page; keep prior sentiment.")
+mx=max(pairs.values())
 hist=json.loads(HIST.read_text(encoding="utf-8")) if HIST.exists() else {"snapshots":[]}
 sectors={}
-for theme,names in THEMES.items():
-    vals=[v for n,v in pairs if any(k in n for k in names)]
-    if vals and mx:
-        score=round(min(100,max(vals)/mx*100),1)
-        past=[x for x in hist["snapshots"] if x.get("sector")==theme]
-        prev=past[-1]["score"] if past else None
-        old3=past[-3]["score"] if len(past)>=3 else None
-        sectors[theme]={"score":score,"heatChange1d":None if prev is None else round(score-prev,1),"heatChange3d":None if old3 is None else round(score-old3,1),"sampleCount":len(vals)}
+for theme,codes in THEMES.items():
+    vals=[pairs[x] for x in codes if x in pairs]
+    if vals:
+        score=round(min(100,max(vals)/mx*100),1); past=[x for x in hist["snapshots"] if x.get("sector")==theme]
+        prev=past[-1]["score"] if past else None; old3=past[-3]["score"] if len(past)>=3 else None
+        sectors[theme]={"score":score,"heatChange1d":None if prev is None else round(score-prev,1),"heatChange3d":None if old3 is None else round(score-old3,1),"sampleCount":len(vals),"rawMaxHeat":max(vals),"matchedCodes":[x for x in codes if x in pairs]}
     else: sectors[theme]=None
-out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"雪球公开热股1小时热度","method":"板块代表股热度相对当期榜首归一化；无匹配则保持空值，不模拟","sectors":sectors}
+out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"雪球AI公开热股1小时热度","method":"按股票代码匹配板块代表股；板块最高热度/全榜最高热度归一化","sectors":sectors}
+if not any(sectors.values()): raise SystemExit("Xueqiu parsed but no tracked symbols matched; keep prior sentiment.")
 OUT.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
 now=out["updatedAt"]
 for k,v in sectors.items():
     if v: hist["snapshots"].append({"time":now,"sector":k,"score":v["score"]})
-hist["snapshots"]=hist["snapshots"][-500:]
-HIST.write_text(json.dumps(hist,ensure_ascii=False,indent=2),encoding="utf-8")
+hist["snapshots"]=hist["snapshots"][-500:]; HIST.write_text(json.dumps(hist,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(out,ensure_ascii=False))
