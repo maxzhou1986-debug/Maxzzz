@@ -19,7 +19,7 @@ for theme,codes in THEMES.items():
         prev=past[-1]["score"] if past else None; old3=past[-3]["score"] if len(past)>=3 else None
         sectors[theme]={"score":score,"heatChange1d":None if prev is None else round(score-prev,1),"heatChange3d":None if old3 is None else round(score-old3,1),"sampleCount":len(vals),"rawMaxHeat":max(vals),"matchedCodes":[x for x in codes if x in pairs]}
     else: sectors[theme]=None
-out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"雪球AI公开热股1小时热度","method":"按股票代码匹配板块代表股；板块最高热度/全榜最高热度归一化","sectors":sectors}
+out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"雪球AI公开热股1小时热度","method":"个股热度/全榜最高热度归一化；板块取代表股最高值","stocks":stocks,"sectors":sectors}
 if not any(sectors.values()): raise SystemExit("Xueqiu parsed but no tracked symbols matched; keep prior sentiment.")
 OUT.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
 now=out["updatedAt"]
