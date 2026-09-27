@@ -3,3 +3,5 @@
 .oppMain{min-width:0;flex:1}.oppSector{display:flex;align-items:center;gap:8px;margin-bottom:5px}.oppSector>b{font-size:15px}.oppLeader{display:flex;align-items:baseline;gap:7px;margin-bottom:5px}.oppLeader>b{font-size:17px}.oppLeader span{font-size:11px;opacity:.55}.oppMain small{display:block;line-height:1.55}.oppMain small strong{opacity:.72}.oppMain .muted{opacity:.55;margin-top:2px}
 
 .marketStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.marketStrip>span{padding:10px 12px;border:1px solid rgba(120,140,180,.18);border-radius:12px;background:rgba(120,140,180,.06);font-size:12px}.marketStrip strong{font-size:16px;margin-left:3px}.marketStrip small{display:block;opacity:.55;margin-top:4px}.marketBadge{font-size:11px;opacity:.62;margin-right:8px}@media(max-width:600px){.marketStrip{grid-template-columns:1fr}.marketStrip>span{display:grid;grid-template-columns:auto auto 1fr;align-items:center}.marketStrip small{grid-column:1/-1}}
+
+.oppScore{font-size:11px;opacity:.72;margin-left:auto;padding:3px 7px;border-radius:8px;border:1px solid rgba(140,155,190,.18)}
