@@ -1,53 +1,5 @@
 {
-  "updatedAt": null,
-  "source": "抖音指数/巨量算数（等待真实数据接入）",
-  "method": "逆向情绪：重点看7日热度相对30日基线的加速度，而非绝对热度",
-  "weights": {
-    "heatPercentile": 0.35,
-    "sevenDayAcceleration": 0.35,
-    "searchAcceleration": 0.2,
-    "contentAcceleration": 0.1
-  },
-  "keywords": {
-    "AI网络": [
-      "AI网络",
-      "数据中心网络",
-      "800G",
-      "以太网交换机"
-    ],
-    "HBM / 存储": [
-      "HBM",
-      "存储芯片",
-      "DRAM",
-      "SK海力士",
-      "美光"
-    ],
-    "AI芯片": [
-      "AI芯片",
-      "英伟达",
-      "GPU",
-      "ASIC"
-    ],
-    "AI基建": [
-      "AI服务器",
-      "液冷",
-      "数据中心",
-      "AI电源"
-    ],
-    "CPO": [
-      "CPO",
-      "光模块",
-      "800G光模块",
-      "中际旭创",
-      "新易盛",
-      "天孚通信"
-    ]
-  },
-  "sectors": {
-    "AI网络": null,
-    "HBM / 存储": null,
-    "AI芯片": null,
-    "AI基建": null,
-    "CPO": null
-  }
+  "updatedAt": "2026-09-27T10:52:17.229618+00:00",
+  "source": "公开大众内容热榜（当前：今日头条）",
+  "sectors": {}
 }
