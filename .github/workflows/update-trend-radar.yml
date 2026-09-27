@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'trend-radar/scripts/update_quotes.py'
+      - 'trend-radar/scripts/update_investor_sentiment.py'
+      - 'trend-radar/scripts/update_public_attention.py'
+      - 'trend-radar/scripts/build_sentiment.py'
       - '.github/workflows/update-trend-radar.yml'
   schedule:
     - cron: "20 8,10,12,14,16,20 * * 1-5"
