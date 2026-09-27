@@ -8,6 +8,9 @@ on:
       - '.github/workflows/update-trend-radar.yml'
   schedule:
     - cron: "20 8,10,12,14,16,20 * * 1-5"
+concurrency:
+  group: trend-radar-data-main
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -15,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -25,4 +30,4 @@ jobs:
           git add trend-radar/data/quotes.json
           git diff --cached --quiet || git commit -m "Update radar market data"
           git pull --rebase origin main
-git push
+          git push
