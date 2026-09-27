@@ -35,7 +35,7 @@ out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat()}
 for key,sym in SYMS.items():
     try: out[key]=get(sym)
     except Exception as e: out[key]={"error":str(e),"closes":[],"bars":[]}
-    time.sleep(1)
+    time.sleep(0.2)
 with open("trend-radar/data/quotes.json","w",encoding="utf-8") as f: json.dump(out,f,ensure_ascii=False,separators=(",",":"))
 exclude={"^NDX","^SOX","000688.SS","399006.SZ","^HSTECH","^IXIC","000660.KS","005930.KS"}
 pool=[]
