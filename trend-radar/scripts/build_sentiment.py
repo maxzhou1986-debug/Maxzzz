@@ -1,8 +1,10 @@
 import json, pathlib, datetime
 P=pathlib.Path("trend-radar/data"); SRC=P/"douyin_raw.json"; OUT=P/"douyin_sentiment.json"; HIST=P/"douyin_history.json"
 def clamp(x,a=0,b=100): return max(a,min(b,x))
-def score(d):
-    hp=float(d.get("heatPercentile",0)); a7=clamp(50+float(d.get("sevenDayAcceleration",0)))
+def score(d,source=""):
+    hp=float(d.get("heatPercentile",0))
+    if "百度" in source: return round(clamp(hp),1)
+    a7=clamp(50+float(d.get("sevenDayAcceleration",0)))
     sa=clamp(50+float(d.get("searchAcceleration",0))); ca=clamp(50+float(d.get("contentAcceleration",0)))
     return round(clamp(.35*hp+.35*a7+.20*sa+.10*ca),1)
 if not SRC.exists(): raise SystemExit("No douyin_raw.json: keep sentiment pending; never fabricate data.")
@@ -12,7 +14,7 @@ out={"updatedAt":now.isoformat(),"source":raw.get("source","真实抖音/巨量�
 snap={"date":day,"sectors":{}}
 for k,d in raw.get("sectors",{}).items():
     if d and d.get("heatPercentile") is not None:
-        v=score(d); snap["sectors"][k]=v
+        v=score(d,raw.get("source","")); snap["sectors"][k]=v
         past=[x for x in hist["days"] if k in x.get("sectors",{})]
         def chg(n):
             if len(past)<n:return None
