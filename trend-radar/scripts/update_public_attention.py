@@ -26,7 +26,7 @@ for code,(theme,name) in STOCKS.items():
  vals=[x for x in [rankScore,activity] if x is not None]
  if vals:
   score=round(min(100,sum(vals)/len(vals)),1)
-  by.setdefault(theme,[]).append({"code":code,"name":name,"score":score,"rank":rank,"sampleReads":sum(reads[:20]) if reads else 0})
+  item={"code":code,"name":name,"score":score,"rank":rank,"sampleReads":sum(reads[:20]) if reads else 0,"sampleComments":sum(comments[:20]) if comments else 0}\n  stocks[code]=item\n  by.setdefault(theme,[]).append(item)
 sectors={}
 for theme in ["CPO","HBM / 存储","AI芯片","AI网络","AI基建"]:
  a=by.get(theme,[])
@@ -35,5 +35,5 @@ for theme in ["CPO","HBM / 存储","AI芯片","AI网络","AI基建"]:
   sectors[theme]={"heatPercentile":v,"sevenDayAcceleration":0,"searchAcceleration":0,"contentAcceleration":0,"sourceCount":1,"matches":a}
  else:sectors[theme]=None
 if not any(sectors.values()):raise SystemExit("Eastmoney public sentiment returned no usable A-share data; keep prior.")
-OUT.write_text(json.dumps({"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"东方财富A股人气/股吧公开数据","verifiedRealData":True,"scope":"A/H科技股；美股不使用该大众指标","sectors":sectors},ensure_ascii=False,indent=2),encoding="utf-8")
+OUT.write_text(json.dumps({"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"source":"东方财富A股人气/股吧公开数据","verifiedRealData":True,"scope":"A/H科技股；美股不使用该大众指标","stocks":stocks,"sectors":sectors},ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(sectors,ensure_ascii=False))
