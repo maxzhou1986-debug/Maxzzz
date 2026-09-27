@@ -39,4 +39,4 @@ jobs:
           git pull --rebase origin main
           git push
 
-# sentiment pipeline v4 stock-level validation
+# sentiment pipeline v5 eastmoney-json
