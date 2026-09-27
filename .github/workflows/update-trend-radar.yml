@@ -1,6 +1,11 @@
 name: Update Radar Data
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'trend-radar/scripts/update_quotes.py'
+      - '.github/workflows/update-trend-radar.yml'
   schedule:
     - cron: "20 8,10,12,14,16,20 * * 1-5"
 permissions:
