@@ -10,6 +10,7 @@ for m in re.finditer(r"(SZ\d{6}|SH\d{6}|[A-Z]{1,5})\s*(\d+(?:\.\d+)?)\s*热度",
     pairs[m.group(1)]=float(m.group(2))
 if not pairs: raise SystemExit("No code+heat pairs from Xueqiu AI hot page; keep prior sentiment.")
 mx=max(pairs.values())
+stocks={code:{"rawHeat":heat,"score":round(min(100,heat/mx*100),1)} for code,heat in pairs.items()}
 hist=json.loads(HIST.read_text(encoding="utf-8")) if HIST.exists() else {"snapshots":[]}
 sectors={}
 for theme,codes in THEMES.items():
