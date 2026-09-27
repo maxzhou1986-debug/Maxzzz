@@ -1,6 +1,8 @@
 {
-  "updatedAt": "2026-09-27T11:06:16.339278+00:00",
+  "updatedAt": "2026-09-27T11:07:17.101430+00:00",
   "source": "百度公开实时热搜榜",
+  "scope": null,
+  "stocks": {},
   "sectors": {
     "CPO": {
       "heatPercentile": 0,
@@ -11,7 +13,7 @@
       "sourceCount": 1,
       "matches": [],
       "score": 0,
-      "heatChange1d": null,
+      "heatChange1d": 0,
       "heatChange3d": null,
       "heatChange7d": null
     },
@@ -24,7 +26,7 @@
       "sourceCount": 1,
       "matches": [],
       "score": 0,
-      "heatChange1d": null,
+      "heatChange1d": 0,
       "heatChange3d": null,
       "heatChange7d": null
     },
@@ -37,7 +39,7 @@
       "sourceCount": 1,
       "matches": [],
       "score": 0,
-      "heatChange1d": null,
+      "heatChange1d": 0,
       "heatChange3d": null,
       "heatChange7d": null
     },
@@ -50,7 +52,7 @@
       "sourceCount": 1,
       "matches": [],
       "score": 0,
-      "heatChange1d": null,
+      "heatChange1d": 0,
       "heatChange3d": null,
       "heatChange7d": null
     },
@@ -63,7 +65,7 @@
       "sourceCount": 1,
       "matches": [],
       "score": 0,
-      "heatChange1d": null,
+      "heatChange1d": 0,
       "heatChange3d": null,
       "heatChange7d": null
     }
