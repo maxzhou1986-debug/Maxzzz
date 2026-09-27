@@ -25,6 +25,7 @@ jobs:
           python-version: "3.12"
       - run: python trend-radar/scripts/update_quotes.py
       - run: python trend-radar/scripts/update_investor_sentiment.py || true
+      - run: python trend-radar/scripts/update_public_attention.py || true
       - run: python trend-radar/scripts/normalize_douyin_search.py || true
       - run: python trend-radar/scripts/build_sentiment.py || true
       - run: |
