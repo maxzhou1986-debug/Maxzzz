@@ -1,5 +1,5 @@
 import json, urllib.request, datetime, time
-SYMS={"ANET":"ANET","MU":"MU","3308.HK":"3308.HK","300308.SZ":"300308.SZ","CSCO":"CSCO","HPE":"HPE","AVGO":"AVGO","WDC":"WDC","STX":"STX","000988.SZ":"000988.SZ","300502.SZ":"300502.SZ","300394.SZ":"300394.SZ","000660.KS":"000660.KS","005930.KS":"005930.KS","SKHY":"SKHY","NVDA":"NVDA","AMD":"AMD","MRVL":"MRVL","VRT":"VRT","DELL":"DELL","SMCI":"SMCI"}
+SYMS={"000001.SS":"000001.SS","^HSI":"^HSI","^GSPC":"^GSPC","^IXIC":"^IXIC","ANET":"ANET","MU":"MU","3308.HK":"3308.HK","300308.SZ":"300308.SZ","CSCO":"CSCO","HPE":"HPE","AVGO":"AVGO","WDC":"WDC","STX":"STX","000988.SZ":"000988.SZ","300502.SZ":"300502.SZ","300394.SZ":"300394.SZ","000660.KS":"000660.KS","005930.KS":"005930.KS","SKHY":"SKHY","NVDA":"NVDA","AMD":"AMD","MRVL":"MRVL","VRT":"VRT","DELL":"DELL","SMCI":"SMCI"}
 def get(sym):
     u="https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?range=1y&interval=1d"
     req=urllib.request.Request(u,headers={"User-Agent":"Mozilla/5.0"})
