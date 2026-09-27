@@ -1,41 +1,108 @@
 {
-  "updatedAt": "2026-09-27T11:15:30.816233+00:00",
-  "source": "东方财富A/H个股人气榜 JSON",
+  "updatedAt": "2026-09-27T11:17:40.455131+00:00",
+  "source": "东方财富A/H个股最新人气排名",
   "verifiedRealData": true,
-  "scope": "A/H科技个股关注度；未进Top100显示待接，不伪造0",
+  "scope": "A/H科技个股；逐股查询，失败显示待接，不伪造0",
   "stocks": {
     "SZ300308": {
       "name": "中际旭创",
       "market": "A股",
-      "rank": 70,
-      "score": 65.5,
-      "source": "东方财富A股人气榜"
+      "rank": 71,
+      "score": 58.8,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ300502": {
+      "name": "新易盛",
+      "market": "A股",
+      "rank": 169,
+      "score": 37.3,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ300394": {
+      "name": "天孚通信",
+      "market": "A股",
+      "rank": 353,
+      "score": 22.1,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ000977": {
+      "name": "浪潮信息",
+      "market": "A股",
+      "rank": 239,
+      "score": 29.6,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ300274": {
+      "name": "阳光电源",
+      "market": "A股",
+      "rank": 296,
+      "score": 25.3,
+      "source": "东方财富个股最新人气排名"
     },
     "3308.HK": {
       "name": "中际旭创H",
       "market": "港股",
       "rank": 15,
-      "score": 93.0,
-      "source": "东方财富港股人气榜"
+      "score": 87.7,
+      "source": "东方财富港股最新人气排名"
     }
   },
   "sectors": {
     "CPO": {
-      "heatPercentile": 65.5,
+      "heatPercentile": 58.8,
       "sourceCount": 1,
       "matches": [
         {
           "name": "中际旭创",
           "market": "A股",
-          "rank": 70,
-          "score": 65.5,
-          "source": "东方财富A股人气榜"
+          "rank": 71,
+          "score": 58.8,
+          "source": "东方财富个股最新人气排名"
+        },
+        {
+          "name": "新易盛",
+          "market": "A股",
+          "rank": 169,
+          "score": 37.3,
+          "source": "东方财富个股最新人气排名"
+        },
+        {
+          "name": "天孚通信",
+          "market": "A股",
+          "rank": 353,
+          "score": 22.1,
+          "source": "东方财富个股最新人气排名"
         }
       ]
     },
-    "HBM / 存储": null,
+    "HBM / 存储": {
+      "heatPercentile": 29.6,
+      "sourceCount": 1,
+      "matches": [
+        {
+          "name": "浪潮信息",
+          "market": "A股",
+          "rank": 239,
+          "score": 29.6,
+          "source": "东方财富个股最新人气排名"
+        }
+      ]
+    },
     "AI芯片": null,
     "AI网络": null,
-    "AI基建": null
-  }
+    "AI基建": {
+      "heatPercentile": 25.3,
+      "sourceCount": 1,
+      "matches": [
+        {
+          "name": "阳光电源",
+          "market": "A股",
+          "rank": 296,
+          "score": 25.3,
+          "source": "东方财富个股最新人气排名"
+        }
+      ]
+    }
+  },
+  "errors": []
 }
