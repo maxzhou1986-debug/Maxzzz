@@ -10,7 +10,7 @@ def score(d,source=""):
 if not SRC.exists(): raise SystemExit("No douyin_raw.json: keep sentiment pending; never fabricate data.")
 raw=json.loads(SRC.read_text(encoding="utf-8")); now=datetime.datetime.now(datetime.timezone.utc); day=now.date().isoformat()
 hist=json.loads(HIST.read_text(encoding="utf-8")) if HIST.exists() else {"days":[]}
-out={"updatedAt":now.isoformat(),"source":raw.get("source","真实抖音/巨量算数数据"),"sectors":{}}
+out={"updatedAt":now.isoformat(),"source":raw.get("source","public sentiment"),"scope":raw.get("scope"),"stocks":raw.get("stocks",{}),"sectors":{}}
 snap={"date":day,"sectors":{}}
 for k,d in raw.get("sectors",{}).items():
     if d and d.get("heatPercentile") is not None:
