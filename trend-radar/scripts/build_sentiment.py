@@ -3,7 +3,7 @@ P=pathlib.Path("trend-radar/data"); SRC=P/"douyin_raw.json"; OUT=P/"douyin_senti
 def clamp(x,a=0,b=100): return max(a,min(b,x))
 def score(d,source=""):
     hp=float(d.get("heatPercentile",0))
-    if "百度" in source: return round(clamp(hp),1)
+    if "百度" in source or "东方财富" in source: return round(clamp(hp),1)
     a7=clamp(50+float(d.get("sevenDayAcceleration",0)))
     sa=clamp(50+float(d.get("searchAcceleration",0))); ca=clamp(50+float(d.get("contentAcceleration",0)))
     return round(clamp(.35*hp+.35*a7+.20*sa+.10*ca),1)
