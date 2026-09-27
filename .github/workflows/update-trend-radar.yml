@@ -10,7 +10,7 @@ on:
       - 'trend-radar/scripts/build_sentiment.py'
       - '.github/workflows/update-trend-radar.yml'
   schedule:
-    - cron: "20 8,10,12,14,16,20 * * 1-5"
+    # GitHub cron uses UTC. Every 15 min covers A/H and US weekday sessions;\n    # the quote script is lightweight and the app always reads the newest snapshot.\n    - cron: "*/15 * * * 1-5"
 concurrency:
   group: trend-radar-data-main
   cancel-in-progress: true
@@ -40,4 +40,4 @@ jobs:
           git pull --rebase origin main
           git push
 
-# radar pipeline v12 production
+# radar pipeline v13 15-minute refresh
