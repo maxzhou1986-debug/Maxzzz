@@ -1,5 +1,12 @@
 import json, urllib.request, datetime, time
 SYMS={"^NDX":"^NDX","^SOX":"^SOX","000688.SS":"000688.SS","399006.SZ":"399006.SZ","^HSTECH":"^HSTECH","^IXIC":"^IXIC","ANET":"ANET","MU":"MU","3308.HK":"3308.HK","300308.SZ":"300308.SZ","CSCO":"CSCO","HPE":"HPE","AVGO":"AVGO","WDC":"WDC","STX":"STX","000988.SZ":"000988.SZ","300502.SZ":"300502.SZ","300394.SZ":"300394.SZ","000660.KS":"000660.KS","005930.KS":"005930.KS","SKHY":"SKHY","NVDA":"NVDA","AMD":"AMD","MRVL":"MRVL","VRT":"VRT","DELL":"DELL","SMCI":"SMCI","LLY":"LLY","VRTX":"VRTX","JPM":"JPM","GS":"GS","XOM":"XOM","COP":"COP","FCX":"FCX","SCCO":"SCCO","CAT":"CAT","GE":"GE","COST":"COST","WMT":"WMT","600519.SS":"600519.SS","601318.SS":"601318.SS","601899.SS":"601899.SS","603993.SS":"603993.SS","300750.SZ":"300750.SZ","600276.SS":"600276.SS","3690.HK":"3690.HK","0700.HK":"0700.HK","1810.HK":"1810.HK","2269.HK":"2269.HK","2899.HK":"2899.HK","600036.SS":"600036.SS","601688.SS":"601688.SS","600309.SS":"600309.SS","002594.SZ":"002594.SZ","300124.SZ":"300124.SZ","002050.SZ":"002050.SZ","600031.SS":"600031.SS","601088.SS":"601088.SS","000333.SZ":"000333.SZ","002475.SZ":"002475.SZ","688981.SS":"688981.SS","9988.HK":"9988.HK","9999.HK":"9999.HK","1024.HK":"1024.HK","1211.HK":"1211.HK","2382.HK":"2382.HK","1177.HK":"1177.HK","PLTR":"PLTR","CRWD":"CRWD","CEG":"CEG","VST":"VST","GEV":"GEV","RTX":"RTX","LMT":"LMT","AMZN":"AMZN","META":"META","GOOGL":"GOOGL"}
+# 基本面硬门槛：动态趋势池只允许经过基本面初筛的经营型公司。
+# 指数/海外参照不进入池；新增标的必须先加入此白名单，避免纯题材/无经营支撑股票自动混入。
+FUNDAMENTAL_OK=set(SYMS)-{"^NDX","^SOX","000688.SS","399006.SZ","^HSTECH","^IXIC","000660.KS","005930.KS"}
+
+def fundamental_ok(sym):
+    return sym in FUNDAMENTAL_OK
+
 def get(sym):
     u="https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?range=1y&interval=1d"
     req=urllib.request.Request(u,headers={"User-Agent":"Mozilla/5.0"})
@@ -40,7 +47,7 @@ with open("trend-radar/data/quotes.json","w",encoding="utf-8") as f: json.dump(o
 exclude={"^NDX","^SOX","000688.SS","399006.SZ","^HSTECH","^IXIC","000660.KS","005930.KS"}
 pool=[]
 for s,d in out.items():
-    if s=="updatedAt" or s in exclude or not isinstance(d,dict) or d.get("error"):
+    if s=="updatedAt" or s in exclude or not fundamental_ok(s) or not isinstance(d,dict) or d.get("error"):
         continue
     sc=trend_score(d)
     if sc>=35:
@@ -50,4 +57,4 @@ for s,d in out.items():
         stage="静默转强" if dist is not None and -1<=dist<=6 else "强趋势" if dist is not None and dist<=12 else "高乖离"
         pool.append({"symbol":s,"score":sc,"stage":stage,"distMA20":dist})
 pool=sorted(pool,key=lambda x:x["score"],reverse=True)[:24]
-with open("trend-radar/data/dynamic_pool.json","w",encoding="utf-8") as f: json.dump({"updatedAt":out["updatedAt"],"method":"MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离","stocks":pool},f,ensure_ascii=False,indent=2)
+with open("trend-radar/data/dynamic_pool.json","w",encoding="utf-8") as f: json.dump({"updatedAt":out["updatedAt"],"method":"基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离","stocks":pool},f,ensure_ascii=False,indent=2)
