@@ -27,10 +27,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: python trend-radar/scripts/update_quotes.py
-      - run: python trend-radar/scripts/update_investor_sentiment.py || true
+      - run: python trend-radar/scripts/update_investor_sentiment.py
       - run: python trend-radar/scripts/update_public_attention.py
       - run: python trend-radar/scripts/normalize_douyin_search.py || true
-      - run: python trend-radar/scripts/build_sentiment.py || true
+      - run: python trend-radar/scripts/build_sentiment.py
       - run: |
           git config user.name "radar-bot"
           git config user.email "actions@users.noreply.github.com"
@@ -39,4 +39,4 @@ jobs:
           git pull --rebase origin main
           git push
 
-# sentiment pipeline v9 stock-retail-final
+# sentiment pipeline v10 fail-loud
