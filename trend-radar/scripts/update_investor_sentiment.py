@@ -6,7 +6,7 @@ req=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0","Accept":"tex
 html=urllib.request.urlopen(req,timeout=20).read().decode("utf-8","ignore")
 text=re.sub(r"<[^>]+>"," ",html); text=re.sub(r"\s+"," ",text)
 pairs={}
-for m in re.finditer(r"([A-Z]{1,5}\d{0,6}|\d{5})\s+(\d+(?:\.\d+)?)\s*热度",text):
+for m in re.finditer(r"(SZ\d{6}|SH\d{6}|[A-Z]{1,5})\s*(\d+(?:\.\d+)?)\s*热度",text):
     pairs[m.group(1)]=float(m.group(2))
 if not pairs: raise SystemExit("No code+heat pairs from Xueqiu AI hot page; keep prior sentiment.")
 mx=max(pairs.values())
