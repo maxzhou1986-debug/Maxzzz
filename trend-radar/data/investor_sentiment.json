@@ -1,40 +1,38 @@
 {
-  "updatedAt": "2026-09-27T11:00:56.912502+00:00",
+  "updatedAt": "2026-09-27T11:06:16.209030+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "按股票代码匹配板块代表股；板块最高热度/全榜最高热度归一化",
   "sectors": {
     "CPO": {
-      "score": 80.7,
-      "heatChange1d": 0.0,
+      "score": 73.9,
+      "heatChange1d": -6.8,
       "heatChange3d": null,
       "sampleCount": 2,
-      "rawMaxHeat": 1900.0,
+      "rawMaxHeat": 1867.0,
       "matchedCodes": [
         "SZ300308",
         "SZ300502"
       ]
     },
     "HBM / 存储": {
-      "score": 7.2,
-      "heatChange1d": 0.0,
+      "score": 6.3,
+      "heatChange1d": -0.9,
       "heatChange3d": null,
-      "sampleCount": 2,
-      "rawMaxHeat": 170.0,
+      "sampleCount": 1,
+      "rawMaxHeat": 159.0,
       "matchedCodes": [
-        "MU",
-        "SZ000977"
+        "MU"
       ]
     },
     "AI芯片": null,
     "AI网络": null,
     "AI基建": {
-      "score": 10.4,
-      "heatChange1d": 0.0,
+      "score": 9.4,
+      "heatChange1d": -1.0,
       "heatChange3d": null,
-      "sampleCount": 2,
-      "rawMaxHeat": 244.0,
+      "sampleCount": 1,
+      "rawMaxHeat": 238.0,
       "matchedCodes": [
-        "SZ000977",
         "SZ300274"
       ]
     }
