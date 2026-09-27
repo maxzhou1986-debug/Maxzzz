@@ -39,4 +39,4 @@ jobs:
           git pull --rebase origin main
           git push
 
-# sentiment pipeline v2
+# sentiment pipeline v3 stock-level
