@@ -22,11 +22,29 @@ def trend_score(d):
     vr=1
     if len(vols)>=25:
         base=sum(vols[:20])/20; vr=(sum(vols[-5:])/5/base) if base else 1
-    return round((35 if p>=m20 else -20)+(30 if p>=m60 else -15)+(15 if m20>=m60 else 0)+max(-15,min(20,r5*2))+max(-10,min(15,(r5-r20/4)*1.5))+max(-5,min(10,(vr-1)*15)),1)
+    dist20=(p/m20-1)*100
+    accel=r5-r20/4
+    # 静默转强优先：趋势成立、短期加速、温和放量、尚未远离MA20。
+    base=(30 if p>=m20 else -25)+(25 if p>=m60 else -15)+(12 if m20>=m60 else 0)
+    momentum=max(-12,min(18,r5*2))+max(-10,min(18,accel*2))
+    volume=max(-5,min(10,(vr-1)*15))
+    position=12 if -1<=dist20<=5 else 5 if 5<dist20<=9 else -15 if dist20>12 else 0
+    return round(base+momentum+volume+position,1)
 
 out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat()}
 for key,sym in SYMS.items():
     try: out[key]=get(sym)
     except Exception as e: out[key]={"error":str(e),"closes":[],"bars":[]}
     time.sleep(1)
-with open("trend-radar/data/quotes.json","w",encoding="utf-8") as f: json.dump(out,f,ensure_ascii=False,separators=(",",":"))\nexclude={"^NDX","^SOX","000688.SS","399006.SZ","^HSTECH","^IXIC","000660.KS","005930.KS"}\npool=[]\nfor s,d in out.items():\n    if s=="updatedAt" or s in exclude or not isinstance(d,dict) or d.get("error"): continue\n    sc=trend_score(d)\n    if sc>=35: pool.append({"symbol":s,"score":sc})\npool=sorted(pool,key=lambda x:x["score"],reverse=True)[:24]\nwith open("trend-radar/data/dynamic_pool.json","w",encoding="utf-8") as f: json.dump({"updatedAt":out["updatedAt"],"method":"MA20/60 + 5/20日动量 + 量能加速；跨行业候选自动晋级","stocks":pool},f,ensure_ascii=False,indent=2)
+with open("trend-radar/data/quotes.json","w",encoding="utf-8") as f: json.dump(out,f,ensure_ascii=False,separators=(",",":"))
+exclude={"^NDX","^SOX","000688.SS","399006.SZ","^HSTECH","^IXIC","000660.KS","005930.KS"}
+pool=[]
+for s,d in out.items():
+    if s=="updatedAt" or s in exclude or not isinstance(d,dict) or d.get("error"): continue
+    sc=trend_score(d)
+    if sc>=35: m20=ma(d.get("closes",[]),20); p=d.get("price") or d["closes"][-1]
+        dist=round((p/m20-1)*100,1) if m20 else None
+        stage="静默转强" if dist is not None and -1<=dist<=6 else "强趋势" if dist is not None and dist<=12 else "高乖离"
+        pool.append({"symbol":s,"score":sc,"stage":stage,"distMA20":dist})
+pool=sorted(pool,key=lambda x:x["score"],reverse=True)[:24]
+with open("trend-radar/data/dynamic_pool.json","w",encoding="utf-8") as f: json.dump({"updatedAt":out["updatedAt"],"method":"MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离","stocks":pool},f,ensure_ascii=False,indent=2)
