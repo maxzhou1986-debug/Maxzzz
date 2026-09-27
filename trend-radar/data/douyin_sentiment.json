@@ -1,37 +1,40 @@
 {
-  "updatedAt": "2026-09-27",
-  "source": "东方财富A/H个股人气榜",
-  "scope": "A/H科技个股；个股优先，未验证不记0",
+  "updatedAt": "2026-09-27T11:15:30.914490+00:00",
+  "source": "东方财富A/H个股人气榜 JSON",
+  "scope": "A/H科技个股关注度；未进Top100显示待接，不伪造0",
   "stocks": {
     "SZ300308": {
       "name": "中际旭创",
       "market": "A股",
-      "rank": 98,
-      "score": 51.5,
-      "bullishPct": 55.73,
-      "bearishPct": 44.27,
-      "source": "东方财富公开人气/多空看盘"
+      "rank": 70,
+      "score": 65.5,
+      "source": "东方财富A股人气榜"
+    },
+    "3308.HK": {
+      "name": "中际旭创H",
+      "market": "港股",
+      "rank": 15,
+      "score": 93.0,
+      "source": "东方财富港股人气榜"
     }
   },
   "sectors": {
     "CPO": {
-      "heatPercentile": 51.5,
-      "score": 51.5,
-      "heatChange1d": null,
-      "heatChange3d": null,
-      "heatChange7d": null,
+      "heatPercentile": 65.5,
       "sourceCount": 1,
       "matches": [
         {
           "name": "中际旭创",
           "market": "A股",
-          "rank": 98,
-          "score": 51.5,
-          "bullishPct": 55.73,
-          "bearishPct": 44.27,
-          "source": "东方财富公开人气/多空看盘"
+          "rank": 70,
+          "score": 65.5,
+          "source": "东方财富A股人气榜"
         }
-      ]
+      ],
+      "score": 55.4,
+      "heatChange1d": 55.4,
+      "heatChange3d": null,
+      "heatChange7d": null
     }
   }
 }
