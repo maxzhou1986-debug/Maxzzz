@@ -40,9 +40,12 @@ with open("trend-radar/data/quotes.json","w",encoding="utf-8") as f: json.dump(o
 exclude={"^NDX","^SOX","000688.SS","399006.SZ","^HSTECH","^IXIC","000660.KS","005930.KS"}
 pool=[]
 for s,d in out.items():
-    if s=="updatedAt" or s in exclude or not isinstance(d,dict) or d.get("error"): continue
+    if s=="updatedAt" or s in exclude or not isinstance(d,dict) or d.get("error"):
+        continue
     sc=trend_score(d)
-    if sc>=35: m20=ma(d.get("closes",[]),20); p=d.get("price") or d["closes"][-1]
+    if sc>=35:
+        m20=ma(d.get("closes",[]),20)
+        p=d.get("price") or d["closes"][-1]
         dist=round((p/m20-1)*100,1) if m20 else None
         stage="静默转强" if dist is not None and -1<=dist<=6 else "强趋势" if dist is not None and dist<=12 else "高乖离"
         pool.append({"symbol":s,"score":sc,"stage":stage,"distMA20":dist})
