@@ -1,5 +1,71 @@
 {
-  "updatedAt": "2026-09-27T11:01:00.707945+00:00",
-  "source": "公开大众注意力（今日头条 + 微博热搜；按实际成功源计算）",
-  "sectors": {}
+  "updatedAt": "2026-09-27",
+  "source": "百度公开实时热搜榜",
+  "sectors": {
+    "CPO": {
+      "heatPercentile": 0,
+      "sevenDayAcceleration": 0,
+      "searchAcceleration": 0,
+      "contentAcceleration": 0,
+      "mentions": 0,
+      "sourceCount": 1,
+      "matches": [],
+      "score": 0,
+      "heatChange1d": null,
+      "heatChange3d": null,
+      "heatChange7d": null
+    },
+    "HBM / 存储": {
+      "heatPercentile": 0,
+      "sevenDayAcceleration": 0,
+      "searchAcceleration": 0,
+      "contentAcceleration": 0,
+      "mentions": 0,
+      "sourceCount": 1,
+      "matches": [],
+      "score": 0,
+      "heatChange1d": null,
+      "heatChange3d": null,
+      "heatChange7d": null
+    },
+    "AI芯片": {
+      "heatPercentile": 0,
+      "sevenDayAcceleration": 0,
+      "searchAcceleration": 0,
+      "contentAcceleration": 0,
+      "mentions": 0,
+      "sourceCount": 1,
+      "matches": [],
+      "score": 0,
+      "heatChange1d": null,
+      "heatChange3d": null,
+      "heatChange7d": null
+    },
+    "AI网络": {
+      "heatPercentile": 0,
+      "sevenDayAcceleration": 0,
+      "searchAcceleration": 0,
+      "contentAcceleration": 0,
+      "mentions": 0,
+      "sourceCount": 1,
+      "matches": [],
+      "score": 0,
+      "heatChange1d": null,
+      "heatChange3d": null,
+      "heatChange7d": null
+    },
+    "AI基建": {
+      "heatPercentile": 0,
+      "sevenDayAcceleration": 0,
+      "searchAcceleration": 0,
+      "contentAcceleration": 0,
+      "mentions": 0,
+      "sourceCount": 1,
+      "matches": [],
+      "score": 0,
+      "heatChange1d": null,
+      "heatChange3d": null,
+      "heatChange7d": null
+    }
+  }
 }
