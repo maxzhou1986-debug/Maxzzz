@@ -8,7 +8,7 @@ def post(path,payload):
  req=urllib.request.Request(BASE+path,data=data,headers={"User-Agent":"Mozilla/5.0","Content-Type":"application/json","Accept":"application/json"})
  with urllib.request.urlopen(req,timeout=25) as r:return json.loads(r.read().decode())
 def score_rank(rank):
- return round(max(0,min(100,101-int(rank))),1)
+ return round(max(50,min(100,50+(101-int(rank))*0.5)),1)
 stocks={}
 # A-share top 100 popularity
 a=post("getAllCurrentList",{**COMMON,"marketType":"","pageNo":1,"pageSize":100}).get("data") or []
