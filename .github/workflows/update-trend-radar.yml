@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: node --check trend-radar/app.js
+      - run: python -m py_compile trend-radar/scripts/update_quotes.py trend-radar/scripts/update_investor_sentiment.py trend-radar/scripts/update_public_attention.py trend-radar/scripts/build_sentiment.py
       - run: python trend-radar/scripts/update_quotes.py
       - run: python trend-radar/scripts/update_investor_sentiment.py || echo "::warning::Xueqiu sentiment unavailable; keeping prior snapshot"
       - run: python trend-radar/scripts/update_public_attention.py || echo "::warning::Public attention unavailable; keeping prior snapshot"
