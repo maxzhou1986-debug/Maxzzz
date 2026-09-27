@@ -1,12 +1,12 @@
 {
-  "updatedAt": null,
-  "source": "雪球/东方财富真实讨论热度（待接）",
-  "method": "股民注意力层；禁止模拟值",
+  "updatedAt": "2026-09-27T10:40:53.538901+00:00",
+  "source": "雪球公开热股1小时热度",
+  "method": "板块代表股热度相对当期榜首归一化；无匹配则保持空值，不模拟",
   "sectors": {
-    "AI网络": null,
+    "CPO": null,
     "HBM / 存储": null,
     "AI芯片": null,
-    "AI基建": null,
-    "CPO": null
+    "AI网络": null,
+    "AI基建": null
   }
 }
