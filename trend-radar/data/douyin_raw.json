@@ -1,53 +1,38 @@
 {
   "updatedAt": "2026-09-27",
-  "source": "百度公开实时热搜榜",
+  "source": "东方财富A/H个股人气榜",
   "verifiedRealData": true,
-  "method": "成功读取实时热搜榜；主题关键词未上榜记为0，抓取失败才记待接",
+  "scope": "A/H科技个股；个股优先，未验证不记0",
+  "stocks": {
+    "SZ300308": {
+      "name": "中际旭创",
+      "market": "A股",
+      "rank": 98,
+      "score": 51.5,
+      "bullishPct": 55.73,
+      "bearishPct": 44.27,
+      "source": "东方财富公开人气/多空看盘"
+    }
+  },
   "sectors": {
     "CPO": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
+      "heatPercentile": 51.5,
       "sourceCount": 1,
-      "matches": []
+      "matches": [
+        {
+          "name": "中际旭创",
+          "market": "A股",
+          "rank": 98,
+          "score": 51.5,
+          "bullishPct": 55.73,
+          "bearishPct": 44.27,
+          "source": "东方财富公开人气/多空看盘"
+        }
+      ]
     },
-    "HBM / 存储": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": []
-    },
-    "AI芯片": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": []
-    },
-    "AI网络": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": []
-    },
-    "AI基建": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": []
-    }
+    "HBM / 存储": null,
+    "AI芯片": null,
+    "AI网络": null,
+    "AI基建": null
   }
 }
