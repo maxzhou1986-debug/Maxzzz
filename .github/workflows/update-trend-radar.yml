@@ -34,9 +34,9 @@ jobs:
       - run: |
           git config user.name "radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add trend-radar/data/quotes.json trend-radar/data/investor_sentiment.json trend-radar/data/investor_sentiment_history.json trend-radar/data/douyin_raw.json trend-radar/data/douyin_sentiment.json trend-radar/data/douyin_history.json
+          git add trend-radar/data/quotes.json trend-radar/data/dynamic_pool.json trend-radar/data/investor_sentiment.json trend-radar/data/investor_sentiment_history.json trend-radar/data/douyin_raw.json trend-radar/data/douyin_sentiment.json trend-radar/data/douyin_history.json
           git diff --cached --quiet || git commit -m "Update radar market data"
           git pull --rebase origin main
           git push
 
-# sentiment pipeline v10 fail-loud
+# radar pipeline v11 dynamic-pool
