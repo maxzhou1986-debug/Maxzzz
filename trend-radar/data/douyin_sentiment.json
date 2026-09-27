@@ -1,73 +1,37 @@
 {
-  "updatedAt": "2026-09-27T11:07:17.101430+00:00",
-  "source": "百度公开实时热搜榜",
-  "scope": null,
-  "stocks": {},
+  "updatedAt": "2026-09-27",
+  "source": "东方财富A/H个股人气榜",
+  "scope": "A/H科技个股；个股优先，未验证不记0",
+  "stocks": {
+    "SZ300308": {
+      "name": "中际旭创",
+      "market": "A股",
+      "rank": 98,
+      "score": 51.5,
+      "bullishPct": 55.73,
+      "bearishPct": 44.27,
+      "source": "东方财富公开人气/多空看盘"
+    }
+  },
   "sectors": {
     "CPO": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": [],
-      "score": 0,
-      "heatChange1d": 0,
+      "heatPercentile": 51.5,
+      "score": 51.5,
+      "heatChange1d": null,
       "heatChange3d": null,
-      "heatChange7d": null
-    },
-    "HBM / 存储": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
+      "heatChange7d": null,
       "sourceCount": 1,
-      "matches": [],
-      "score": 0,
-      "heatChange1d": 0,
-      "heatChange3d": null,
-      "heatChange7d": null
-    },
-    "AI芯片": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": [],
-      "score": 0,
-      "heatChange1d": 0,
-      "heatChange3d": null,
-      "heatChange7d": null
-    },
-    "AI网络": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": [],
-      "score": 0,
-      "heatChange1d": 0,
-      "heatChange3d": null,
-      "heatChange7d": null
-    },
-    "AI基建": {
-      "heatPercentile": 0,
-      "sevenDayAcceleration": 0,
-      "searchAcceleration": 0,
-      "contentAcceleration": 0,
-      "mentions": 0,
-      "sourceCount": 1,
-      "matches": [],
-      "score": 0,
-      "heatChange1d": 0,
-      "heatChange3d": null,
-      "heatChange7d": null
+      "matches": [
+        {
+          "name": "中际旭创",
+          "market": "A股",
+          "rank": 98,
+          "score": 51.5,
+          "bullishPct": 55.73,
+          "bearishPct": 44.27,
+          "source": "东方财富公开人气/多空看盘"
+        }
+      ]
     }
   }
 }
