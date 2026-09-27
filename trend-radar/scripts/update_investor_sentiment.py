@@ -1,13 +1,19 @@
 import json, re, urllib.request, datetime, pathlib
-URL="https://xueqiu.com/hot/stock"
+URLS=["https://xueqiu.com/hot/stock?app=xueqiu&from=app&os=iPhone&version=1.0","https://xueqiu.com/hot/stock"]
 OUT=pathlib.Path("trend-radar/data/investor_sentiment.json")
 HIST=pathlib.Path("trend-radar/data/investor_sentiment_history.json")
 THEMES={"CPO":["中际旭创","新易盛","天孚通信","长飞光纤"],"HBM / 存储":["美光","SK海力士","浪潮信息"],"AI芯片":["英伟达","AMD","博通","摩尔线程","燧原"],"AI网络":["Arista","思科","博通"],"AI基建":["浪潮信息","阳光电源","Vertiv","Dell","Super Micro"]}
-req=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0"})
-html=urllib.request.urlopen(req,timeout=20).read().decode("utf-8","ignore")
+html=""
+for URL in URLS:
+    try:
+        req=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15","Accept":"text/html,application/xhtml+xml"})
+        html=urllib.request.urlopen(req,timeout=20).read().decode("utf-8","ignore")
+        if "热度" in html: break
+    except Exception: pass
+if not html or "热度" not in html: raise SystemExit("Xueqiu hot page returned no heat data; keep prior sentiment.")
 text=re.sub(r"<[^>]+>"," ",html)
 pairs=[]
-for m in re.finditer(r"([A-Za-z0-9\-\u4e00-\u9fff]+)\s+(\d+(?:\.\d+)?)\s*热度",text):
+for m in re.finditer(r"([A-Za-z0-9\-\u4e00-\u9fff]+?)\s+(\d+(?:\.\d+)?)\s*热度",text):
     pairs.append((m.group(1),float(m.group(2))))
 mx=max([v for _,v in pairs],default=0)
 hist=json.loads(HIST.read_text(encoding="utf-8")) if HIST.exists() else {"snapshots":[]}
