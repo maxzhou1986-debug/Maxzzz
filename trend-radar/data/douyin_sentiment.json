@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-27T12:02:56.552582+00:00",
+  "updatedAt": "2026-09-28T01:29:35.913280+00:00",
   "source": "东方财富A/H个股最新人气排名",
   "scope": "A/H科技个股；逐股查询，失败显示待接，不伪造0",
   "stocks": {
@@ -74,7 +74,7 @@
         }
       ],
       "score": 58.8,
-      "heatChange1d": null,
+      "heatChange1d": 0.0,
       "heatChange3d": null,
       "heatChange7d": null
     },
@@ -91,7 +91,7 @@
         }
       ],
       "score": 29.6,
-      "heatChange1d": null,
+      "heatChange1d": 0.0,
       "heatChange3d": null,
       "heatChange7d": null
     },
@@ -108,7 +108,7 @@
         }
       ],
       "score": 25.3,
-      "heatChange1d": null,
+      "heatChange1d": 0.0,
       "heatChange3d": null,
       "heatChange7d": null
     }
