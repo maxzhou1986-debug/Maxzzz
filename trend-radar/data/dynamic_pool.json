@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-28T01:51:16.128802+00:00",
+  "updatedAt": "2026-09-28T02:03:22.664229+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -34,9 +34,9 @@
     },
     {
       "symbol": "601088.SS",
-      "score": 88.2,
+      "score": 89.4,
       "stage": "静默转强",
-      "distMA20": 1.2
+      "distMA20": 1.5
     },
     {
       "symbol": "AMD",
@@ -88,9 +88,9 @@
     },
     {
       "symbol": "2269.HK",
-      "score": 65.5,
-      "stage": "静默转强",
-      "distMA20": 4.3
+      "score": 65.7,
+      "stage": "强趋势",
+      "distMA20": 6.3
     },
     {
       "symbol": "DELL",
@@ -100,15 +100,15 @@
     },
     {
       "symbol": "1177.HK",
-      "score": 52,
+      "score": 52.7,
       "stage": "静默转强",
-      "distMA20": 0.3
+      "distMA20": 0.8
     },
     {
       "symbol": "0700.HK",
-      "score": 46.2,
+      "score": 46.9,
       "stage": "静默转强",
-      "distMA20": 2.1
+      "distMA20": 2.2
     },
     {
       "symbol": "GE",
@@ -136,9 +136,9 @@
     },
     {
       "symbol": "002050.SZ",
-      "score": 35.9,
+      "score": 35.1,
       "stage": "静默转强",
-      "distMA20": 1.4
+      "distMA20": 1.1
     }
   ]
 }
