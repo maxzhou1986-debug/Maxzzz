@@ -1,407 +1,407 @@
 {
-  "updatedAt": "2026-09-28T19:24:32.135561+00:00",
+  "updatedAt": "2026-09-28T19:38:07.948556+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
     "NVDA": {
-      "rawHeat": 2018.0,
+      "rawHeat": 1919.0,
       "score": 100
     },
     "SNDK": {
-      "rawHeat": 1336.0,
-      "score": 66.2
+      "rawHeat": 1246.0,
+      "score": 64.9
     },
     "SKHY": {
-      "rawHeat": 952.0,
-      "score": 47.2
+      "rawHeat": 932.0,
+      "score": 48.6
     },
     "MU": {
-      "rawHeat": 926.0,
-      "score": 45.9
+      "rawHeat": 891.0,
+      "score": 46.4
     },
     "SZ300308": {
-      "rawHeat": 704.0,
-      "score": 34.9
+      "rawHeat": 668.0,
+      "score": 34.8
     },
     "SH601579": {
-      "rawHeat": 679.0,
-      "score": 33.6
+      "rawHeat": 632.0,
+      "score": 32.9
     },
     "INTC": {
-      "rawHeat": 590.0,
-      "score": 29.2
+      "rawHeat": 588.0,
+      "score": 30.6
     },
     "SPCX": {
-      "rawHeat": 564.0,
-      "score": 27.9
+      "rawHeat": 549.0,
+      "score": 28.6
     },
     "SH688836": {
-      "rawHeat": 545.0,
-      "score": 27.0
-    },
-    "SH601899": {
-      "rawHeat": 461.0,
-      "score": 22.8
-    },
-    "MRNA": {
-      "rawHeat": 434.0,
-      "score": 21.5
+      "rawHeat": 535.0,
+      "score": 27.9
     },
     "TSLA": {
-      "rawHeat": 428.0,
-      "score": 21.2
+      "rawHeat": 453.0,
+      "score": 23.6
     },
     "LITE": {
-      "rawHeat": 412.0,
-      "score": 20.4
+      "rawHeat": 432.0,
+      "score": 22.5
+    },
+    "SH601899": {
+      "rawHeat": 427.0,
+      "score": 22.3
+    },
+    "MRNA": {
+      "rawHeat": 408.0,
+      "score": 21.3
     },
     "META": {
-      "rawHeat": 379.0,
-      "score": 18.8
-    },
-    "TSM": {
-      "rawHeat": 349.0,
-      "score": 17.3
+      "rawHeat": 403.0,
+      "score": 21.0
     },
     "SH600418": {
-      "rawHeat": 336.0,
-      "score": 16.7
-    },
-    "SH600519": {
-      "rawHeat": 325.0,
-      "score": 16.1
-    },
-    "SH688825": {
-      "rawHeat": 311.0,
-      "score": 15.4
-    },
-    "SZ002384": {
-      "rawHeat": 293.0,
-      "score": 14.5
-    },
-    "SH603986": {
-      "rawHeat": 290.0,
-      "score": 14.4
+      "rawHeat": 305.0,
+      "score": 15.9
     },
     "PDD": {
-      "rawHeat": 273.0,
-      "score": 13.5
+      "rawHeat": 289.0,
+      "score": 15.1
     },
-    "AMD": {
-      "rawHeat": 256.0,
-      "score": 12.7
+    "TSM": {
+      "rawHeat": 287.0,
+      "score": 15.0
+    },
+    "SH688825": {
+      "rawHeat": 285.0,
+      "score": 14.9
+    },
+    "SH600519": {
+      "rawHeat": 281.0,
+      "score": 14.6
+    },
+    "SH603986": {
+      "rawHeat": 266.0,
+      "score": 13.9
     },
     "SZ000858": {
-      "rawHeat": 253.0,
-      "score": 12.5
+      "rawHeat": 260.0,
+      "score": 13.5
+    },
+    "SZ002384": {
+      "rawHeat": 256.0,
+      "score": 13.3
+    },
+    "AMD": {
+      "rawHeat": 250.0,
+      "score": 13.0
     },
     "BABA": {
-      "rawHeat": 247.0,
-      "score": 12.2
-    },
-    "SZ300750": {
-      "rawHeat": 238.0,
-      "score": 11.8
+      "rawHeat": 232.0,
+      "score": 12.1
     },
     "SZ300207": {
-      "rawHeat": 225.0,
+      "rawHeat": 213.0,
       "score": 11.1
     },
     "KOD": {
-      "rawHeat": 211.0,
-      "score": 10.5
+      "rawHeat": 204.0,
+      "score": 10.6
+    },
+    "SZ300750": {
+      "rawHeat": 197.0,
+      "score": 10.3
     },
     "SH600487": {
-      "rawHeat": 210.0,
-      "score": 10.4
+      "rawHeat": 196.0,
+      "score": 10.2
     },
     "AAPL": {
-      "rawHeat": 188.0,
-      "score": 9.3
-    },
-    "SH600127": {
-      "rawHeat": 184.0,
-      "score": 9.1
+      "rawHeat": 187.0,
+      "score": 9.7
     },
     "QQQ": {
-      "rawHeat": 179.0,
-      "score": 8.9
-    },
-    "SZ000792": {
-      "rawHeat": 176.0,
-      "score": 8.7
-    },
-    "SOXX": {
-      "rawHeat": 164.0,
-      "score": 8.1
-    },
-    "SZ000592": {
-      "rawHeat": 162.0,
-      "score": 8.0
-    },
-    "SH601872": {
-      "rawHeat": 161.0,
-      "score": 8.0
-    },
-    "FRO": {
-      "rawHeat": 160.0,
-      "score": 7.9
+      "rawHeat": 173.0,
+      "score": 9.0
     },
     "COHR": {
+      "rawHeat": 169.0,
+      "score": 8.8
+    },
+    "SZ000792": {
       "rawHeat": 160.0,
-      "score": 7.9
+      "score": 8.3
     },
-    "SH600825": {
-      "rawHeat": 158.0,
-      "score": 7.8
+    "SOXX": {
+      "rawHeat": 160.0,
+      "score": 8.3
     },
-    "SZ002594": {
-      "rawHeat": 156.0,
-      "score": 7.7
+    "SH600127": {
+      "rawHeat": 160.0,
+      "score": 8.3
     },
     "SH688256": {
-      "rawHeat": 153.0,
-      "score": 7.6
-    },
-    "SH600059": {
-      "rawHeat": 153.0,
-      "score": 7.6
+      "rawHeat": 158.0,
+      "score": 8.2
     },
     "SH688662": {
-      "rawHeat": 152.0,
+      "rawHeat": 157.0,
+      "score": 8.2
+    },
+    "GOOGL": {
+      "rawHeat": 150.0,
+      "score": 7.8
+    },
+    "MRVL": {
+      "rawHeat": 149.0,
+      "score": 7.8
+    },
+    "FRO": {
+      "rawHeat": 149.0,
+      "score": 7.8
+    },
+    "SH600059": {
+      "rawHeat": 143.0,
       "score": 7.5
     },
-    "SZ002460": {
-      "rawHeat": 150.0,
+    "BE": {
+      "rawHeat": 142.0,
       "score": 7.4
     },
     "SZ000630": {
-      "rawHeat": 150.0,
-      "score": 7.4
-    },
-    "SZ000933": {
-      "rawHeat": 149.0,
-      "score": 7.4
-    },
-    "SH601127": {
-      "rawHeat": 148.0,
+      "rawHeat": 140.0,
       "score": 7.3
     },
+    "SZ000592": {
+      "rawHeat": 140.0,
+      "score": 7.3
+    },
+    "SH601872": {
+      "rawHeat": 140.0,
+      "score": 7.3
+    },
+    "SH600825": {
+      "rawHeat": 140.0,
+      "score": 7.3
+    },
+    "SZ000933": {
+      "rawHeat": 139.0,
+      "score": 7.2
+    },
+    "SZ002594": {
+      "rawHeat": 134.0,
+      "score": 7.0
+    },
     "SZ002487": {
-      "rawHeat": 144.0,
-      "score": 7.1
+      "rawHeat": 134.0,
+      "score": 7.0
     },
     "SH600699": {
-      "rawHeat": 143.0,
-      "score": 7.1
-    },
-    "MRVL": {
-      "rawHeat": 142.0,
+      "rawHeat": 134.0,
       "score": 7.0
     },
-    "GOOGL": {
-      "rawHeat": 142.0,
-      "score": 7.0
-    },
-    "SZ300476": {
-      "rawHeat": 139.0,
+    "SZ002460": {
+      "rawHeat": 132.0,
       "score": 6.9
     },
-    "SZ301689": {
-      "rawHeat": 138.0,
-      "score": 6.8
-    },
-    "BE": {
-      "rawHeat": 137.0,
-      "score": 6.8
-    },
-    "SH603259": {
-      "rawHeat": 133.0,
-      "score": 6.6
-    },
-    "WDC": {
-      "rawHeat": 132.0,
-      "score": 6.5
-    },
-    "SH688137": {
+    "SZ300476": {
       "rawHeat": 131.0,
-      "score": 6.5
-    },
-    "QCOM": {
-      "rawHeat": 131.0,
-      "score": 6.5
-    },
-    "SZ300502": {
-      "rawHeat": 129.0,
-      "score": 6.4
+      "score": 6.8
     },
     "NBIS": {
-      "rawHeat": 128.0,
-      "score": 6.3
+      "rawHeat": 129.0,
+      "score": 6.7
     },
-    "KWEB": {
+    "QCOM": {
       "rawHeat": 126.0,
-      "score": 6.2
+      "score": 6.6
+    },
+    "SH688137": {
+      "rawHeat": 125.0,
+      "score": 6.5
+    },
+    "WDC": {
+      "rawHeat": 124.0,
+      "score": 6.5
+    },
+    "SZ301689": {
+      "rawHeat": 123.0,
+      "score": 6.4
     },
     "GLW": {
-      "rawHeat": 126.0,
-      "score": 6.2
-    },
-    "SH601318": {
-      "rawHeat": 124.0,
-      "score": 6.1
-    },
-    "SZ300757": {
-      "rawHeat": 122.0,
-      "score": 6.0
+      "rawHeat": 123.0,
+      "score": 6.4
     },
     "SZ002714": {
+      "rawHeat": 122.0,
+      "score": 6.4
+    },
+    "SH601127": {
+      "rawHeat": 122.0,
+      "score": 6.4
+    },
+    "SH601318": {
       "rawHeat": 120.0,
-      "score": 5.9
+      "score": 6.3
     },
-    "SZ000993": {
-      "rawHeat": 119.0,
-      "score": 5.9
-    },
-    "SH600900": {
+    "SZ300502": {
       "rawHeat": 118.0,
-      "score": 5.8
+      "score": 6.1
     },
     "SZ300274": {
-      "rawHeat": 117.0,
+      "rawHeat": 118.0,
+      "score": 6.1
+    },
+    "KWEB": {
+      "rawHeat": 116.0,
+      "score": 6.0
+    },
+    "SH603259": {
+      "rawHeat": 115.0,
+      "score": 6.0
+    },
+    "SH600900": {
+      "rawHeat": 112.0,
       "score": 5.8
     },
-    "ASML": {
-      "rawHeat": 116.0,
+    "ORCL": {
+      "rawHeat": 111.0,
+      "score": 5.8
+    },
+    "MSFT": {
+      "rawHeat": 109.0,
       "score": 5.7
     },
-    "STX": {
-      "rawHeat": 114.0,
-      "score": 5.6
+    "SZ300757": {
+      "rawHeat": 105.0,
+      "score": 5.5
     },
     "SH601091": {
-      "rawHeat": 114.0,
-      "score": 5.6
+      "rawHeat": 105.0,
+      "score": 5.5
     },
-    "ORCL": {
-      "rawHeat": 114.0,
-      "score": 5.6
+    "ARM": {
+      "rawHeat": 103.0,
+      "score": 5.4
     },
     "GOOG": {
-      "rawHeat": 107.0,
-      "score": 5.3
-    },
-    "BNTX": {
-      "rawHeat": 107.0,
-      "score": 5.3
-    },
-    "SZ000002": {
-      "rawHeat": 106.0,
-      "score": 5.3
-    },
-    "SH600547": {
-      "rawHeat": 106.0,
-      "score": 5.3
-    },
-    "SH600489": {
-      "rawHeat": 106.0,
-      "score": 5.3
-    },
-    "SZ301699": {
-      "rawHeat": 105.0,
-      "score": 5.2
-    },
-    "SMMT": {
-      "rawHeat": 105.0,
-      "score": 5.2
-    },
-    "SH600707": {
-      "rawHeat": 105.0,
+      "rawHeat": 100.0,
       "score": 5.2
     },
     "AAOI": {
-      "rawHeat": 105.0,
+      "rawHeat": 100.0,
       "score": 5.2
     },
-    "SH600030": {
-      "rawHeat": 103.0,
-      "score": 5.1
+    "STX": {
+      "rawHeat": 99.0,
+      "score": 5.2
     },
-    "MSFT": {
-      "rawHeat": 103.0,
-      "score": 5.1
+    "SMMT": {
+      "rawHeat": 99.0,
+      "score": 5.2
     },
-    "AXTI": {
-      "rawHeat": 103.0,
-      "score": 5.1
+    "SH600707": {
+      "rawHeat": 99.0,
+      "score": 5.2
     },
-    "SZ000807": {
-      "rawHeat": 102.0,
-      "score": 5.1
-    },
-    "SOXL": {
-      "rawHeat": 102.0,
-      "score": 5.1
-    },
-    "NTES": {
-      "rawHeat": 101.0,
+    "SH600547": {
+      "rawHeat": 96.0,
       "score": 5.0
     },
-    "SZ002851": {
-      "rawHeat": 98.0,
-      "score": 4.9
-    },
-    "SH601919": {
-      "rawHeat": 98.0,
-      "score": 4.9
-    },
-    "SH600664": {
-      "rawHeat": 98.0,
-      "score": 4.9
-    },
-    "ARM": {
-      "rawHeat": 97.0,
-      "score": 4.8
-    },
-    "SZ000725": {
-      "rawHeat": 94.0,
-      "score": 4.7
-    },
-    "SH600206": {
-      "rawHeat": 94.0,
-      "score": 4.7
-    },
-    "CRCL": {
-      "rawHeat": 93.0,
-      "score": 4.6
+    "BNTX": {
+      "rawHeat": 96.0,
+      "score": 5.0
     },
     "AVGO": {
+      "rawHeat": 96.0,
+      "score": 5.0
+    },
+    "CRCL": {
+      "rawHeat": 95.0,
+      "score": 5.0
+    },
+    "SOXL": {
+      "rawHeat": 94.0,
+      "score": 4.9
+    },
+    "SH600489": {
+      "rawHeat": 94.0,
+      "score": 4.9
+    },
+    "SZ000993": {
       "rawHeat": 93.0,
+      "score": 4.8
+    },
+    "ALB": {
+      "rawHeat": 92.0,
+      "score": 4.8
+    },
+    "SH601919": {
+      "rawHeat": 90.0,
+      "score": 4.7
+    },
+    "SH600030": {
+      "rawHeat": 90.0,
+      "score": 4.7
+    },
+    "AXTI": {
+      "rawHeat": 90.0,
+      "score": 4.7
+    },
+    "ASML": {
+      "rawHeat": 90.0,
+      "score": 4.7
+    },
+    "SZ000002": {
+      "rawHeat": 89.0,
       "score": 4.6
     },
-    "SZ000568": {
-      "rawHeat": 92.0,
+    "AMZN": {
+      "rawHeat": 89.0,
       "score": 4.6
+    },
+    "SZ301699": {
+      "rawHeat": 88.0,
+      "score": 4.6
+    },
+    "SH600036": {
+      "rawHeat": 88.0,
+      "score": 4.6
+    },
+    "SH600206": {
+      "rawHeat": 87.0,
+      "score": 4.5
+    },
+    "SZ002415": {
+      "rawHeat": 84.0,
+      "score": 4.4
+    },
+    "SZ002851": {
+      "rawHeat": 83.0,
+      "score": 4.3
+    },
+    "SZ002466": {
+      "rawHeat": 81.0,
+      "score": 4.2
     }
   },
   "sectors": {
     "CPO": {
-      "score": 34.9,
-      "heatChange1d": 0.5,
-      "heatChange3d": -1.5,
+      "score": 34.8,
+      "heatChange1d": -0.1,
+      "heatChange3d": 0.3,
       "sampleCount": 2,
-      "rawMaxHeat": 704.0,
+      "rawMaxHeat": 668.0,
       "matchedCodes": [
         "SZ300308",
         "SZ300502"
       ]
     },
     "HBM / 存储": {
-      "score": 47.2,
-      "heatChange1d": 0.5,
-      "heatChange3d": 1.2,
+      "score": 48.6,
+      "heatChange1d": 1.4,
+      "heatChange3d": 2.6,
       "sampleCount": 2,
-      "rawMaxHeat": 952.0,
+      "rawMaxHeat": 932.0,
       "matchedCodes": [
         "MU",
         "SKHY"
@@ -412,7 +412,7 @@
       "heatChange1d": 0,
       "heatChange3d": 0,
       "sampleCount": 3,
-      "rawMaxHeat": 2018.0,
+      "rawMaxHeat": 1919.0,
       "matchedCodes": [
         "NVDA",
         "AMD",
@@ -420,21 +420,21 @@
       ]
     },
     "AI网络": {
-      "score": 4.6,
-      "heatChange1d": -0.1,
-      "heatChange3d": 0.1,
+      "score": 5.0,
+      "heatChange1d": 0.4,
+      "heatChange3d": 0.4,
       "sampleCount": 1,
-      "rawMaxHeat": 93.0,
+      "rawMaxHeat": 96.0,
       "matchedCodes": [
         "AVGO"
       ]
     },
     "AI基建": {
-      "score": 5.8,
-      "heatChange1d": 0.0,
+      "score": 6.1,
+      "heatChange1d": 0.3,
       "heatChange3d": 0.1,
       "sampleCount": 1,
-      "rawMaxHeat": 117.0,
+      "rawMaxHeat": 118.0,
       "matchedCodes": [
         "SZ300274"
       ]
