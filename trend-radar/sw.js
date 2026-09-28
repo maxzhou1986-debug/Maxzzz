@@ -1,5 +1,5 @@
-const C="radar-v43";
-const CORE=["./","./index.html","./style.css?v=43","./charts.js?v=43","./app.js?v=43"];
+const C="radar-v44";
+const CORE=["./","./index.html","./style.css?v=44","./charts.js?v=44","./app.js?v=44"];
 self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>c.addAll(CORE)))});
 self.addEventListener("activate",e=>e.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==C).map(k=>caches.delete(k)))),self.clients.claim()])));
 self.addEventListener("fetch",e=>{
