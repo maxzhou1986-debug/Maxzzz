@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T02:22:44.491824+00:00",
+  "updatedAt": "2026-09-29T02:36:30.688600+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -27,12 +27,6 @@
       "distMA20": 5.1
     },
     {
-      "symbol": "2269.HK",
-      "score": 76.3,
-      "stage": "强趋势",
-      "distMA20": 8.0
-    },
-    {
       "symbol": "NVDA",
       "score": 75.0,
       "stage": "静默转强",
@@ -49,6 +43,12 @@
       "score": 72.2,
       "stage": "静默转强",
       "distMA20": 2.9
+    },
+    {
+      "symbol": "2269.HK",
+      "score": 72.0,
+      "stage": "强趋势",
+      "distMA20": 6.8
     },
     {
       "symbol": "SMCI",
@@ -79,12 +79,6 @@
       "score": 61.7,
       "stage": "强趋势",
       "distMA20": 7.2
-    },
-    {
-      "symbol": "1177.HK",
-      "score": 56.5,
-      "stage": "静默转强",
-      "distMA20": 1.1
     },
     {
       "symbol": "DELL",
