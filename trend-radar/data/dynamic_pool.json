@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T13:10:04.904572+00:00",
+  "updatedAt": "2026-09-29T13:30:02.910771+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -7,12 +7,6 @@
       "score": 94.2,
       "stage": "静默转强",
       "distMA20": 0.3
-    },
-    {
-      "symbol": "SCCO",
-      "score": 86.9,
-      "stage": "静默转强",
-      "distMA20": 1.5
     },
     {
       "symbol": "STX",
@@ -28,15 +22,21 @@
     },
     {
       "symbol": "PLTR",
-      "score": 78.6,
+      "score": 78.8,
       "stage": "静默转强",
-      "distMA20": 5.1
+      "distMA20": 4.9
     },
     {
       "symbol": "NVDA",
-      "score": 75.0,
+      "score": 78.1,
       "stage": "静默转强",
-      "distMA20": 2.9
+      "distMA20": 3.9
+    },
+    {
+      "symbol": "MU",
+      "score": 75.8,
+      "stage": "强趋势",
+      "distMA20": 7.7
     },
     {
       "symbol": "ANET",
@@ -57,22 +57,22 @@
       "distMA20": 6.5
     },
     {
+      "symbol": "SCCO",
+      "score": 69.7,
+      "stage": "静默转强",
+      "distMA20": 2.0
+    },
+    {
+      "symbol": "CRWD",
+      "score": 69.7,
+      "stage": "强趋势",
+      "distMA20": 10.6
+    },
+    {
       "symbol": "2269.HK",
       "score": 69.4,
       "stage": "静默转强",
       "distMA20": 6.0
-    },
-    {
-      "symbol": "CRWD",
-      "score": 69.4,
-      "stage": "强趋势",
-      "distMA20": 11.6
-    },
-    {
-      "symbol": "MU",
-      "score": 68.2,
-      "stage": "静默转强",
-      "distMA20": 5.4
     },
     {
       "symbol": "HPE",
@@ -82,9 +82,9 @@
     },
     {
       "symbol": "META",
-      "score": 61.7,
+      "score": 61.0,
       "stage": "强趋势",
-      "distMA20": 7.2
+      "distMA20": 7.4
     },
     {
       "symbol": "DELL",
@@ -105,22 +105,28 @@
       "distMA20": 1.3
     },
     {
+      "symbol": "AMD",
+      "score": 43.0,
+      "stage": "高乖离",
+      "distMA20": 15.0
+    },
+    {
       "symbol": "9999.HK",
       "score": 42.8,
       "stage": "静默转强",
       "distMA20": 3.9
     },
     {
+      "symbol": "WDC",
+      "score": 41.6,
+      "stage": "静默转强",
+      "distMA20": 3.2
+    },
+    {
       "symbol": "1109.HK",
       "score": 41.5,
       "stage": "静默转强",
       "distMA20": 3.4
-    },
-    {
-      "symbol": "AMD",
-      "score": 40.5,
-      "stage": "高乖离",
-      "distMA20": 13.6
     }
   ]
 }
