@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T05:24:15.694724+00:00",
+  "updatedAt": "2026-09-29T05:37:44.221228+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -51,6 +51,12 @@
       "distMA20": 6.5
     },
     {
+      "symbol": "2269.HK",
+      "score": 70.4,
+      "stage": "强趋势",
+      "distMA20": 6.3
+    },
+    {
       "symbol": "CRWD",
       "score": 69.4,
       "stage": "强趋势",
@@ -61,12 +67,6 @@
       "score": 68.2,
       "stage": "静默转强",
       "distMA20": 5.4
-    },
-    {
-      "symbol": "2269.HK",
-      "score": 66.1,
-      "stage": "静默转强",
-      "distMA20": 5.1
     },
     {
       "symbol": "HPE",
@@ -102,7 +102,7 @@
       "symbol": "9999.HK",
       "score": 42.0,
       "stage": "静默转强",
-      "distMA20": 4.3
+      "distMA20": 4.2
     },
     {
       "symbol": "AMD",
@@ -112,9 +112,9 @@
     },
     {
       "symbol": "1109.HK",
-      "score": 39.3,
+      "score": 40.1,
       "stage": "静默转强",
-      "distMA20": 3.2
+      "distMA20": 3.4
     }
   ]
 }
