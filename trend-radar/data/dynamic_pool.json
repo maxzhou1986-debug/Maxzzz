@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T03:52:30.458204+00:00",
+  "updatedAt": "2026-09-29T04:03:26.961306+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -33,6 +33,12 @@
       "distMA20": 2.9
     },
     {
+      "symbol": "2269.HK",
+      "score": 72.8,
+      "stage": "静默转强",
+      "distMA20": 5.0
+    },
+    {
       "symbol": "ANET",
       "score": 72.4,
       "stage": "静默转强",
@@ -63,12 +69,6 @@
       "distMA20": 5.4
     },
     {
-      "symbol": "2269.HK",
-      "score": 66.8,
-      "stage": "静默转强",
-      "distMA20": 5.3
-    },
-    {
       "symbol": "HPE",
       "score": 62.8,
       "stage": "强趋势",
@@ -88,9 +88,9 @@
     },
     {
       "symbol": "1177.HK",
-      "score": 54.7,
+      "score": 54.6,
       "stage": "静默转强",
-      "distMA20": 0.2
+      "distMA20": 0.1
     },
     {
       "symbol": "MRVL",
@@ -105,22 +105,22 @@
       "distMA20": 1.3
     },
     {
+      "symbol": "1109.HK",
+      "score": 40.9,
+      "stage": "静默转强",
+      "distMA20": 3.7
+    },
+    {
       "symbol": "AMD",
       "score": 40.5,
       "stage": "高乖离",
       "distMA20": 13.6
     },
     {
-      "symbol": "1109.HK",
-      "score": 40.3,
-      "stage": "静默转强",
-      "distMA20": 3.5
-    },
-    {
       "symbol": "9999.HK",
-      "score": 39.1,
+      "score": 39.2,
       "stage": "静默转强",
-      "distMA20": 3.7
+      "distMA20": 3.6
     }
   ]
 }
