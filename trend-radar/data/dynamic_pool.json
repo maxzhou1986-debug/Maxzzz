@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T02:03:06.284178+00:00",
+  "updatedAt": "2026-09-29T02:22:44.491824+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -21,12 +21,6 @@
       "distMA20": 8.0
     },
     {
-      "symbol": "601088.SS",
-      "score": 81.7,
-      "stage": "静默转强",
-      "distMA20": 0.3
-    },
-    {
       "symbol": "PLTR",
       "score": 78.6,
       "stage": "静默转强",
@@ -34,9 +28,9 @@
     },
     {
       "symbol": "2269.HK",
-      "score": 78.3,
+      "score": 76.3,
       "stage": "强趋势",
-      "distMA20": 8.6
+      "distMA20": 8.0
     },
     {
       "symbol": "NVDA",
@@ -88,9 +82,9 @@
     },
     {
       "symbol": "1177.HK",
-      "score": 59.4,
+      "score": 56.5,
       "stage": "静默转强",
-      "distMA20": 2.2
+      "distMA20": 1.1
     },
     {
       "symbol": "DELL",
