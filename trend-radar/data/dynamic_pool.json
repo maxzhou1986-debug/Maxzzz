@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T03:03:43.750077+00:00",
+  "updatedAt": "2026-09-30T03:25:50.798643+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "symbol": "601088.SS",
-      "score": 80.3,
+      "score": 80.5,
       "stage": "静默转强",
       "distMA20": 1.7
     },
@@ -22,27 +22,27 @@
     },
     {
       "symbol": "2269.HK",
-      "score": 78.4,
+      "score": 78.8,
       "stage": "强趋势",
-      "distMA20": 10.0
+      "distMA20": 8.7
     },
     {
       "symbol": "600036.SS",
-      "score": 76.1,
+      "score": 76.7,
       "stage": "静默转强",
-      "distMA20": 0.1
-    },
-    {
-      "symbol": "1177.HK",
-      "score": 74.8,
-      "stage": "静默转强",
-      "distMA20": 3.5
+      "distMA20": 0.2
     },
     {
       "symbol": "NVDA",
       "score": 70.9,
       "stage": "静默转强",
       "distMA20": 2.1
+    },
+    {
+      "symbol": "1177.HK",
+      "score": 70.2,
+      "stage": "静默转强",
+      "distMA20": 2.2
     },
     {
       "symbol": "SCCO",
@@ -100,9 +100,9 @@
     },
     {
       "symbol": "300394.SZ",
-      "score": 55.8,
+      "score": 55.7,
       "stage": "静默转强",
-      "distMA20": 0.4
+      "distMA20": 0.3
     },
     {
       "symbol": "MU",
@@ -124,9 +124,9 @@
     },
     {
       "symbol": "9999.HK",
-      "score": 41.7,
+      "score": 42.4,
       "stage": "静默转强",
-      "distMA20": 3.1
+      "distMA20": 3.2
     },
     {
       "symbol": "AMD",
