@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T07:07:13.819829+00:00",
+  "updatedAt": "2026-09-30T07:28:49.721564+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -10,27 +10,21 @@
     },
     {
       "symbol": "000002.SZ",
-      "score": 87.3,
+      "score": 86.2,
       "stage": "高乖离",
-      "distMA20": 26.2
+      "distMA20": 25.4
     },
     {
       "symbol": "002244.SZ",
       "score": 86,
       "stage": "高乖离",
-      "distMA20": 19.4
+      "distMA20": 19.0
     },
     {
       "symbol": "2269.HK",
-      "score": 81.5,
+      "score": 82.8,
       "stage": "强趋势",
-      "distMA20": 10.6
-    },
-    {
-      "symbol": "601088.SS",
-      "score": 80.6,
-      "stage": "静默转强",
-      "distMA20": 1.5
+      "distMA20": 10.9
     },
     {
       "symbol": "PLTR",
@@ -40,27 +34,33 @@
     },
     {
       "symbol": "600036.SS",
-      "score": 80.0,
+      "score": 79.7,
       "stage": "静默转强",
-      "distMA20": 0.8
+      "distMA20": 0.6
+    },
+    {
+      "symbol": "601088.SS",
+      "score": 79.6,
+      "stage": "静默转强",
+      "distMA20": 1.2
     },
     {
       "symbol": "600048.SS",
-      "score": 77.3,
+      "score": 77.5,
       "stage": "强趋势",
       "distMA20": 8.4
     },
     {
       "symbol": "001979.SZ",
-      "score": 74.3,
+      "score": 75.0,
       "stage": "强趋势",
-      "distMA20": 8.2
+      "distMA20": 8.3
     },
     {
       "symbol": "1177.HK",
-      "score": 73.0,
+      "score": 73.6,
       "stage": "静默转强",
-      "distMA20": 2.9
+      "distMA20": 3.1
     },
     {
       "symbol": "NVDA",
@@ -142,7 +142,7 @@
     },
     {
       "symbol": "9999.HK",
-      "score": 43.6,
+      "score": 43.7,
       "stage": "静默转强",
       "distMA20": 3.4
     }
