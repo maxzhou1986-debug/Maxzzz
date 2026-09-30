@@ -1,13 +1,7 @@
 {
-  "updatedAt": "2026-09-30T01:25:50.628461+00:00",
+  "updatedAt": "2026-09-30T01:38:34.815732+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
-    {
-      "symbol": "9999.HK",
-      "score": 97.4,
-      "stage": "强趋势",
-      "distMA20": 8.6
-    },
     {
       "symbol": "VRTX",
       "score": 87.8,
@@ -27,12 +21,6 @@
       "distMA20": 4.8
     },
     {
-      "symbol": "2269.HK",
-      "score": 78.9,
-      "stage": "强趋势",
-      "distMA20": 8.4
-    },
-    {
       "symbol": "NVDA",
       "score": 70.9,
       "stage": "静默转强",
@@ -49,6 +37,12 @@
       "score": 69.6,
       "stage": "静默转强",
       "distMA20": 2.8
+    },
+    {
+      "symbol": "2269.HK",
+      "score": 69.4,
+      "stage": "静默转强",
+      "distMA20": 6.0
     },
     {
       "symbol": "LLY",
@@ -111,10 +105,10 @@
       "distMA20": 1.6
     },
     {
-      "symbol": "1109.HK",
-      "score": 36.3,
+      "symbol": "9999.HK",
+      "score": 42.8,
       "stage": "静默转强",
-      "distMA20": 3.5
+      "distMA20": 3.9
     },
     {
       "symbol": "AMD",
