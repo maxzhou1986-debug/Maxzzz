@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01T16:04:55.313049+00:00",
+  "updatedAt": "2026-10-01T16:26:13.101231+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -16,9 +16,9 @@
     },
     {
       "symbol": "NVDA",
-      "score": 83.9,
+      "score": 84.9,
       "stage": "静默转强",
-      "distMA20": 2.8
+      "distMA20": 3.1
     },
     {
       "symbol": "2269.HK",
@@ -40,7 +40,7 @@
     },
     {
       "symbol": "XOM",
-      "score": 78.0,
+      "score": 77.9,
       "stage": "静默转强",
       "distMA20": 0.6
     },
@@ -64,63 +64,63 @@
     },
     {
       "symbol": "ANET",
-      "score": 68.1,
+      "score": 68.2,
       "stage": "静默转强",
       "distMA20": 2.7
     },
     {
-      "symbol": "STX",
-      "score": 66.3,
-      "stage": "静默转强",
-      "distMA20": 5.9
-    },
-    {
       "symbol": "SMCI",
-      "score": 64.1,
+      "score": 66.7,
       "stage": "静默转强",
-      "distMA20": 2.6
+      "distMA20": 3.3
     },
     {
-      "symbol": "MU",
-      "score": 61.4,
+      "symbol": "STX",
+      "score": 65.8,
       "stage": "静默转强",
-      "distMA20": 3.0
-    },
-    {
-      "symbol": "PLTR",
-      "score": 59.8,
-      "stage": "静默转强",
-      "distMA20": 4.8
+      "distMA20": 5.7
     },
     {
       "symbol": "HPE",
-      "score": 58.3,
+      "score": 61.7,
       "stage": "强趋势",
-      "distMA20": 7.3
+      "distMA20": 8.4
+    },
+    {
+      "symbol": "MU",
+      "score": 61.0,
+      "stage": "静默转强",
+      "distMA20": 2.7
+    },
+    {
+      "symbol": "PLTR",
+      "score": 60.1,
+      "stage": "静默转强",
+      "distMA20": 4.9
     },
     {
       "symbol": "MRVL",
-      "score": 57.7,
+      "score": 58.3,
       "stage": "强趋势",
-      "distMA20": 9.3
+      "distMA20": 9.5
     },
     {
       "symbol": "CRWD",
-      "score": 56.0,
+      "score": 55.4,
       "stage": "强趋势",
-      "distMA20": 10.6
+      "distMA20": 10.3
     },
     {
       "symbol": "META",
       "score": 48.7,
       "stage": "静默转强",
-      "distMA20": 5.4
+      "distMA20": 5.6
     },
     {
       "symbol": "AMD",
       "score": 47.6,
       "stage": "强趋势",
-      "distMA20": 9.7
+      "distMA20": 9.6
     },
     {
       "symbol": "9999.HK",
@@ -136,9 +136,9 @@
     },
     {
       "symbol": "COST",
-      "score": 41.0,
+      "score": 39.3,
       "stage": "静默转强",
-      "distMA20": 1.6
+      "distMA20": 1.2
     },
     {
       "symbol": "1109.HK",
