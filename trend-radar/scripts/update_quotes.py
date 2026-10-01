@@ -18,7 +18,7 @@ def get(sym):
         if None not in (o,h,l,c):
             bars.append({"t":t,"o":o,"h":h,"l":l,"c":c,"v":v or 0})
     closes=[b["c"] for b in bars]; meta=x.get("meta",{})
-    return {"price":meta.get("regularMarketPrice") or closes[-1],"currency":meta.get("currency",""),"closes":closes[-260:],"bars":bars[-260:]}
+    return {"price":meta.get("regularMarketPrice") or closes[-1],"source":"Yahoo daily chart (may be delayed)","quoteTime":meta.get("regularMarketTime"),"sessionStart":meta.get("currentTradingPeriod",{}).get("regular",{}).get("start"),"sessionEnd":meta.get("currentTradingPeriod",{}).get("regular",{}).get("end"),"currency":meta.get("currency",""),"closes":closes[-260:],"bars":bars[-260:]}
 
 def ma(a,n): return sum(a[-n:])/n if len(a)>=n else None
 def trend_score(d):
