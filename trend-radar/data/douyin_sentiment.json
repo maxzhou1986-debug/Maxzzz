@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T23:50:00.752127+00:00",
+  "updatedAt": "2026-10-05T00:04:55.272135+00:00",
   "source": "东方财富A/H个股最新人气排名",
   "scope": "A/H科技个股；逐股查询，失败显示待接，不伪造0",
   "stocks": {
@@ -76,7 +76,7 @@
       "score": 58.8,
       "heatChange1d": 0.0,
       "heatChange3d": 0.0,
-      "heatChange7d": null
+      "heatChange7d": 0.0
     },
     "HBM / 存储": {
       "heatPercentile": 29.6,
@@ -93,7 +93,7 @@
       "score": 29.6,
       "heatChange1d": 0.0,
       "heatChange3d": 0.0,
-      "heatChange7d": null
+      "heatChange7d": 0.0
     },
     "AI基建": {
       "heatPercentile": 25.3,
@@ -110,7 +110,7 @@
       "score": 25.3,
       "heatChange1d": 0.0,
       "heatChange3d": 0.0,
-      "heatChange7d": null
+      "heatChange7d": 0.0
     }
   }
 }
