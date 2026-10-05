@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T13:00:38.648534+00:00",
+  "updatedAt": "2026-10-05T13:02:50.142876+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -7,6 +7,18 @@
       "score": 94.1,
       "stage": "静默转强",
       "distMA20": 4.5
+    },
+    {
+      "symbol": "LITE",
+      "score": 89.8,
+      "stage": "高乖离",
+      "distMA20": 15.3
+    },
+    {
+      "symbol": "COHR",
+      "score": 87.4,
+      "stage": "高乖离",
+      "distMA20": 13.0
     },
     {
       "symbol": "000002.SZ",
@@ -133,18 +145,6 @@
       "score": 64.7,
       "stage": "强趋势",
       "distMA20": 10.6
-    },
-    {
-      "symbol": "META",
-      "score": 60.3,
-      "stage": "静默转强",
-      "distMA20": 4.6
-    },
-    {
-      "symbol": "AMD",
-      "score": 55.9,
-      "stage": "强趋势",
-      "distMA20": 11.9
     }
   ]
 }
