@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T05:41:51.133040+00:00",
+  "updatedAt": "2026-10-07T05:55:10.217769+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -82,9 +82,9 @@
     },
     {
       "symbol": "1177.HK",
-      "score": 84.1,
+      "score": 83.8,
       "stage": "静默转强",
-      "distMA20": 1.6
+      "distMA20": 1.5
     },
     {
       "symbol": "AMZN",
@@ -99,6 +99,12 @@
       "distMA20": 13.8
     },
     {
+      "symbol": "2269.HK",
+      "score": 83.4,
+      "stage": "强趋势",
+      "distMA20": 8.5
+    },
+    {
       "symbol": "SCCO",
       "score": 83.2,
       "stage": "静默转强",
@@ -109,12 +115,6 @@
       "score": 82.9,
       "stage": "静默转强",
       "distMA20": 0.8
-    },
-    {
-      "symbol": "2269.HK",
-      "score": 82.4,
-      "stage": "强趋势",
-      "distMA20": 8.2
     },
     {
       "symbol": "AVGO",
