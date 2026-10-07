@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T01:00:34.051408+00:00",
+  "updatedAt": "2026-10-07T01:26:07.726575+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -22,9 +22,9 @@
     },
     {
       "symbol": "1177.HK",
-      "score": 93.0,
+      "score": 92.4,
       "stage": "静默转强",
-      "distMA20": 3.6
+      "distMA20": 3.8
     },
     {
       "symbol": "DELL",
@@ -43,12 +43,6 @@
       "score": 90.1,
       "stage": "高乖离",
       "distMA20": 19.0
-    },
-    {
-      "symbol": "2269.HK",
-      "score": 89.5,
-      "stage": "强趋势",
-      "distMA20": 11.8
     },
     {
       "symbol": "SMCI",
@@ -103,6 +97,12 @@
       "score": 82.9,
       "stage": "静默转强",
       "distMA20": 0.8
+    },
+    {
+      "symbol": "2269.HK",
+      "score": 82.1,
+      "stage": "强趋势",
+      "distMA20": 9.3
     },
     {
       "symbol": "AVGO",
