@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T07:11:30.783614+00:00",
+  "updatedAt": "2026-10-07T07:30:22.068755+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -57,6 +57,12 @@
       "distMA20": 25.4
     },
     {
+      "symbol": "1177.HK",
+      "score": 86.1,
+      "stage": "静默转强",
+      "distMA20": 2.1
+    },
+    {
       "symbol": "CEG",
       "score": 86,
       "stage": "高乖离",
@@ -75,22 +81,16 @@
       "distMA20": 19.0
     },
     {
+      "symbol": "2269.HK",
+      "score": 85.4,
+      "stage": "强趋势",
+      "distMA20": 8.9
+    },
+    {
       "symbol": "GEV",
       "score": 85.3,
       "stage": "强趋势",
       "distMA20": 8.3
-    },
-    {
-      "symbol": "1177.HK",
-      "score": 85.1,
-      "stage": "静默转强",
-      "distMA20": 1.8
-    },
-    {
-      "symbol": "2269.HK",
-      "score": 84.9,
-      "stage": "强趋势",
-      "distMA20": 8.8
     },
     {
       "symbol": "AMZN",
