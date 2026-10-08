@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T02:15:32.832281+00:00",
+  "updatedAt": "2026-10-08T09:12:10.510035+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -13,6 +13,12 @@
       "score": 100.4,
       "stage": "静默转强",
       "distMA20": 4.6
+    },
+    {
+      "symbol": "001979.SZ",
+      "score": 94.7,
+      "stage": "强趋势",
+      "distMA20": 10.7
     },
     {
       "symbol": "SMCI",
@@ -39,16 +45,16 @@
       "distMA20": 6.5
     },
     {
-      "symbol": "001979.SZ",
-      "score": 89.0,
-      "stage": "强趋势",
-      "distMA20": 8.7
-    },
-    {
       "symbol": "LITE",
       "score": 88.0,
       "stage": "高乖离",
       "distMA20": 15.0
+    },
+    {
+      "symbol": "600036.SS",
+      "score": 87.0,
+      "stage": "静默转强",
+      "distMA20": 1.6
     },
     {
       "symbol": "CEG",
@@ -66,7 +72,13 @@
       "symbol": "002244.SZ",
       "score": 86,
       "stage": "高乖离",
-      "distMA20": 16.2
+      "distMA20": 18.6
+    },
+    {
+      "symbol": "601088.SS",
+      "score": 85.8,
+      "stage": "静默转强",
+      "distMA20": 0.6
     },
     {
       "symbol": "GEV",
@@ -85,12 +97,6 @@
       "score": 84.3,
       "stage": "静默转强",
       "distMA20": 5.3
-    },
-    {
-      "symbol": "600036.SS",
-      "score": 84.3,
-      "stage": "静默转强",
-      "distMA20": 1.5
     },
     {
       "symbol": "AMZN",
@@ -123,16 +129,10 @@
       "distMA20": 12.0
     },
     {
-      "symbol": "601088.SS",
-      "score": 78.2,
-      "stage": "静默转强",
-      "distMA20": 0.0
-    },
-    {
       "symbol": "600048.SS",
-      "score": 76.4,
+      "score": 77.4,
       "stage": "强趋势",
-      "distMA20": 7.9
+      "distMA20": 7.5
     },
     {
       "symbol": "COST",
