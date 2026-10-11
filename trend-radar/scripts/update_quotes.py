@@ -38,10 +38,28 @@ def trend_score(d):
     position=12 if -1<=dist20<=5 else 5 if 5<dist20<=9 else -15 if dist20>12 else 0
     return round(base+momentum+volume+position,1)
 
+# Keep the last valid snapshot if an upstream provider temporarily fails.
+# Never replace valid history with an empty/error response.
+try:
+    with open("trend-radar/data/quotes.json",encoding="utf-8") as f:
+        previous=json.load(f)
+except (OSError,ValueError):
+    previous={}
 out={"updatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat()}
 for key,sym in SYMS.items():
-    try: out[key]=get(sym)
-    except Exception as e: out[key]={"error":str(e),"closes":[],"bars":[]}
+    try:
+        fresh=get(sym)
+        if not fresh.get("bars"):
+            raise ValueError("empty daily bars")
+        out[key]=fresh
+    except Exception as e:
+        prior=previous.get(key,{})
+        if isinstance(prior,dict) and prior.get("bars") and not prior.get("error"):
+            out[key]=dict(prior)
+            out[key]["stale"]=True
+            out[key]["refreshError"]=str(e)
+        else:
+            out[key]={"error":str(e),"closes":[],"bars":[]}
     time.sleep(0.2)
 with open("trend-radar/data/quotes.json","w",encoding="utf-8") as f: json.dump(out,f,ensure_ascii=False,separators=(",",":"))
 exclude={"^NDX","^SOX","000688.SS","399006.SZ","^HSTECH","^IXIC","000660.KS","005930.KS"}
