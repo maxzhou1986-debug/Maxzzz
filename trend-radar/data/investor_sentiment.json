@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T04:21:07.370410+00:00",
+  "updatedAt": "2026-10-11T04:24:54.964926+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
@@ -355,8 +355,8 @@
   "sectors": {
     "CPO": {
       "score": 24.8,
-      "heatChange1d": -15.1,
-      "heatChange3d": 10.7,
+      "heatChange1d": 0.0,
+      "heatChange3d": 0.5,
       "sampleCount": 1,
       "rawMaxHeat": 660.0,
       "matchedCodes": [
@@ -366,8 +366,8 @@
     "HBM / 存储": null,
     "AI芯片": {
       "score": 7.9,
-      "heatChange1d": -0.1,
-      "heatChange3d": -31.9,
+      "heatChange1d": 0.0,
+      "heatChange3d": -14.5,
       "sampleCount": 1,
       "rawMaxHeat": 211.0,
       "matchedCodes": [
@@ -377,8 +377,8 @@
     "AI网络": null,
     "AI基建": {
       "score": 6.7,
-      "heatChange1d": -3.6,
-      "heatChange3d": 2.0,
+      "heatChange1d": 0.0,
+      "heatChange3d": -0.1,
       "sampleCount": 1,
       "rawMaxHeat": 179.0,
       "matchedCodes": [
