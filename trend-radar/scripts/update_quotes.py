@@ -51,6 +51,15 @@ for key,sym in SYMS.items():
         fresh=get(sym)
         if not fresh.get("bars"):
             raise ValueError("empty daily bars")
+        # Preserve previously valid daily bars when the provider returns a shorter window.
+        # Fresh bars take precedence for matching timestamps; quote price/time stay untouched.
+        prior=previous.get(key,{})
+        if isinstance(prior,dict) and isinstance(prior.get("bars"),list):
+            merged={b["t"]:b for b in prior["bars"] if isinstance(b,dict) and "t" in b}
+            merged.update({b["t"]:b for b in fresh["bars"] if isinstance(b,dict) and "t" in b})
+            if len(merged)>len(fresh["bars"]):
+                fresh["bars"]=[merged[t] for t in sorted(merged)][-260:]
+                fresh["closes"]=[b["c"] for b in fresh["bars"]]
         out[key]=fresh
     except Exception as e:
         prior=previous.get(key,{})
