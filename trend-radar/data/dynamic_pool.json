@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T07:43:15.547138+00:00",
+  "updatedAt": "2026-10-16T12:44:36.473831+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -64,9 +64,9 @@
     },
     {
       "symbol": "9999.HK",
-      "score": 73.8,
+      "score": 73.4,
       "stage": "静默转强",
-      "distMA20": 4.5
+      "distMA20": 4.3
     },
     {
       "symbol": "VST",
@@ -93,22 +93,22 @@
       "distMA20": 5.9
     },
     {
-      "symbol": "0688.HK",
-      "score": 56.2,
-      "stage": "静默转强",
-      "distMA20": 2.7
-    },
-    {
       "symbol": "3690.HK",
-      "score": 55.9,
+      "score": 55.7,
       "stage": "静默转强",
-      "distMA20": 4.9
+      "distMA20": 4.7
     },
     {
       "symbol": "000002.SZ",
       "score": 55.3,
       "stage": "静默转强",
       "distMA20": 1.3
+    },
+    {
+      "symbol": "0688.HK",
+      "score": 54.5,
+      "stage": "静默转强",
+      "distMA20": 2.1
     },
     {
       "symbol": "002244.SZ",
@@ -124,9 +124,9 @@
     },
     {
       "symbol": "1810.HK",
-      "score": 47.9,
+      "score": 46.8,
       "stage": "静默转强",
-      "distMA20": 4.5
+      "distMA20": 4.2
     },
     {
       "symbol": "LMT",
