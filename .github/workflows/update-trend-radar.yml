@@ -11,9 +11,9 @@ on:
       - '.github/workflows/update-trend-radar.yml'
   schedule:
     # GitHub cron uses UTC.
-    # Every 15 min covers A/H and US weekday sessions.
+    # Every 15 min, offset from the top of the hour to reduce GitHub schedule congestion.
     # The quote script is lightweight; the app reads the newest snapshot.
-    - cron: '*/15 * * * 1-5'
+    - cron: '7,22,37,52 * * * 1-5'
 concurrency:
   group: trend-radar-data-main
   cancel-in-progress: true
