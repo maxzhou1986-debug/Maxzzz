@@ -7,10 +7,18 @@ def score(d,source=""):
  return round(clamp(hp),1)
 if not SRC.exists():raise SystemExit("No public sentiment source")
 raw=json.loads(SRC.read_text(encoding="utf-8"));now=datetime.datetime.now(datetime.timezone.utc);day=now.date()
+# Preserve the actual source timestamp even when the optional collector fails.
+source_updated=raw.get("updatedAt")
+try:
+ source_time=datetime.datetime.fromisoformat(source_updated.replace("Z","+00:00"))
+ if source_time.tzinfo is None:source_time=source_time.replace(tzinfo=datetime.timezone.utc)
+except (AttributeError,ValueError):
+ source_time=None
+source_day=source_time.astimezone(datetime.timezone.utc).date() if source_time else None
 hist=json.loads(HIST.read_text(encoding="utf-8")) if HIST.exists() else {"days":[]}
 # Keep one daily close-like snapshot; comparisons are calendar-day based, never previous-run based.
 today={"date":day.isoformat(),"sectors":{}}
-out={"updatedAt":now.isoformat(),"source":raw.get("source","public sentiment"),"scope":raw.get("scope"),"stocks":raw.get("stocks",{}),"sectors":{}}
+out={"updatedAt":source_time.isoformat() if source_time else None,"generatedAt":now.isoformat(),"sourceStale":source_day is None or (day-source_day).days>3,"source":raw.get("source","public sentiment"),"scope":raw.get("scope"),"stocks":raw.get("stocks",{}),"sectors":{}}
 def historical_value(sector,days):
  target=day-datetime.timedelta(days=days); candidates=[]
  for x in hist.get("days",[]):
@@ -24,8 +32,9 @@ for k,d in raw.get("sectors",{}).items():
   def chg(days):
    old=historical_value(k,days);return None if old is None else round(v-old,1)
   out["sectors"][k]={**d,"score":v,"heatChange1d":chg(1),"heatChange3d":chg(3),"heatChange7d":chg(7)}
-hist["days"]=[x for x in hist.get("days",[]) if x.get("date")!=day.isoformat()]+[today]
-hist["days"]=sorted(hist["days"],key=lambda x:x["date"])[-90:]
-HIST.write_text(json.dumps(hist,ensure_ascii=False,indent=2),encoding="utf-8")
+if source_day==day:
+ hist["days"]=[x for x in hist.get("days",[]) if x.get("date")!=day.isoformat()]+[today]
+ hist["days"]=sorted(hist["days"],key=lambda x:x["date"])[-90:]
+ HIST.write_text(json.dumps(hist,ensure_ascii=False,indent=2),encoding="utf-8")
 OUT.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps(out,ensure_ascii=False))
