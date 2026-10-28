@@ -25,6 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          # Always start from the latest main when a scheduled job is re-run.
+          # Re-running an old event SHA otherwise conflicts on generated JSON during rebase.
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
