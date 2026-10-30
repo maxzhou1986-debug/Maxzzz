@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T15:40:37.509664+00:00",
+  "updatedAt": "2026-10-30T17:31:31.889854+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -28,19 +28,19 @@
     },
     {
       "symbol": "LLY",
-      "score": 82.3,
+      "score": 83.0,
       "stage": "高乖离",
-      "distMA20": 14.4
+      "distMA20": 14.1
     },
     {
       "symbol": "VRTX",
-      "score": 79.6,
+      "score": 80.9,
       "stage": "强趋势",
-      "distMA20": 8.3
+      "distMA20": 8.4
     },
     {
       "symbol": "RTX",
-      "score": 79.2,
+      "score": 79.9,
       "stage": "静默转强",
       "distMA20": 5.7
     },
@@ -52,15 +52,21 @@
     },
     {
       "symbol": "COST",
-      "score": 75.4,
+      "score": 78.1,
       "stage": "静默转强",
-      "distMA20": 3.7
+      "distMA20": 4.3
+    },
+    {
+      "symbol": "XOM",
+      "score": 74.3,
+      "stage": "强趋势",
+      "distMA20": 6.5
     },
     {
       "symbol": "VRT",
-      "score": 72.9,
+      "score": 73,
       "stage": "静默转强",
-      "distMA20": 3.4
+      "distMA20": 2.8
     },
     {
       "symbol": "000333.SZ",
@@ -70,21 +76,21 @@
     },
     {
       "symbol": "WMT",
-      "score": 70.4,
+      "score": 71.3,
       "stage": "强趋势",
-      "distMA20": 6.7
-    },
-    {
-      "symbol": "XOM",
-      "score": 69.9,
-      "stage": "静默转强",
-      "distMA20": 5.4
+      "distMA20": 6.8
     },
     {
       "symbol": "LMT",
-      "score": 69.0,
+      "score": 69.9,
       "stage": "高乖离",
-      "distMA20": 14.7
+      "distMA20": 14.8
+    },
+    {
+      "symbol": "COP",
+      "score": 65.9,
+      "stage": "强趋势",
+      "distMA20": 7.8
     },
     {
       "symbol": "1088.HK",
@@ -93,22 +99,10 @@
       "distMA20": 0.5
     },
     {
-      "symbol": "COP",
-      "score": 63.3,
-      "stage": "强趋势",
-      "distMA20": 7.2
-    },
-    {
       "symbol": "1810.HK",
       "score": 57.3,
       "stage": "静默转强",
       "distMA20": 3.4
-    },
-    {
-      "symbol": "GE",
-      "score": 56.3,
-      "stage": "静默转强",
-      "distMA20": 0.4
     },
     {
       "symbol": "600309.SS",
