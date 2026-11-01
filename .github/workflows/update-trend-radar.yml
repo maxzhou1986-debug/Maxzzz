@@ -29,6 +29,13 @@ jobs:
           # Re-running an old event SHA otherwise conflicts on generated JSON during rebase.
           ref: main
           fetch-depth: 0
+      # Scheduled events can be queued for hours; checkout may pin the event SHA
+      # even when ref: main is specified. Refresh the actual branch head before
+      # generating snapshots to avoid stale-base JSON rebase conflicts.
+      - name: Sync latest main before generating data
+        run: |
+          git fetch origin +refs/heads/main:refs/remotes/origin/main
+          git reset --hard refs/remotes/origin/main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
