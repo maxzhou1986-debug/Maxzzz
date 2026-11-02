@@ -1,30 +1,18 @@
 {
-  "updatedAt": "2026-11-01T05:17:45.056776+00:00",
+  "updatedAt": "2026-11-02T03:03:54.236294+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
-      "symbol": "600036.SS",
-      "score": 98.6,
-      "stage": "静默转强",
-      "distMA20": 3.1
-    },
-    {
-      "symbol": "001979.SZ",
-      "score": 96.2,
-      "stage": "强趋势",
-      "distMA20": 6.2
-    },
-    {
-      "symbol": "601088.SS",
-      "score": 89.9,
-      "stage": "静默转强",
-      "distMA20": 4.5
-    },
-    {
       "symbol": "600519.SS",
-      "score": 87.5,
+      "score": 93.5,
       "stage": "强趋势",
-      "distMA20": 6.5
+      "distMA20": 8.7
+    },
+    {
+      "symbol": "600036.SS",
+      "score": 87.5,
+      "stage": "静默转强",
+      "distMA20": 2.3
     },
     {
       "symbol": "VRTX",
@@ -39,16 +27,22 @@
       "distMA20": 13.8
     },
     {
+      "symbol": "600276.SS",
+      "score": 82.0,
+      "stage": "静默转强",
+      "distMA20": 4.5
+    },
+    {
+      "symbol": "601088.SS",
+      "score": 80.9,
+      "stage": "静默转强",
+      "distMA20": 2.1
+    },
+    {
       "symbol": "RTX",
       "score": 79.7,
       "stage": "静默转强",
       "distMA20": 5.0
-    },
-    {
-      "symbol": "600276.SS",
-      "score": 78.8,
-      "stage": "静默转强",
-      "distMA20": 3.8
     },
     {
       "symbol": "COST",
@@ -75,16 +69,16 @@
       "distMA20": 6.5
     },
     {
-      "symbol": "000333.SZ",
-      "score": 72.7,
-      "stage": "静默转强",
-      "distMA20": 5.7
-    },
-    {
       "symbol": "LMT",
       "score": 70.0,
       "stage": "高乖离",
       "distMA20": 14.1
+    },
+    {
+      "symbol": "000333.SZ",
+      "score": 69.9,
+      "stage": "静默转强",
+      "distMA20": 5.0
     },
     {
       "symbol": "COP",
@@ -93,40 +87,28 @@
       "distMA20": 8.1
     },
     {
-      "symbol": "1088.HK",
-      "score": 63.9,
+      "symbol": "1810.HK",
+      "score": 55.6,
+      "stage": "静默转强",
+      "distMA20": 5.7
+    },
+    {
+      "symbol": "001979.SZ",
+      "score": 54.3,
       "stage": "静默转强",
       "distMA20": 0.5
     },
     {
-      "symbol": "1810.HK",
-      "score": 57.3,
+      "symbol": "1088.HK",
+      "score": 44.9,
       "stage": "静默转强",
-      "distMA20": 3.4
+      "distMA20": 0.2
     },
     {
       "symbol": "600309.SS",
-      "score": 46.7,
+      "score": 42.6,
       "stage": "静默转强",
-      "distMA20": 3.1
-    },
-    {
-      "symbol": "300124.SZ",
-      "score": 40.7,
-      "stage": "强趋势",
-      "distMA20": 6.7
-    },
-    {
-      "symbol": "601318.SS",
-      "score": 37.4,
-      "stage": "静默转强",
-      "distMA20": 1.2
-    },
-    {
-      "symbol": "1109.HK",
-      "score": 35.2,
-      "stage": "静默转强",
-      "distMA20": 1.6
+      "distMA20": 3.4
     }
   ]
 }
