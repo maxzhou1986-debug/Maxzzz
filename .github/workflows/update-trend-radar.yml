@@ -12,8 +12,9 @@ on:
   schedule:
     # GitHub cron uses UTC.
     # Every 15 min, offset from the top of the hour to reduce GitHub schedule congestion.
+    # Re-offset on 2026-11-03 after repeated missed scheduled triggers; no data or strategy changes.
     # The quote script is lightweight; the app reads the newest snapshot.
-    - cron: '7,22,37,52 * * * 1-5'
+    - cron: '11,26,41,56 * * * 1-5'
 concurrency:
   group: trend-radar-data-main
   cancel-in-progress: true
