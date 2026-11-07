@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-06T23:17:42.403392+00:00",
+  "updatedAt": "2026-11-07T02:55:09.488490+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
       "symbol": "AMZN",
-      "score": 106.9,
+      "score": 107.0,
       "stage": "静默转强",
       "distMA20": 2.0
     },
@@ -117,16 +117,16 @@
       "distMA20": 4.1
     },
     {
+      "symbol": "LLY",
+      "score": 67.4,
+      "stage": "静默转强",
+      "distMA20": 4.0
+    },
+    {
       "symbol": "1211.HK",
       "score": 67.4,
       "stage": "静默转强",
       "distMA20": 3.0
-    },
-    {
-      "symbol": "LLY",
-      "score": 67.1,
-      "stage": "静默转强",
-      "distMA20": 4.0
     },
     {
       "symbol": "2382.HK",
