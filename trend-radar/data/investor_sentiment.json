@@ -1,79 +1,69 @@
 {
-  "updatedAt": "2026-11-12T18:49:56.946597+00:00",
+  "updatedAt": "2026-11-12T23:54:55.218302+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
-    "AMD": {
-      "rawHeat": 2832.0,
+    "BABA": {
+      "rawHeat": 9811.0,
       "score": 100
     },
-    "BABA": {
-      "rawHeat": 2702.0,
-      "score": 95.4
+    "AMD": {
+      "rawHeat": 6812.0,
+      "score": 69.4
     },
     "SNDK": {
-      "rawHeat": 1814.0,
-      "score": 64.1
+      "rawHeat": 4705.0,
+      "score": 48.0
     },
     "MU": {
-      "rawHeat": 1796.0,
-      "score": 63.4
+      "rawHeat": 4312.0,
+      "score": 44.0
     },
-    "NBIS": {
-      "rawHeat": 1451.0,
-      "score": 51.2
+    "SH688256": {
+      "rawHeat": 4099.0,
+      "score": 41.8
     },
     "SZ300308": {
-      "rawHeat": 1134.0,
-      "score": 40.0
+      "rawHeat": 3358.0,
+      "score": 34.2
     },
-    "AVGO": {
-      "rawHeat": 1125.0,
-      "score": 39.7
+    "TSLA": {
+      "rawHeat": 3166.0,
+      "score": 32.3
     }
   },
   "sectors": {
     "CPO": {
-      "score": 40.0,
-      "heatChange1d": -57.9,
-      "heatChange3d": 15.2,
+      "score": 34.2,
+      "heatChange1d": -5.8,
+      "heatChange3d": 9.2,
       "sampleCount": 1,
-      "rawMaxHeat": 1134.0,
+      "rawMaxHeat": 3358.0,
       "matchedCodes": [
         "SZ300308"
       ]
     },
     "HBM / 存储": {
-      "score": 63.4,
-      "heatChange1d": 15.0,
-      "heatChange3d": 42.7,
+      "score": 44.0,
+      "heatChange1d": -19.4,
+      "heatChange3d": -25.1,
       "sampleCount": 1,
-      "rawMaxHeat": 1796.0,
+      "rawMaxHeat": 4312.0,
       "matchedCodes": [
         "MU"
       ]
     },
     "AI芯片": {
-      "score": 100,
-      "heatChange1d": 0,
-      "heatChange3d": 22.9,
-      "sampleCount": 2,
-      "rawMaxHeat": 2832.0,
-      "matchedCodes": [
-        "AMD",
-        "AVGO"
-      ]
-    },
-    "AI网络": {
-      "score": 39.7,
-      "heatChange1d": 17.6,
-      "heatChange3d": 2.2,
+      "score": 69.4,
+      "heatChange1d": -30.6,
+      "heatChange3d": 33.9,
       "sampleCount": 1,
-      "rawMaxHeat": 1125.0,
+      "rawMaxHeat": 6812.0,
       "matchedCodes": [
-        "AVGO"
+        "AMD"
       ]
     },
+    "AI网络": null,
     "AI基建": null
   }
 }
