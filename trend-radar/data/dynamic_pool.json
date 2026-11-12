@@ -1,48 +1,66 @@
 {
-  "updatedAt": "2026-11-12T10:57:09.180718+00:00",
+  "updatedAt": "2026-11-12T18:49:23.821121+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
       "symbol": "AMD",
-      "score": 106,
+      "score": 101,
+      "stage": "强趋势",
+      "distMA20": 11.7
+    },
+    {
+      "symbol": "CEG",
+      "score": 98.0,
       "stage": "强趋势",
       "distMA20": 6.8
     },
     {
-      "symbol": "CEG",
-      "score": 103.2,
-      "stage": "静默转强",
-      "distMA20": 5.3
-    },
-    {
-      "symbol": "ANET",
-      "score": 98.8,
+      "symbol": "AVGO",
+      "score": 96.9,
       "stage": "强趋势",
-      "distMA20": 10.2
-    },
-    {
-      "symbol": "COST",
-      "score": 85.1,
-      "stage": "强趋势",
-      "distMA20": 6.6
-    },
-    {
-      "symbol": "AMZN",
-      "score": 78.7,
-      "stage": "静默转强",
-      "distMA20": 4.0
+      "distMA20": 10.3
     },
     {
       "symbol": "LMT",
-      "score": 76.5,
+      "score": 87.0,
       "stage": "静默转强",
-      "distMA20": 2.4
+      "distMA20": 0.9
+    },
+    {
+      "symbol": "AMZN",
+      "score": 86.6,
+      "stage": "静默转强",
+      "distMA20": 4.8
     },
     {
       "symbol": "LLY",
-      "score": 72.4,
+      "score": 86.0,
       "stage": "强趋势",
-      "distMA20": 7.4
+      "distMA20": 6.7
+    },
+    {
+      "symbol": "RTX",
+      "score": 85.9,
+      "stage": "静默转强",
+      "distMA20": 1.4
+    },
+    {
+      "symbol": "ANET",
+      "score": 78.3,
+      "stage": "高乖离",
+      "distMA20": 14.7
+    },
+    {
+      "symbol": "GE",
+      "score": 76.7,
+      "stage": "强趋势",
+      "distMA20": 7.0
+    },
+    {
+      "symbol": "COST",
+      "score": 73.5,
+      "stage": "强趋势",
+      "distMA20": 6.5
     },
     {
       "symbol": "000333.SZ",
@@ -52,51 +70,39 @@
     },
     {
       "symbol": "VRTX",
-      "score": 71.0,
+      "score": 71.3,
       "stage": "静默转强",
-      "distMA20": 2.8
+      "distMA20": 1.8
+    },
+    {
+      "symbol": "JPM",
+      "score": 69.3,
+      "stage": "静默转强",
+      "distMA20": 1.5
     },
     {
       "symbol": "WMT",
-      "score": 67.6,
+      "score": 67.9,
       "stage": "静默转强",
-      "distMA20": 2.7
-    },
-    {
-      "symbol": "RTX",
-      "score": 66.8,
-      "stage": "静默转强",
-      "distMA20": 2.8
+      "distMA20": 2.5
     },
     {
       "symbol": "COHR",
-      "score": 66,
+      "score": 62.3,
       "stage": "强趋势",
-      "distMA20": 6.9
+      "distMA20": 7.2
     },
     {
-      "symbol": "GE",
-      "score": 62.8,
-      "stage": "强趋势",
-      "distMA20": 10.0
-    },
-    {
-      "symbol": "AVGO",
-      "score": 61.4,
+      "symbol": "VRT",
+      "score": 60.6,
       "stage": "静默转强",
-      "distMA20": 4.9
+      "distMA20": 0.9
     },
     {
       "symbol": "600519.SS",
       "score": 59.5,
       "stage": "静默转强",
       "distMA20": 1.8
-    },
-    {
-      "symbol": "JPM",
-      "score": 56.5,
-      "stage": "静默转强",
-      "distMA20": 1.5
     },
     {
       "symbol": "1810.HK",
@@ -121,6 +127,12 @@
       "score": 52.4,
       "stage": "强趋势",
       "distMA20": 7.1
+    },
+    {
+      "symbol": "GS",
+      "score": 44.5,
+      "stage": "静默转强",
+      "distMA20": 2.3
     }
   ]
 }

@@ -1,43 +1,79 @@
 {
-  "updatedAt": "2026-11-12T10:57:35.294107+00:00",
+  "updatedAt": "2026-11-12T18:49:56.946597+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
-    "SH688981": {
-      "rawHeat": 7471.0,
+    "AMD": {
+      "rawHeat": 2832.0,
       "score": 100
     },
+    "BABA": {
+      "rawHeat": 2702.0,
+      "score": 95.4
+    },
+    "SNDK": {
+      "rawHeat": 1814.0,
+      "score": 64.1
+    },
+    "MU": {
+      "rawHeat": 1796.0,
+      "score": 63.4
+    },
+    "NBIS": {
+      "rawHeat": 1451.0,
+      "score": 51.2
+    },
     "SZ300308": {
-      "rawHeat": 7312.0,
-      "score": 97.9
+      "rawHeat": 1134.0,
+      "score": 40.0
     },
-    "SH688256": {
-      "rawHeat": 3643.0,
-      "score": 48.8
-    },
-    "SZ300476": {
-      "rawHeat": 3537.0,
-      "score": 47.3
-    },
-    "SH600825": {
-      "rawHeat": 3342.0,
-      "score": 44.7
+    "AVGO": {
+      "rawHeat": 1125.0,
+      "score": 39.7
     }
   },
   "sectors": {
     "CPO": {
-      "score": 97.9,
-      "heatChange1d": 72.9,
-      "heatChange3d": 24.7,
+      "score": 40.0,
+      "heatChange1d": -57.9,
+      "heatChange3d": 15.2,
       "sampleCount": 1,
-      "rawMaxHeat": 7312.0,
+      "rawMaxHeat": 1134.0,
       "matchedCodes": [
         "SZ300308"
       ]
     },
-    "HBM / 存储": null,
-    "AI芯片": null,
-    "AI网络": null,
+    "HBM / 存储": {
+      "score": 63.4,
+      "heatChange1d": 15.0,
+      "heatChange3d": 42.7,
+      "sampleCount": 1,
+      "rawMaxHeat": 1796.0,
+      "matchedCodes": [
+        "MU"
+      ]
+    },
+    "AI芯片": {
+      "score": 100,
+      "heatChange1d": 0,
+      "heatChange3d": 22.9,
+      "sampleCount": 2,
+      "rawMaxHeat": 2832.0,
+      "matchedCodes": [
+        "AMD",
+        "AVGO"
+      ]
+    },
+    "AI网络": {
+      "score": 39.7,
+      "heatChange1d": 17.6,
+      "heatChange3d": 2.2,
+      "sampleCount": 1,
+      "rawMaxHeat": 1125.0,
+      "matchedCodes": [
+        "AVGO"
+      ]
+    },
     "AI基建": null
   }
 }
