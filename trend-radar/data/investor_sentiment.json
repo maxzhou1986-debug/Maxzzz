@@ -1,38 +1,38 @@
 {
-  "updatedAt": "2026-11-13T03:40:30.694747+00:00",
+  "updatedAt": "2026-11-13T11:30:48.338123+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
-    "SH688256": {
-      "rawHeat": 9626.0,
+    "SZ300308": {
+      "rawHeat": 5457.0,
       "score": 100
     },
-    "SZ300502": {
-      "rawHeat": 8853.0,
-      "score": 92.0
-    },
-    "SZ301218": {
-      "rawHeat": 7628.0,
-      "score": 79.2
-    },
-    "SH601899": {
-      "rawHeat": 6790.0,
-      "score": 70.5
+    "SH688498": {
+      "rawHeat": 4125.0,
+      "score": 75.6
     },
     "SZ002384": {
-      "rawHeat": 6729.0,
-      "score": 69.9
+      "rawHeat": 3987.0,
+      "score": 73.1
+    },
+    "SZ300476": {
+      "rawHeat": 3639.0,
+      "score": 66.7
+    },
+    "SH605255": {
+      "rawHeat": 2884.0,
+      "score": 52.8
     }
   },
   "sectors": {
     "CPO": {
-      "score": 92.0,
-      "heatChange1d": 57.8,
-      "heatChange3d": -5.9,
+      "score": 100,
+      "heatChange1d": 8.0,
+      "heatChange3d": 60.0,
       "sampleCount": 1,
-      "rawMaxHeat": 8853.0,
+      "rawMaxHeat": 5457.0,
       "matchedCodes": [
-        "SZ300502"
+        "SZ300308"
       ]
     },
     "HBM / 存储": null,
