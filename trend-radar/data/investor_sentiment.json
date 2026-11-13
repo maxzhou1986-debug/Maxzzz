@@ -1,58 +1,54 @@
 {
-  "updatedAt": "2026-11-13T18:43:10.458838+00:00",
+  "updatedAt": "2026-11-13T23:57:05.099296+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
-    "NVDA": {
-      "rawHeat": 9352.0,
+    "AMD": {
+      "rawHeat": 4789.0,
       "score": 100
     },
-    "AMD": {
-      "rawHeat": 3877.0,
-      "score": 41.5
-    },
     "SNDK": {
-      "rawHeat": 2770.0,
-      "score": 29.6
-    },
-    "MU": {
-      "rawHeat": 1672.0,
-      "score": 17.9
-    },
-    "SKHY": {
-      "rawHeat": 1528.0,
-      "score": 16.3
+      "rawHeat": 3683.0,
+      "score": 76.9
     },
     "BABA": {
-      "rawHeat": 1357.0,
-      "score": 14.5
+      "rawHeat": 2848.0,
+      "score": 59.5
     },
-    "LITE": {
-      "rawHeat": 1088.0,
-      "score": 11.6
+    "MU": {
+      "rawHeat": 2485.0,
+      "score": 51.9
+    },
+    "SMMT": {
+      "rawHeat": 2277.0,
+      "score": 47.5
+    },
+    "SKHY": {
+      "rawHeat": 2267.0,
+      "score": 47.3
     },
     "SZ300308": {
-      "rawHeat": 1015.0,
-      "score": 10.9
+      "rawHeat": 1928.0,
+      "score": 40.3
     }
   },
   "sectors": {
     "CPO": {
-      "score": 10.9,
-      "heatChange1d": -89.1,
-      "heatChange3d": -23.3,
+      "score": 40.3,
+      "heatChange1d": 29.4,
+      "heatChange3d": -51.7,
       "sampleCount": 1,
-      "rawMaxHeat": 1015.0,
+      "rawMaxHeat": 1928.0,
       "matchedCodes": [
         "SZ300308"
       ]
     },
     "HBM / 存储": {
-      "score": 17.9,
-      "heatChange1d": -26.1,
-      "heatChange3d": -30.5,
+      "score": 51.9,
+      "heatChange1d": 34.0,
+      "heatChange3d": -11.5,
       "sampleCount": 2,
-      "rawMaxHeat": 1672.0,
+      "rawMaxHeat": 2485.0,
       "matchedCodes": [
         "MU",
         "SKHY"
@@ -60,12 +56,11 @@
     },
     "AI芯片": {
       "score": 100,
-      "heatChange1d": 30.6,
+      "heatChange1d": 0,
       "heatChange3d": 0,
-      "sampleCount": 2,
-      "rawMaxHeat": 9352.0,
+      "sampleCount": 1,
+      "rawMaxHeat": 4789.0,
       "matchedCodes": [
-        "NVDA",
         "AMD"
       ]
     },
