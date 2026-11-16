@@ -1,161 +1,161 @@
 {
-  "updatedAt": "2026-11-16T06:13:16.953258+00:00",
+  "updatedAt": "2026-11-16T16:05:30.485587+00:00",
   "source": "东方财富A/H个股人气榜 JSON",
   "verifiedRealData": true,
   "scope": "A/H跨行业龙头个股；宽榜匹配，未返回则待接，不伪造0",
   "stocks": {
-    "SZ300502": {
-      "name": "新易盛",
-      "market": "A股",
-      "rank": 16,
-      "score": 87.0,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SZ000977": {
-      "name": "浪潮信息",
-      "market": "A股",
-      "rank": 295,
-      "score": 25.4,
-      "source": "东方财富个股最新人气排名"
-    },
     "SZ300308": {
       "name": "中际旭创",
       "market": "A股",
-      "rank": 5,
-      "score": 96.2,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SZ300394": {
-      "name": "天孚通信",
-      "market": "A股",
-      "rank": 54,
-      "score": 65.4,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SH600519": {
-      "name": "贵州茅台",
-      "market": "A股",
-      "rank": 68,
-      "score": 59.9,
+      "rank": 2,
+      "score": 99.0,
       "source": "东方财富个股最新人气排名"
     },
     "SZ300274": {
       "name": "阳光电源",
       "market": "A股",
-      "rank": 172,
-      "score": 36.9,
+      "rank": 198,
+      "score": 33.7,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ000977": {
+      "name": "浪潮信息",
+      "market": "A股",
+      "rank": 265,
+      "score": 27.5,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ300394": {
+      "name": "天孚通信",
+      "market": "A股",
+      "rank": 58,
+      "score": 63.7,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ300502": {
+      "name": "新易盛",
+      "market": "A股",
+      "rank": 17,
+      "score": 86.2,
       "source": "东方财富个股最新人气排名"
     },
     "SH601318": {
       "name": "中国平安",
       "market": "A股",
-      "rank": 199,
-      "score": 33.6,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SH603993": {
-      "name": "洛阳钼业",
-      "market": "A股",
-      "rank": 232,
-      "score": 30.2,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SZ300750": {
-      "name": "宁德时代",
-      "market": "A股",
-      "rank": 55,
-      "score": 64.9,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SH600036": {
-      "name": "招商银行",
-      "market": "A股",
-      "rank": 209,
-      "score": 32.5,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SH601688": {
-      "name": "华泰证券",
-      "market": "A股",
-      "rank": 1014,
-      "score": 9.0,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SH600309": {
-      "name": "万华化学",
-      "market": "A股",
-      "rank": 369,
-      "score": 21.4,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SH600276": {
-      "name": "恒瑞医药",
-      "market": "A股",
-      "rank": 188,
-      "score": 34.8,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SZ002594": {
-      "name": "比亚迪",
-      "market": "A股",
-      "rank": 205,
-      "score": 32.9,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SZ300124": {
-      "name": "汇川技术",
-      "market": "A股",
-      "rank": 729,
-      "score": 12.1,
-      "source": "东方财富个股最新人气排名"
-    },
-    "SZ002050": {
-      "name": "三花智控",
-      "market": "A股",
-      "rank": 254,
-      "score": 28.3,
+      "rank": 115,
+      "score": 46.7,
       "source": "东方财富个股最新人气排名"
     },
     "SH601899": {
       "name": "紫金矿业",
       "market": "A股",
-      "rank": 103,
-      "score": 49.5,
+      "rank": 111,
+      "score": 47.6,
       "source": "东方财富个股最新人气排名"
     },
-    "SH600031": {
-      "name": "三一重工",
+    "SH600276": {
+      "name": "恒瑞医药",
       "market": "A股",
-      "rank": 541,
-      "score": 15.6,
+      "rank": 257,
+      "score": 28.1,
       "source": "东方财富个股最新人气排名"
     },
-    "SZ000333": {
-      "name": "美的集团",
+    "SZ300750": {
+      "name": "宁德时代",
+      "market": "A股",
+      "rank": 74,
+      "score": 57.8,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SH603993": {
+      "name": "洛阳钼业",
+      "market": "A股",
+      "rank": 280,
+      "score": 26.4,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SH600036": {
+      "name": "招商银行",
+      "market": "A股",
+      "rank": 195,
+      "score": 34.0,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SH600519": {
+      "name": "贵州茅台",
       "market": "A股",
       "rank": 48,
       "score": 68.0,
       "source": "东方财富个股最新人气排名"
     },
-    "SZ002475": {
-      "name": "立讯精密",
+    "SH601688": {
+      "name": "华泰证券",
       "market": "A股",
-      "rank": 276,
-      "score": 26.7,
+      "rank": 1104,
+      "score": 8.3,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ300124": {
+      "name": "汇川技术",
+      "market": "A股",
+      "rank": 753,
+      "score": 11.7,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ002594": {
+      "name": "比亚迪",
+      "market": "A股",
+      "rank": 185,
+      "score": 35.2,
       "source": "东方财富个股最新人气排名"
     },
     "SH601088": {
       "name": "中国神华",
       "market": "A股",
-      "rank": 219,
-      "score": 31.4,
+      "rank": 217,
+      "score": 31.6,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SH600031": {
+      "name": "三一重工",
+      "market": "A股",
+      "rank": 341,
+      "score": 22.7,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ002475": {
+      "name": "立讯精密",
+      "market": "A股",
+      "rank": 270,
+      "score": 27.1,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SH600309": {
+      "name": "万华化学",
+      "market": "A股",
+      "rank": 370,
+      "score": 21.3,
       "source": "东方财富个股最新人气排名"
     },
     "SH688981": {
       "name": "中芯国际",
       "market": "A股",
-      "rank": 227,
-      "score": 30.7,
+      "rank": 220,
+      "score": 31.3,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ002050": {
+      "name": "三花智控",
+      "market": "A股",
+      "rank": 344,
+      "score": 22.6,
+      "source": "东方财富个股最新人气排名"
+    },
+    "SZ000333": {
+      "name": "美的集团",
+      "market": "A股",
+      "rank": 42,
+      "score": 70.9,
       "source": "东方财富个股最新人气排名"
     },
     "3308.HK": {
@@ -168,183 +168,176 @@
   },
   "sectors": {
     "AI基建": {
-      "heatPercentile": 36.9,
+      "heatPercentile": 33.7,
       "sourceCount": 1,
       "matches": [
         {
           "name": "阳光电源",
           "market": "A股",
-          "rank": 172,
-          "score": 36.9,
+          "rank": 198,
+          "score": 33.7,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "CPO": {
-      "heatPercentile": 96.2,
+      "heatPercentile": 99.0,
       "sourceCount": 1,
       "matches": [
         {
-          "name": "新易盛",
-          "market": "A股",
-          "rank": 16,
-          "score": 87.0,
-          "source": "东方财富个股最新人气排名"
-        },
-        {
           "name": "中际旭创",
           "market": "A股",
-          "rank": 5,
-          "score": 96.2,
+          "rank": 2,
+          "score": 99.0,
           "source": "东方财富个股最新人气排名"
         },
         {
           "name": "天孚通信",
           "market": "A股",
-          "rank": 54,
-          "score": 65.4,
+          "rank": 58,
+          "score": 63.7,
+          "source": "东方财富个股最新人气排名"
+        },
+        {
+          "name": "新易盛",
+          "market": "A股",
+          "rank": 17,
+          "score": 86.2,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "HBM / 存储": {
-      "heatPercentile": 25.4,
+      "heatPercentile": 27.5,
       "sourceCount": 1,
       "matches": [
         {
           "name": "浪潮信息",
           "market": "A股",
-          "rank": 295,
-          "score": 25.4,
+          "rank": 265,
+          "score": 27.5,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "创新药": {
-      "heatPercentile": 34.8,
+      "heatPercentile": 28.1,
       "sourceCount": 1,
       "matches": [
         {
           "name": "恒瑞医药",
           "market": "A股",
-          "rank": 188,
-          "score": 34.8,
+          "rank": 257,
+          "score": 28.1,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "化工": {
-      "heatPercentile": 21.4,
+      "heatPercentile": 21.3,
       "sourceCount": 1,
       "matches": [
         {
           "name": "万华化学",
           "market": "A股",
-          "rank": 369,
-          "score": 21.4,
+          "rank": 370,
+          "score": 21.3,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "半导体": {
-      "heatPercentile": 30.7,
+      "heatPercentile": 31.3,
       "sourceCount": 1,
       "matches": [
         {
           "name": "中芯国际",
           "market": "A股",
-          "rank": 227,
-          "score": 30.7,
+          "rank": 220,
+          "score": 31.3,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "工业": {
-      "heatPercentile": 15.6,
+      "heatPercentile": 22.7,
       "sourceCount": 1,
       "matches": [
         {
           "name": "三一重工",
           "market": "A股",
-          "rank": 541,
-          "score": 15.6,
+          "rank": 341,
+          "score": 22.7,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "新能源": {
-      "heatPercentile": 64.9,
+      "heatPercentile": 57.8,
       "sourceCount": 1,
       "matches": [
         {
           "name": "宁德时代",
           "market": "A股",
-          "rank": 55,
-          "score": 64.9,
+          "rank": 74,
+          "score": 57.8,
           "source": "东方财富个股最新人气排名"
         },
         {
           "name": "比亚迪",
           "market": "A股",
-          "rank": 205,
-          "score": 32.9,
+          "rank": 185,
+          "score": 35.2,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "有色 / 铜": {
-      "heatPercentile": 49.5,
+      "heatPercentile": 47.6,
       "sourceCount": 1,
       "matches": [
         {
-          "name": "洛阳钼业",
+          "name": "紫金矿业",
           "market": "A股",
-          "rank": 232,
-          "score": 30.2,
+          "rank": 111,
+          "score": 47.6,
           "source": "东方财富个股最新人气排名"
         },
         {
-          "name": "紫金矿业",
+          "name": "洛阳钼业",
           "market": "A股",
-          "rank": 103,
-          "score": 49.5,
+          "rank": 280,
+          "score": 26.4,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "机器人": {
-      "heatPercentile": 28.3,
+      "heatPercentile": 22.6,
       "sourceCount": 1,
       "matches": [
         {
           "name": "汇川技术",
           "market": "A股",
-          "rank": 729,
-          "score": 12.1,
+          "rank": 753,
+          "score": 11.7,
           "source": "东方财富个股最新人气排名"
         },
         {
           "name": "三花智控",
           "market": "A股",
-          "rank": 254,
-          "score": 28.3,
+          "rank": 344,
+          "score": 22.6,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "消费": {
-      "heatPercentile": 68.0,
+      "heatPercentile": 70.9,
       "sourceCount": 1,
       "matches": [
         {
           "name": "贵州茅台",
-          "market": "A股",
-          "rank": 68,
-          "score": 59.9,
-          "source": "东方财富个股最新人气排名"
-        },
-        {
-          "name": "美的集团",
           "market": "A股",
           "rank": 48,
           "score": 68.0,
@@ -353,48 +346,55 @@
         {
           "name": "立讯精密",
           "market": "A股",
-          "rank": 276,
-          "score": 26.7,
+          "rank": 270,
+          "score": 27.1,
+          "source": "东方财富个股最新人气排名"
+        },
+        {
+          "name": "美的集团",
+          "market": "A股",
+          "rank": 42,
+          "score": 70.9,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "能源": {
-      "heatPercentile": 31.4,
+      "heatPercentile": 31.6,
       "sourceCount": 1,
       "matches": [
         {
           "name": "中国神华",
           "market": "A股",
-          "rank": 219,
-          "score": 31.4,
+          "rank": 217,
+          "score": 31.6,
           "source": "东方财富个股最新人气排名"
         }
       ]
     },
     "金融": {
-      "heatPercentile": 33.6,
+      "heatPercentile": 46.7,
       "sourceCount": 1,
       "matches": [
         {
           "name": "中国平安",
           "market": "A股",
-          "rank": 199,
-          "score": 33.6,
+          "rank": 115,
+          "score": 46.7,
           "source": "东方财富个股最新人气排名"
         },
         {
           "name": "招商银行",
           "market": "A股",
-          "rank": 209,
-          "score": 32.5,
+          "rank": 195,
+          "score": 34.0,
           "source": "东方财富个股最新人气排名"
         },
         {
           "name": "华泰证券",
           "market": "A股",
-          "rank": 1014,
-          "score": 9.0,
+          "rank": 1104,
+          "score": 8.3,
           "source": "东方财富个股最新人气排名"
         }
       ]
