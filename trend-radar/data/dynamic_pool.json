@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T10:47:56.681365+00:00",
+  "updatedAt": "2026-11-19T19:12:19.864242+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -15,6 +15,12 @@
       "distMA20": 1.3
     },
     {
+      "symbol": "CRWD",
+      "score": 87.1,
+      "stage": "静默转强",
+      "distMA20": 1.6
+    },
+    {
       "symbol": "600519.SS",
       "score": 85.4,
       "stage": "静默转强",
@@ -28,21 +34,9 @@
     },
     {
       "symbol": "WMT",
-      "score": 78.4,
+      "score": 75.8,
       "stage": "静默转强",
-      "distMA20": 2.2
-    },
-    {
-      "symbol": "COST",
-      "score": 77.9,
-      "stage": "静默转强",
-      "distMA20": 4.6
-    },
-    {
-      "symbol": "AMZN",
-      "score": 76.8,
-      "stage": "静默转强",
-      "distMA20": 4.1
+      "distMA20": 1.1
     },
     {
       "symbol": "688981.SS",
@@ -57,10 +51,10 @@
       "distMA20": 2.0
     },
     {
-      "symbol": "AVGO",
-      "score": 70.7,
-      "stage": "强趋势",
-      "distMA20": 6.6
+      "symbol": "COST",
+      "score": 74.2,
+      "stage": "静默转强",
+      "distMA20": 3.6
     },
     {
       "symbol": "601318.SS",
@@ -69,28 +63,16 @@
       "distMA20": 1.8
     },
     {
-      "symbol": "RTX",
-      "score": 65.1,
+      "symbol": "AMZN",
+      "score": 61.1,
       "stage": "静默转强",
-      "distMA20": 0.1
-    },
-    {
-      "symbol": "LLY",
-      "score": 59.3,
-      "stage": "静默转强",
-      "distMA20": 0.3
-    },
-    {
-      "symbol": "ANET",
-      "score": 50.8,
-      "stage": "强趋势",
-      "distMA20": 6.9
+      "distMA20": 0.6
     },
     {
       "symbol": "GE",
-      "score": 43.5,
+      "score": 57.5,
       "stage": "静默转强",
-      "distMA20": 3.4
+      "distMA20": 0.5
     }
   ]
 }
