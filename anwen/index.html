@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#11151d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="安稳">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon-180.png"><title>安稳 · 日常焦虑管理</title>
+<style>
+:root {
+  color-scheme: dark;
+  --app-font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  --page: #11151d;
+  --panel: #202736;
+  --raised: #263044;
+  --rule: #364258;
+  --text: #f1f4fa;
+  --muted: #bac6da;
+  --lime: #c9f76c;
+  --blue: #dde7ff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.6 var(--app-font); }
+main { max-width: 850px; margin: auto; padding: calc(24px + env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) 40px max(18px, env(safe-area-inset-left)); }
+header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); margin-bottom: 16px; }
+header strong { font-size: 25px; letter-spacing: -.025em; }
+small { font-size: .875rem; }
+header small, .muted, footer, .card p, #daily small { color: var(--muted); }
+h1, h2, p { margin: 0 0 12px; }
+h1, h2 { letter-spacing: -.025em; line-height: 1.25; }
+h1 { font-size: clamp(27px, 5vw, 40px); }
+h2 { font-size: 21px; }
+button { border: 0; border-radius: 12px; padding: 10px 15px; min-height: 44px; font: inherit; font-weight: 650; background: var(--blue); color: var(--page); cursor: pointer; }
+button.primary, .tabs button[aria-pressed=true] { background: var(--lime); color: var(--page); }
+.tabs, .actions { display: flex; gap: 8px; }
+.tabs { margin-bottom: 18px; }
+.tabs button { flex: 1; background: var(--panel); color: var(--text); }
+.actions { flex-wrap: wrap; margin-top: 12px; }
+.planner-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; background: var(--raised); padding: clamp(17px, 4vw, 27px); border-radius: 24px; margin-bottom: 14px; }
+.planner-head h1 { margin: 4px 0 8px; }
+.planner-head p { margin: 0; color: var(--muted); }
+.meter { flex: none; display: grid; place-items: center; width: clamp(69px, 16vw, 94px); aspect-ratio: 1; border-radius: 50%; background: conic-gradient(var(--lime) var(--sweep, 0deg), #495873 0); }
+#progress { width: calc(100% - 13px); aspect-ratio: 1; display: grid; place-items: center; background: var(--raised); color: var(--lime); border-radius: 50%; font-size: 1.05rem; font-weight: 700; }
+#progress, input[type=time] { font-variant-numeric: tabular-nums; }
+#daily, .grid { display: grid; gap: 10px; }
+#daily { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#daily label { display: grid; grid-template-columns: 41px minmax(0, 1fr) 20px; align-items: center; gap: 12px; margin: 0; padding: 14px 12px; min-height: 86px; cursor: pointer; }
+#daily label:has(input:checked) { border-color: var(--lime); }
+#daily input { grid-column: 3; grid-row: 1; width: 20px; height: 20px; accent-color: var(--lime); margin: 0; }
+#daily label > span:last-child { grid-column: 2; grid-row: 1; }
+#daily small { display: block; overflow-wrap: anywhere; }
+.glyph { grid-column: 1; grid-row: 1; display: grid; place-items: center; width: 41px; height: 41px; border-radius: 12px; background: #3d3327; color: #ffdc91; font-size: 23px; }
+#daily label:nth-child(2) .glyph { background: #293a50; color: #a8d0ff; }
+#daily label:nth-child(3) .glyph { background: #3b314d; color: #e3c5ff; }
+#daily label:nth-child(4) .glyph { background: #253d39; color: #b0f1db; }
+.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 14px; }
+.wide { grid-column: 1 / -1; }
+.card, details, #daily label { background: var(--panel); border: 1px solid var(--rule); border-radius: 16px; padding: 17px; }
+.today-practice { margin-top: 14px; }
+.today-practice p { margin-bottom: 0; }
+details { margin-top: 14px; }
+details details { background: var(--raised); }
+summary { cursor: pointer; font-weight: 650; }
+summary + p { margin-top: 12px; }
+label { display: block; margin: 12px 0 5px; }
+input:not([type=checkbox]), textarea, select { width: 100%; border: 1px solid #64748f; border-radius: 9px; padding: 9px; font: inherit; color: var(--text); background: var(--page); }
+textarea { min-height: 70px; resize: vertical; }
+input[type=time] { max-width: 220px; }
+form > button, form p { margin-top: 12px; }
+#due { margin-top: 12px; background: var(--lime); color: var(--page); border-radius: 12px; padding: 12px 16px; font-weight: 650; }
+.urgent { margin: 16px 0 0; background: #292a35; color: #f0dbb9; padding: 11px 14px; border-radius: 12px; font-size: .875rem; }
+footer { margin-top: 15px; }
+a { color: #afd0ff; }
+dialog { width: min(92%, 520px); max-height: 90dvh; overflow: auto; border: 1px solid var(--rule); border-radius: 22px; padding: 23px; background: var(--panel); color: var(--text); }
+dialog::backdrop { background: #060a12bc; }
+.cue { font-size: 1.15rem; font-weight: 600; min-height: 92px; padding: 15px; background: var(--raised); border-radius: 12px; }
+li { margin-block: 9px; overflow-wrap: anywhere; }
+:focus-visible { outline: 3px solid #efbd72; outline-offset: 3px; }
+[hidden] { display: none !important; }
+@media (max-width: 620px) {
+  main { padding-bottom: calc(78px + env(safe-area-inset-bottom)); }
+  .tabs { position: fixed; z-index: 3; bottom: 0; left: 0; right: 0; margin: 0; background: var(--page); padding: 8px 12px max(8px, env(safe-area-inset-bottom)); border-top: 1px solid var(--rule); }
+  #daily, .grid { grid-template-columns: 1fr; }
+}
+</style>
+<main>
+<header><strong>安稳</strong><small>日常焦虑管理</small></header>
+<nav class="tabs" aria-label="功能导航"><button data-view="today" aria-pressed="true">今日</button><button data-view="practice" aria-pressed="false">练习</button><button data-view="journal" aria-pressed="false">记录</button><button data-view="settings" aria-pressed="false">设置</button></nav><div data-panel="today"><section class="planner" aria-labelledby="today-title">
+<div class="planner-head"><div><span id="plan-date"></span><h1 id="today-title">今日计划</h1><p>挑一项做就好，按身体状态调整。</p></div><div class="meter" id="meter"><output id="progress" aria-live="polite"></output></div></div>
+
+<div id="daily">
+<label><input type="checkbox" id="sun"><span class="glyph" aria-hidden="true">☀</span><span><strong>上午 · 到户外晒晒太阳</strong><small>早餐后找个舒服的位置，在户外待几分钟。</small></span></label>
+<label><input type="checkbox" id="move"><span class="glyph" aria-hidden="true">↗</span><span><strong>白天 · 动一动</strong><small>挑一段熟悉的路线，按舒服的速度散步 5 分钟，或做医生建议的运动。</small></span></label>
+<label><input type="checkbox" id="interest"><span class="glyph" aria-hidden="true">◇</span><span><strong>有空时 · 给兴趣留一点时间</strong><small id="hobby-cue">挑一首喜欢的歌听完，或试着随手画一张小画。</small></span></label>
+<label><input type="checkbox" id="sleep"><span class="glyph" aria-hidden="true">☾</span><span><strong>晚上 · 给睡眠留一段缓冲</strong><small>先定好明早的起床时间，睡前选一件安静的事，比如读几页书。</small></span></label>
+</div>
+</section><div id="due" role="status" hidden></div><section class="card today-practice" aria-labelledby="worry-heading"><h2 id="worry-heading">担心反复出现时</h2><p>挑一个困扰你的念头，看看今天能做的一小步是什么。</p><div class="actions"><button class="primary" id="worry">开始整理担心</button><button id="open">我现在有点慌</button></div></section></div><div data-panel="settings" hidden><h1>设置</h1><details class="hobby-panel" open><summary>设置我的 2–3 个兴趣</summary>
+<form id="hobbies"><label for="hobby1">兴趣 1</label><input id="hobby1" maxlength="60" placeholder="比如画画">
+<label for="hobby2">兴趣 2</label><input id="hobby2" maxlength="60" placeholder="比如养植物">
+<label for="hobby3">兴趣 3（可选）</label><input id="hobby3" maxlength="60">
+<button class="primary">保存兴趣</button></form></details>
+<p id="plan-status" role="status"></p><small>勾选按本地日期更新。兴趣和勾选保存在当前浏览器。</small>
+<details class="reminder" open><summary>设置每日提醒</summary>
+<form id="reminders">
+<label for="rem-sun">户外晒太阳</label><input type="time" id="rem-sun">
+<label for="rem-move">运动</label><input type="time" id="rem-move">
+<label for="rem-interest">兴趣时间</label><input type="time" id="rem-interest">
+<label for="rem-sleep">睡前准备</label><input type="time" id="rem-sleep"><p>留空即可关闭对应提醒。保存后，网页打开时会显示到点提示。想在关闭网页后收到提醒，可把下载的文件导入支持提醒的日历，并开启日历通知。</p>
+<div class="actions"><button class="primary">保存提醒</button><button type="button" id="calendar">下载日历提醒</button></div>
+</form><p id="rem-status" role="status"></p></details></div><div data-panel="practice" hidden><h1>练习</h1><div class="grid">
+<section class="card"><h2>整理担心</h2><p>白天反复想到同一件事时，可以先记下关键词，留到一个固定时段再处理。可以预留 10–15 分钟，挑一件担心试试。</p><button id="worry-practice">开始整理</button></section>
+<section class="card"><h2>松一松紧绷感</h2><p>找个舒服的姿势，试试松开下巴、肩膀和手，或做一小段轻柔呼吸。觉得不舒服时，随时停下。</p><div class="actions"><button id="release">放松练习</button><button id="breathe">轻柔呼吸</button></div></section>
+<section class="card"><h2>作息与日常活动</h2><p>每天尽量在相近的时间起床。白天安排身体能适应的活动，睡前留一点安静时间。如果下午或晚上喝咖啡、浓茶后更难入睡，可以把饮用时间往前移。</p></section>
+<section class="card"><h2>偶尔突然很慌</h2><p>如果是熟悉的发作感受，可以先把注意力放到身体与地面的接触，或看看周围。</p><button id="ground">感官引导</button></section>
+<section class="card wide"><h2>准备复诊</h2><p>可以和医生说：“我想优先尝试非药物干预。能否评估我是否适合有专业人员指导的认知行为治疗（CBT）、应用性放松或引导式自助，并约定复评时间？”</p><p>复诊时可以说说最近的睡眠、出门和工作受到了多大影响，以及哪些活动更容易坚持。如果心悸、头晕、出汗等身体症状反复或加重，也请告诉医生，并说明是否发生在站起、活动或休息时。医生可以结合这些线索评估原因。</p></section>
+</div></div><div data-panel="journal" hidden><div class="grid"><section class="card wide"><h1>简短记录</h1><p>平时也可以记。每周挑一天回看一次，留意哪些活动容易坚持、什么最影响生活，以及有什么想带去复诊。</p>
+<form id="log"><label for="context">今天有什么让你担心，或影响了睡眠、出门、工作？</label><textarea id="context" maxlength="500" required></textarea><label for="level">当时的不适程度（0 是没有不适，10 是最强烈，可跳过）</label><select id="level"><option value="">跳过</option></select><label for="thought">当时最担心什么？后来实际发生了什么？（可选）</label><textarea id="thought" maxlength="500"></textarea><label for="impact">有没有身体不适？出现时在站立、运动还是休息？（可选）</label><textarea id="impact" maxlength="500"></textarea><label for="next">什么对你有帮助？接下来想试哪一步？（可选）</label><textarea id="next" maxlength="500"></textarea><button class="primary">保存记录</button></form>
+<p id="status" role="status"></p><details><summary>查看记录 <span id="count"></span></summary><ul id="entries"></ul></details><small>记录只保存在当前浏览器。清除浏览器数据可能会丢失记录。</small></section>
+</div>
+</div><p class="urgent">新发或明显不同的胸痛、严重呼吸困难或晕厥，请立即联系当地急救。</p><footer><small>用于日常自助和复诊准备。<a href="https://www.nice.org.uk/guidance/cg113/ifp/chapter/what-treatments-should-i-be-offered-for-gad">NICE 焦虑治疗指南</a> · <a href="https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/">NHS 整理担心</a> · <a href="https://www.nhs.uk/conditions/insomnia/">NHS 睡眠建议</a></small></footer>
+</main>
+<dialog id="guide" aria-labelledby="title"><h2 id="title">再慢一点</h2><p id="intro"></p><p class="cue" id="cue" role="status"></p><div class="actions"><button class="primary" id="advance">下一步</button><button id="switch">换个练习</button><button id="close">结束</button></div></dialog>
+<script>
+const el = id => document.getElementById(id);
+const guide = el('guide');
+const steps = ['如果环境安全，找个舒服的姿势。感受脚底或身体与椅子的接触。','看看周围，慢慢说出三样你看见的东西。','留意两种触感，比如衣料和脚下的地面。','听一听周围的一种声音。也可以再看一眼刚才看到的东西。','练习到这里就可以了。即使仍有不适，你也可以按自己的节奏决定下一步。'];
+const guidedExercises = {
+  ground: {title: '回到眼前', intro: '按自己的节奏来，每一步都可以跳过。', steps},
+  worry: {
+    title: '整理一件担心',
+    intro: '可以在纸上写几个字，也可以只在心里想。随时可以停下。',
+    steps: [
+      '挑一件让你反复担心的事。用一句话说清楚：我在担心会发生什么？',
+      '问自己：这件事现在有哪一部分是我能处理的？',
+      '如果有能处理的部分，选一个小行动，想好什么时候做。如果暂时做不了，可以先写下来，到下次整理担心时再看。',
+      '到这里就可以了。接下来回到一件原本想做的小事，比如喝口水、读一页书或继续手头的事。'
+    ]
+  },
+  release: {
+    title: '松开一点',
+    intro: '坐得舒服一些，保持自然呼吸。觉得不舒服时可以停下。',
+    steps: [
+      '让双脚有支撑。留意椅子或地面托住身体的感觉。',
+      '让肩膀自然落下来。松开下巴，把手轻轻放在腿上。',
+      '停留几次自然呼吸。结束时慢慢把注意力带回周围。'
+    ]
+  }
+};
+let mode, step, timer;
+function showExercise(type) {
+  clearTimeout(timer);
+  mode = type;
+  step = 0;
+  const exercise = guidedExercises[type];
+  el('title').textContent = exercise?.title ?? '轻柔呼吸';
+  el('intro').textContent = exercise?.intro ?? '用舒服的幅度呼吸，提示的节奏可以跳过。无需深吸气或憋气。觉得头晕或更不舒服时，可以结束或换个练习。';
+  el('cue').textContent = exercise?.steps[0] ?? '准备好时再开始，也可以保持自然呼吸。';
+  el('advance').textContent = exercise ? '下一步' : '开始';
+  el('switch').hidden = type === 'worry' || type === 'release';
+  el('advance').hidden = false;
+  if (!guide.open) guide.showModal();
+  el('advance').focus();
+}
+function breathing(phase = 0) {
+  if (phase === 14) {
+    el('cue').textContent = '练习结束。让呼吸回到平常的节奏。';
+    return;
+  }
+  const inhale = phase % 2 === 0;
+  el('cue').textContent = inhale ? '轻轻吸气' : '慢慢呼气';
+  timer = setTimeout(() => breathing(phase + 1), inhale ? 3000 : 5000);
+}
+el('open').onclick = el('ground').onclick = () => showExercise('ground');
+el('worry').onclick = el('worry-practice').onclick = () => showExercise('worry');
+el('release').onclick = () => showExercise('release');
+el('breathe').onclick = () => showExercise('breath');
+el('switch').onclick = () => showExercise(mode === 'ground' ? 'breath' : 'ground');
+el('close').onclick = () => { clearTimeout(timer); guide.close(); };
+guide.addEventListener('cancel', () => clearTimeout(timer));
+el('advance').onclick = () => {
+  if (mode === 'breath') { el('advance').hidden = true; el('close').focus(); breathing(); return; }
+  const cues = guidedExercises[mode].steps;
+  el('cue').textContent = cues[++step];
+  if (step === cues.length - 1) { el('advance').hidden = true; el('close').focus(); }
+};
+for (let i = 0; i <= 10; i++) el('level').add(new Option(String(i), String(i)));
+const key = 'anwen-journal-v1';
+let records = [];
+let readable = true;
+try {
+  records = JSON.parse(localStorage.getItem(key) || '[]');
+  if (!Array.isArray(records) || records.some(item => !item || typeof item.context !== 'string' || !Number.isFinite(item.date))) {
+    throw new Error('Invalid journal');
+  }
+} catch {
+  readable = false;
+  records = [];
+  el('status').textContent = '无法读取本地记录。请检查浏览器存储设置。';
+}
+function render() {
+  el('count').textContent = '（' + records.length + '）';
+  el('entries').replaceChildren();
+  if (!records.length) {
+    const empty = document.createElement('li');
+    empty.textContent = '还没有记录';
+    el('entries').append(empty);
+  }
+  records.forEach((item, index) => {
+    const li = document.createElement('li');
+    const date = document.createElement('strong');
+    date.textContent = new Date(item.date).toLocaleString('zh-CN');
+    li.append(date);
+    for (const value of [item.context, item.level === '' ? '' : '不适程度 ' + item.level + '/10', item.thought, item.impact, item.next]) {
+      if (!value) continue;
+      const row = document.createElement('div');
+      row.textContent = value;
+      li.append(row);
+    }
+    const remove = document.createElement('button');
+    remove.textContent = '删除这条';
+    remove.onclick = () => {
+      if (confirm('删除这条记录？')) save(records.filter((_, i) => i !== index), '已删除。');
+    };
+    li.append(remove);
+    el('entries').append(li);
+  });
+}
+function save(updated, message) {
+  try {
+    if (!readable) throw new Error('Storage unavailable');
+    localStorage.setItem(key, JSON.stringify(updated));
+  } catch {
+    el('status').textContent = '保存失败。请检查浏览器是否允许本地存储。';
+    return false;
+  }
+  records = updated;
+  render();
+  el('status').textContent = message;
+  return true;
+}
+el('log').onsubmit = event => {
+  event.preventDefault();
+  const context = el('context').value.trim();
+  if (!context) { el('status').textContent = '请先写一点当时的情况。'; el('context').focus(); return; }
+  if (save([{date: Date.now(), context, level: el('level').value, thought: el('thought').value.trim(), impact: el('impact').value.trim(), next: el('next').value.trim()}, ...records], '已保存在当前浏览器。')) event.target.reset();
+};
+render();
+const planKey = 'anwen-daily-plan-v1';
+const activityIds = ['sun', 'move', 'interest', 'sleep'];
+const hobbyIds = ['hobby1', 'hobby2', 'hobby3'];
+const today = () => new Date().toLocaleDateString('sv-SE');
+let plan = {};
+try {
+  plan = JSON.parse(localStorage.getItem(planKey) || '{}') || {};
+} catch {
+  el('plan-status').textContent = '暂时无法读取之前的计划。';
+}
+function showToday() {
+  const day = today();
+  el('plan-date').textContent = new Intl.DateTimeFormat('zh-CN', {month:'long', day:'numeric', weekday:'long'}).format(new Date());
+  for (const id of activityIds) el(id).checked = plan.day === day && plan[id] === true;
+  const completed = activityIds.filter(id => el(id).checked).length;
+  el('progress').textContent = completed + ' / ' + activityIds.length;
+  el('progress').setAttribute('aria-label', '已完成 ' + completed + ' 项，共 ' + activityIds.length + ' 项');
+  el('meter').style.setProperty('--sweep', (completed * 360 / activityIds.length) + 'deg');
+  const hobbies = Array.isArray(plan.hobbies) ? plan.hobbies.filter(Boolean) : [];
+  if (hobbies.length) el('hobby-cue').textContent = '从「' + hobbies.join('、') + '」中选一个，做几分钟就好。';
+  else el('hobby-cue').textContent = '挑一首喜欢的歌听完，或试着随手画一张小画。';
+}
+function storePlan(updated) {
+  try {
+    localStorage.setItem(planKey, JSON.stringify(updated));
+    plan = updated;
+    el('plan-status').textContent = '已保存。';
+    return true;
+  } catch {
+    el('plan-status').textContent = '保存失败。请检查浏览器是否允许本地存储。';
+    return false;
+  }
+}
+showToday();
+
+hobbyIds.forEach((id, index) => { el(id).value = plan.hobbies?.[index] || ''; });
+activityIds.forEach(id => {
+  el(id).onchange = () => {
+    const day = today();
+    const updated = plan.day === day ? {...plan} : {hobbies: plan.hobbies, day};
+    updated[id] = el(id).checked;
+    storePlan(updated);
+    showToday();
+  };
+});
+el('hobbies').onsubmit = event => {
+  event.preventDefault();
+  const hobbies = hobbyIds.map(id => el(id).value.trim());
+  if (storePlan({...plan, hobbies})) showToday();
+};
+const reminderKey = 'anwen-reminders-v1';
+const reminderNames = {sun:'户外晒太阳', move:'运动', interest:'兴趣时间', sleep:'睡前准备'};
+const timePattern = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
+let reminders = {};
+try { reminders = JSON.parse(localStorage.getItem(reminderKey) || '{}') || {}; } catch {}
+for (const id of activityIds) el('rem-' + id).value = reminders[id] || '';
+function reminderCheck() {
+  showToday();
+  const now = new Date();
+  const clock = now.toTimeString().slice(0, 5);
+  const due = activityIds.filter(id => timePattern.test(reminders[id]) && reminders[id] <= clock && !el(id).checked);
+  const message = due.length ? '今天可以安排：' + due.map(id => reminderNames[id]).join('、') : '';
+  if (el('due').textContent !== message) el('due').textContent = message;
+  el('due').hidden = !message;
+}
+el('reminders').onsubmit = event => {
+  event.preventDefault();
+  const updated = Object.fromEntries(activityIds.map(id => [id, el('rem-' + id).value]));
+  try {
+    localStorage.setItem(reminderKey, JSON.stringify(updated));
+    reminders = updated;
+    el('rem-status').textContent = '提醒已保存。';
+    reminderCheck();
+  } catch { el('rem-status').textContent = '保存失败，请检查浏览器存储设置。'; }
+};
+el('daily').addEventListener('change', reminderCheck);
+window.addEventListener('focus', reminderCheck);
+setInterval(reminderCheck, 15000);
+reminderCheck();
+function calendarText(settings, now) {
+  const day = d => [d.getFullYear(), d.getMonth() + 1, d.getDate()].map(n => String(n).padStart(2,'0')).join('');
+  const stamp = now.toISOString().replace(/[-:]|\.\d{3}/g, '');
+  const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Anwen//Daily Reminders//ZH','CALSCALE:GREGORIAN'];
+  for (const id of activityIds) {
+    const time = settings[id];
+    if (!timePattern.test(time)) continue;
+    const start = new Date(now);
+    start.setHours(Number(time.slice(0,2)), Number(time.slice(3)), 0, 0);
+    if (start <= now) start.setDate(start.getDate() + 1);
+    lines.push('BEGIN:VEVENT','UID:anwen-' + id + '-' + time.replace(':','') + '@local.invalid','DTSTAMP:' + stamp,'DTSTART:' + day(start) + 'T' + time.replace(':','') + '00','RRULE:FREQ=DAILY','SUMMARY:' + reminderNames[id],'BEGIN:VALARM','ACTION:DISPLAY','TRIGGER:PT0M','DESCRIPTION:' + reminderNames[id],'END:VALARM','END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  return lines.join('\r\n') + '\r\n';
+}
+el('calendar').onclick = () => {
+  const settings = Object.fromEntries(activityIds.map(id => [id, el('rem-' + id).value]));
+  if (!activityIds.some(id => timePattern.test(settings[id]))) {
+    el('rem-status').textContent = '请先填写至少一个提醒时间。';
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([calendarText(settings, new Date())], {type:'text/calendar;charset=utf-8'}));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = '安稳每日提醒.ics';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+  el('rem-status').textContent = '导入日历后，请确认重复频率和通知。改时间时，可先删除日历里的旧重复事项。';
+};
+for (const button of document.querySelectorAll('[data-view]')) {
+  button.onclick = () => {
+    for (const item of document.querySelectorAll('[data-view]')) item.setAttribute('aria-pressed', String(item === button));
+    for (const panel of document.querySelectorAll('[data-panel]')) panel.hidden = panel.dataset.panel !== button.dataset.view;
+    window.scrollTo(0, 0);
+  };
+}
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('./offline.js').catch(() => {});
+}
+</script>
+</html>
