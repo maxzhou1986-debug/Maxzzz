@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T17:14:54.947666+00:00",
+  "updatedAt": "2026-11-20T23:11:24.332803+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -40,21 +40,21 @@
     },
     {
       "symbol": "WMT",
-      "score": 80.5,
+      "score": 79.5,
       "stage": "静默转强",
-      "distMA20": 3.4
+      "distMA20": 2.1
+    },
+    {
+      "symbol": "COST",
+      "score": 76.4,
+      "stage": "静默转强",
+      "distMA20": 4.2
     },
     {
       "symbol": "601318.SS",
       "score": 75.7,
       "stage": "静默转强",
       "distMA20": 3.0
-    },
-    {
-      "symbol": "COST",
-      "score": 71.0,
-      "stage": "静默转强",
-      "distMA20": 5.7
     },
     {
       "symbol": "601688.SS",
