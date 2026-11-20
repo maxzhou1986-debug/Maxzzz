@@ -1,38 +1,47 @@
 {
-  "updatedAt": "2026-11-20T01:21:04.926214+00:00",
+  "updatedAt": "2026-11-20T17:15:33.069949+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
-    "PDD": {
-      "rawHeat": 7283.0,
+    "SKHY": {
+      "rawHeat": 9701.0,
       "score": 100
     },
-    "BABA": {
-      "rawHeat": 7184.0,
-      "score": 98.6
+    "AMD": {
+      "rawHeat": 8998.0,
+      "score": 92.8
     },
-    "SH601899": {
-      "rawHeat": 6251.0,
-      "score": 85.8
+    "TSM": {
+      "rawHeat": 7125.0,
+      "score": 73.4
     },
-    "SZ300308": {
-      "rawHeat": 6212.0,
-      "score": 85.3
+    "SPCX": {
+      "rawHeat": 5288.0,
+      "score": 54.5
     }
   },
   "sectors": {
-    "CPO": {
-      "score": 85.3,
-      "heatChange1d": 5.6,
-      "heatChange3d": 11.3,
+    "CPO": null,
+    "HBM / 存储": {
+      "score": 100,
+      "heatChange1d": 76.1,
+      "heatChange3d": 0,
       "sampleCount": 1,
-      "rawMaxHeat": 6212.0,
+      "rawMaxHeat": 9701.0,
       "matchedCodes": [
-        "SZ300308"
+        "SKHY"
       ]
     },
-    "HBM / 存储": null,
-    "AI芯片": null,
+    "AI芯片": {
+      "score": 92.8,
+      "heatChange1d": -7.2,
+      "heatChange3d": -7.2,
+      "sampleCount": 1,
+      "rawMaxHeat": 8998.0,
+      "matchedCodes": [
+        "AMD"
+      ]
+    },
     "AI网络": null,
     "AI基建": null
   }
