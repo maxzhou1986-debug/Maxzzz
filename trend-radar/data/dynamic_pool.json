@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T19:12:19.864242+00:00",
+  "updatedAt": "2026-11-20T01:20:36.421620+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -16,7 +16,7 @@
     },
     {
       "symbol": "CRWD",
-      "score": 87.1,
+      "score": 87.4,
       "stage": "静默转强",
       "distMA20": 1.6
     },
@@ -33,16 +33,22 @@
       "distMA20": 1.1
     },
     {
-      "symbol": "WMT",
-      "score": 75.8,
-      "stage": "静默转强",
-      "distMA20": 1.1
-    },
-    {
       "symbol": "688981.SS",
       "score": 75.8,
       "stage": "高乖离",
       "distMA20": 13.9
+    },
+    {
+      "symbol": "WMT",
+      "score": 75.3,
+      "stage": "静默转强",
+      "distMA20": 0.9
+    },
+    {
+      "symbol": "COST",
+      "score": 75.2,
+      "stage": "静默转强",
+      "distMA20": 3.9
     },
     {
       "symbol": "600031.SS",
@@ -51,28 +57,16 @@
       "distMA20": 2.0
     },
     {
-      "symbol": "COST",
-      "score": 74.2,
-      "stage": "静默转强",
-      "distMA20": 3.6
-    },
-    {
       "symbol": "601318.SS",
       "score": 69.9,
       "stage": "静默转强",
       "distMA20": 1.8
     },
     {
-      "symbol": "AMZN",
-      "score": 61.1,
-      "stage": "静默转强",
-      "distMA20": 0.6
-    },
-    {
       "symbol": "GE",
-      "score": 57.5,
+      "score": 56.8,
       "stage": "静默转强",
-      "distMA20": 0.5
+      "distMA20": 0.1
     }
   ]
 }
