@@ -1,55 +1,38 @@
 {
-  "updatedAt": "2026-11-21T04:02:37.654880+00:00",
+  "updatedAt": "2026-11-23T07:23:16.505866+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
-    "SNDK": {
-      "rawHeat": 5009.0,
+    "SZ300413": {
+      "rawHeat": 9780.0,
       "score": 100
     },
-    "ANT": {
-      "rawHeat": 4412.0,
-      "score": 88.1
+    "NVDA": {
+      "rawHeat": 7796.0,
+      "score": 79.7
     },
-    "SZ300308": {
-      "rawHeat": 3483.0,
-      "score": 69.5
+    "SH603259": {
+      "rawHeat": 7745.0,
+      "score": 79.2
     },
-    "SZ002384": {
-      "rawHeat": 2539.0,
-      "score": 50.7
-    },
-    "MU": {
-      "rawHeat": 2337.0,
-      "score": 46.7
-    },
-    "SH601899": {
-      "rawHeat": 2252.0,
-      "score": 45.0
+    "SZ002242": {
+      "rawHeat": 6780.0,
+      "score": 69.3
     }
   },
   "sectors": {
-    "CPO": {
-      "score": 69.5,
-      "heatChange1d": -15.8,
-      "heatChange3d": -22.5,
+    "CPO": null,
+    "HBM / 存储": null,
+    "AI芯片": {
+      "score": 79.7,
+      "heatChange1d": 36.8,
+      "heatChange3d": -20.3,
       "sampleCount": 1,
-      "rawMaxHeat": 3483.0,
+      "rawMaxHeat": 7796.0,
       "matchedCodes": [
-        "SZ300308"
+        "NVDA"
       ]
     },
-    "HBM / 存储": {
-      "score": 46.7,
-      "heatChange1d": -11.6,
-      "heatChange3d": 22.8,
-      "sampleCount": 1,
-      "rawMaxHeat": 2337.0,
-      "matchedCodes": [
-        "MU"
-      ]
-    },
-    "AI芯片": null,
     "AI网络": null,
     "AI基建": null
   }
