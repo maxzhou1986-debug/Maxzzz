@@ -1,25 +1,50 @@
 {
-  "updatedAt": "2026-11-24T04:20:20.655812+00:00",
+  "updatedAt": "2026-11-24T14:59:47.617898+00:00",
   "source": "雪球AI公开热股1小时热度",
   "method": "个股热度/全榜最高热度归一化；板块取代表股最高值",
   "stocks": {
-    "SZ300502": {
-      "rawHeat": 8586.0,
+    "MU": {
+      "rawHeat": 9488.0,
       "score": 100
+    },
+    "SH601899": {
+      "rawHeat": 7525.0,
+      "score": 79.3
+    },
+    "SZ300308": {
+      "rawHeat": 6446.0,
+      "score": 67.9
+    },
+    "SNDK": {
+      "rawHeat": 6356.0,
+      "score": 67.0
+    },
+    "SH688256": {
+      "rawHeat": 6129.0,
+      "score": 64.6
     }
   },
   "sectors": {
     "CPO": {
-      "score": 100,
-      "heatChange1d": 54.8,
-      "heatChange3d": 14.7,
+      "score": 67.9,
+      "heatChange1d": -32.1,
+      "heatChange3d": -1.6,
       "sampleCount": 1,
-      "rawMaxHeat": 8586.0,
+      "rawMaxHeat": 6446.0,
       "matchedCodes": [
-        "SZ300502"
+        "SZ300308"
       ]
     },
-    "HBM / 存储": null,
+    "HBM / 存储": {
+      "score": 100,
+      "heatChange1d": 20.5,
+      "heatChange3d": 41.7,
+      "sampleCount": 1,
+      "rawMaxHeat": 9488.0,
+      "matchedCodes": [
+        "MU"
+      ]
+    },
     "AI芯片": null,
     "AI网络": null,
     "AI基建": null
