@@ -1,0 +1,37 @@
+name: Nasdaq Radar Cloud Update
+on:
+  push:
+    paths: ['nasdaq-radar/**', '.github/workflows/nasdaq-radar.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '9,24,39,54 13-22 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: nasdaq-radar-cloud
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Read Nasdaq regular-session data
+        id: quotes
+        continue-on-error: true
+        run: python3 nasdaq-radar/cloud_update.py
+      - name: Save snapshot and diagnostics
+        run: |
+          git config user.name 'radar-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add nasdaq-radar/snapshot.json.gz
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh Nasdaq radar quotes [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Report quote failures
+        if: steps.quotes.outcome == 'failure'
+        run: exit 1
