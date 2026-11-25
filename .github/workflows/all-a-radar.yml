@@ -1,0 +1,37 @@
+name: All A Radar Cloud Update
+on:
+  push:
+    paths: ['all-a-radar/**', '.github/workflows/all-a-radar.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 1-7 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: all-a-radar-cloud
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Read official public market feeds
+        id: quotes
+        continue-on-error: true
+        run: python3 all-a-radar/cloud_update.py
+      - name: Save quote snapshot and diagnostics
+        run: |
+          git config user.name 'radar-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add all-a-radar/snapshot.json.gz
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh All A radar cloud quotes [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Report data source failure
+        if: steps.quotes.outcome == 'failure'
+        run: exit 1
