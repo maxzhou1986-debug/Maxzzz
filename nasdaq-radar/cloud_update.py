@@ -36,7 +36,7 @@ def fetch(interval,symbol='^IXIC'):
    if attempt==3:raise
    time.sleep(2**attempt)
 def main():
- p=ROOT/'snapshot.json.gz';d={}
+ p=ROOT/'qqq-estimated.json.gz';d={}
  if p.exists():d=json.loads(gzip.decompress(p.read_bytes()))
  stamp=datetime.now(timezone.utc).isoformat()
  try:
