@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parent
 NY=ZoneInfo('America/New_York')
 def fetch(interval,symbol='^IXIC'):
- query=('interval=5m&period1='+str(int(time.time()-58*86400))+'&period2='+str(int(time.time()))) if interval=='5m' else 'interval=1d&range=6mo'
+ query=('interval='+interval+'&period1='+str(int(time.time()-(90 if interval=='60m' else 58)*86400))+'&period2='+str(int(time.time()))) if interval in ('5m','60m') else 'interval=1d&range=6mo'
  for attempt in range(4):
   host=['query1','query2'][attempt%2]
   try:
@@ -25,11 +25,11 @@ def fetch(interval,symbol='^IXIC'):
     if any(v is None or not math.isfinite(v) for v in vals):continue
     o,h,l,c,v=vals
     if min(o,h,l,c)<=0 or v<0 or not l<=min(o,c)<=max(o,c)<=h:continue
-    if interval=='5m':
+    if interval in ('5m','60m'):
      if not ('09:30'<=t.strftime('%H:%M')<'16:00'):continue
      # Yahoo may append a zero-volume closing marker (including early-close sessions).
      if v==0 and (i==len(d['timestamp'])-1 or datetime.fromtimestamp(d['timestamp'][i+1],NY).date()!=t.date()):continue
-    rows.append(dict(t=t.strftime('%Y-%m-%d %H:%M:%S') if interval=='5m' else t.date().isoformat(),o=o,h=h,l=l,c=c,a=v))
+    rows.append(dict(t=t.strftime('%Y-%m-%d %H:%M:%S') if interval in ('5m','60m') else t.date().isoformat(),o=o,h=h,l=l,c=c,a=v))
    if not rows:raise ValueError('No valid bars')
    return rows,d['meta']
   except Exception:
@@ -47,7 +47,13 @@ def main():
   assert len(days)>=20,'Less than 20 trading days returned'
   amount=[{'t':r['t'],'a':((r['o']+r['h']+r['l']+r['c'])/4)*r['a'],'v':r['a'],'p':(r['o']+r['h']+r['l']+r['c'])/4} for r in qqq if r['t'][:10] in days]
   assert len({r['t'][:10] for r in amount})>=20,'QQQ history incomplete'
+  long_bars,_=fetch('60m');long_qqq,_=fetch('60m','QQQ')
+  long_days=sorted({r['t'][:10] for r in long_bars})[-55:]
+  long_bars=[r for r in long_bars if r['t'][:10] in long_days]
+  long_amount=[{'t':r['t'],'a':((r['o']+r['h']+r['l']+r['c'])/4)*r['a'],'v':r['a'],'p':(r['o']+r['h']+r['l']+r['c'])/4} for r in long_qqq if r['t'][:10] in long_days]
+  assert len(long_days)>=51 and len({r['t'][:10] for r in long_amount})>=51,'50-day history or prior-day baseline incomplete'
   d={'series':{'nasdaq':bars},'daily':{'nasdaq':daily},'amount':amount,'updated':stamp,'busy':False,'errors':[], 'interval':'5m','timezone':'America/New_York','metric':'qqq_estimated_turnover','currency':'USD','amountSymbol':'QQQ','formula':'(open + high + low + close) / 4 * QQQ volume per 5-minute bar','source':'Yahoo Finance ^IXIC prices + QQQ OHLCV', 'quoteTime':datetime.fromtimestamp(meta['regularMarketTime'],NY).isoformat(),'qqqQuoteTime':datetime.fromtimestamp(qqq_meta['regularMarketTime'],NY).isoformat()}
+  d['series']['nasdaq50']=long_bars;d['daily']['nasdaq50']=daily;d['amount50']=long_amount;d['interval50']='60m'
  except Exception as e:
   if not d:raise
   if d.get('metric')!='qqq_estimated_turnover':d['amount']=[]
