@@ -4,7 +4,7 @@ on:
     paths: ['all-a-radar/**', '.github/workflows/all-a-radar.yml']
   workflow_dispatch:
   schedule:
-    - cron: '7,22,37,52 1-7 * * 1-5'
+    - cron: '*/5 1-7 * * 1-5'
 permissions:
   contents: write
 concurrency:

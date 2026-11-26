@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parent
 def get(path):
  for attempt in range(4):
   try:
-   req=urllib.request.Request('https://d.10jqka.com.cn/v6/'+path,headers={'Referer':'https://q.10jqka.com.cn/','User-Agent':'Mozilla/5.0'})
+   req=urllib.request.Request('https://d.10jqka.com.cn/'+('v6/' if attempt%2==0 else 'v4/')+path,headers={'Referer':'https://q.10jqka.com.cn/','User-Agent':'Mozilla/5.0'})
    raw=urllib.request.urlopen(req,timeout=25).read().decode()
    return json.loads(raw[raw.index('(')+1:raw.rindex(')')])
   except Exception:
