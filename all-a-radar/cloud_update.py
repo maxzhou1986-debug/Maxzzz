@@ -3,6 +3,27 @@ import json,gzip,time,urllib.request,unicodedata
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
 ROOT=Path(__file__).resolve().parent
+def csi_history():
+ url='https://push2his.eastmoney.com/api/qt/stock/trends2/get?secid=1.000985&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11&fields2=f51,f52,f53,f54,f55,f56,f57,f58&ndays=5&iscr=0'
+ for attempt in range(3):
+  try:
+   req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Referer':'https://quote.eastmoney.com/'})
+   d=json.load(urllib.request.urlopen(req,timeout=20))['data']
+   assert d['code']=='000985' and d['name']=='中证全指','中证全指标识不匹配'
+   rows=[]
+   for s in d['trends']:
+    a=s.split(',');c=float(a[2])
+    if c>0:rows.append({'t':a[0]+':00','c':c})
+   assert rows
+   return rows
+  except Exception:
+   if attempt==2:raise
+   time.sleep(2)
+def csi_daily():
+ req=urllib.request.Request('https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000985,day,,,160,qfq',headers={'User-Agent':'Mozilla/5.0'})
+ d=json.load(urllib.request.urlopen(req,timeout=20))['data']['sh000985']
+ assert '中证全指' in d['qt']['sh000985'][1]
+ return [{'t':r[0],'o':float(r[1]),'c':float(r[2]),'h':float(r[3]),'l':float(r[4])} for r in d['day']]
 def get(path):
  for attempt in range(4):
   try:
@@ -36,6 +57,12 @@ def main():
  p=ROOT/'snapshot.json.gz'
  d=json.loads(gzip.decompress(p.read_bytes()))
  errors=[]
+ try:
+  d['series']['csi']=merge(d['series'].get('csi',[]),csi_history())
+  d['csiSource']='中证全指000985：初始OpenD历史，新增及近5日由东方财富同一指数分钟线覆盖；日K为腾讯行情原始OHLC'
+ except Exception as e:errors.append('中证全指历史更新失败：'+str(e))
+ try:d['daily']['csi']=csi_daily()
+ except Exception as e:errors.append('中证全指日K更新失败：'+str(e))
  try:
   th=minutes('bk_883957','同花顺全A')
   d['series']['ths']=merge(d['series'].get('ths',[]),th)
