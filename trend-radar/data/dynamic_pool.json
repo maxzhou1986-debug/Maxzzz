@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T10:11:22.058425+00:00",
+  "updatedAt": "2026-11-27T19:31:57.383143+00:00",
   "method": "基本面硬过滤 → MA20/60趋势 + 5/20日动量加速 + 量能 + MA20位置；优先静默转强，惩罚高乖离",
   "stocks": [
     {
@@ -21,10 +21,16 @@
       "distMA20": 4.3
     },
     {
-      "symbol": "VRTX",
-      "score": 95.9,
+      "symbol": "LMT",
+      "score": 102.4,
       "stage": "静默转强",
-      "distMA20": 3.9
+      "distMA20": 1.7
+    },
+    {
+      "symbol": "WMT",
+      "score": 98.3,
+      "stage": "静默转强",
+      "distMA20": 4.3
     },
     {
       "symbol": "300124.SZ",
@@ -33,34 +39,34 @@
       "distMA20": 1.1
     },
     {
-      "symbol": "LMT",
-      "score": 92.9,
-      "stage": "静默转强",
-      "distMA20": 0.3
-    },
-    {
-      "symbol": "WMT",
-      "score": 92.7,
-      "stage": "静默转强",
-      "distMA20": 3.8
-    },
-    {
       "symbol": "600276.SS",
       "score": 90.9,
       "stage": "静默转强",
       "distMA20": 1.2
     },
     {
+      "symbol": "RTX",
+      "score": 86.9,
+      "stage": "静默转强",
+      "distMA20": 0.8
+    },
+    {
+      "symbol": "GE",
+      "score": 80.6,
+      "stage": "静默转强",
+      "distMA20": 0.1
+    },
+    {
+      "symbol": "COST",
+      "score": 77.4,
+      "stage": "静默转强",
+      "distMA20": 1.9
+    },
+    {
       "symbol": "601318.SS",
       "score": 76.4,
       "stage": "静默转强",
       "distMA20": 1.2
-    },
-    {
-      "symbol": "COST",
-      "score": 72.9,
-      "stage": "静默转强",
-      "distMA20": 1.4
     },
     {
       "symbol": "600519.SS",
@@ -93,10 +99,22 @@
       "distMA20": 1.9
     },
     {
+      "symbol": "PLTR",
+      "score": 63.7,
+      "stage": "静默转强",
+      "distMA20": 4.3
+    },
+    {
       "symbol": "3308.HK",
       "score": 59.3,
       "stage": "强趋势",
       "distMA20": 6.1
+    },
+    {
+      "symbol": "META",
+      "score": 45.9,
+      "stage": "静默转强",
+      "distMA20": 2.2
     },
     {
       "symbol": "300394.SZ",
@@ -115,6 +133,12 @@
       "score": 39.1,
       "stage": "高乖离",
       "distMA20": 13.0
+    },
+    {
+      "symbol": "COHR",
+      "score": 39.1,
+      "stage": "强趋势",
+      "distMA20": 7.6
     }
   ]
 }
